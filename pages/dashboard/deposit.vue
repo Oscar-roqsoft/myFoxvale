@@ -51,7 +51,7 @@
 
                                         <div class="form-icon position-relative">
                                             <span>Amount</span>
-                                            <input type="number" class="form-control ps-4">
+                                            <input type="number" class="form-control ps-4" v-model.trim="inputDepositAmtVal">
                                         </div>
                                     </div>
                                 </div><!--end col-->
@@ -71,7 +71,7 @@
                         </form>
                         
 
-                        <modal-wallet-details  :value="isVisible" changeD.prevent="toggleModal"/>
+                        <modal-wallet-details :depositAmount="inputDepositAmtVal"  :value="isVisible" changeD.prevent="toggleModal"/>
                     </div>
                 </div><!--end container-->
 
@@ -94,6 +94,7 @@ definePageMeta({
 })
 
 const isVisible = ref(false)
+const inputDepositAmtVal = ref('')
 
 const toggleModal =()=>{
     isVisible.value = !isVisible.value

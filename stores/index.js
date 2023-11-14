@@ -8,6 +8,8 @@ export const useStore = defineStore('user',()=> {
     const user = ref({})
 
    const packages = ref([])
+
+   const navigateBackAndFrontVal = ref(true)
     
     const menuOverlay =ref(false)
     // const isAdmin = computed(()=>{
@@ -30,6 +32,12 @@ export const useStore = defineStore('user',()=> {
         user.value = {};
         window.location = "/login";
     }
+    const goFront = ()=>{
+        navigateBackAndFrontVal.value = false;
+    }
+    const goBack = ()=>{
+        navigateBackAndFrontVal.value = true;
+    }
     
    
    
@@ -41,6 +49,9 @@ export const useStore = defineStore('user',()=> {
         storeUser,
         storePackage,
         signOut,
+        goFront ,
+        navigateBackAndFrontVal ,
+        goBack
     }
     // const  (true),
 },

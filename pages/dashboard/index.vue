@@ -117,7 +117,7 @@
 <script setup>
 
 import {useStore}  from "@/stores/index"
-
+// import { useClipboard }   from '@vueuse/core'
 definePageMeta({
     layout:"custom",
 })

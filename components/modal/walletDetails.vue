@@ -4,7 +4,7 @@
 
          <div class="layer rounded shadow" :class="isVisible === props.value ?'clicked':''">
              <div>
-                 <p class="text-sm">Send <span class="text-warning">$200,0000</span> worth of BTC to the wallet address below</p>
+                 <p class="text-sm">Send <span class="text-warning">{{ numberWithCommas(props.depositAmount) }}</span> worth of BTC to the wallet address below</p>
                  <hr class="bg-dark w-100">
              </div>
              
@@ -20,7 +20,7 @@
              <div class="w-100">
                 <hr class="bg-dark w-100">
                 <div class=" d-flex justify-content-end">
-                    <button @click="closeModal" class="btn btn-danger text-sm">close</button>
+                    <button @click.prevent="closeModal" class="btn btn-danger text-sm">close</button>
                 </div>
              </div>
          </div>
@@ -32,9 +32,9 @@
 
 
 <script setup>
-
 const props = defineProps([
-    "value"
+    "value",
+    "depositAmount"
 ])
 
 
@@ -44,6 +44,11 @@ const isVisible = ref(true)
 const emits = defineEmits()
 
 const { copy,copied, isSupported } = useClipboard({ btcAddress })
+
+// How to format a number with commas as thousands separators
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+}
 
 const closeModal = ()=>{
     emits('changeD', isVisible.value = !isVisible.value)
