@@ -103,12 +103,12 @@
 </template>
 
 <script setup>
-definePageMeta({
-    layout:"custom"
-})
 
 import {useStore}  from "@/stores/index";
 import {baseURL} from "@/composables/mixins";
+definePageMeta({
+    layout:"custom"
+})
 
 const pinia = useStore()
 

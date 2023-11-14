@@ -112,13 +112,13 @@
 
 
 <script setup>
-definePageMeta({
-layout:"custom"
-})
 
 import {useStore}  from "@/stores/index";
 import {baseURL} from "@/composables/mixins";
 // import { useRouter } from 'vue'
+definePageMeta({
+layout:"custom"
+})
 
  
 const pinia = useStore()

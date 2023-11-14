@@ -37,7 +37,6 @@ const props = defineProps([
     "value"
 ])
 
-import { useClipboard } from '@vueuse/core'
 
 const btcAddress = ref("bdfgetGDRTHBB3#juhyugnigtgtg")
 const isVisible = ref(true)

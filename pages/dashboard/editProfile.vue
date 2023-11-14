@@ -138,13 +138,13 @@
 
 <script setup>
 
-definePageMeta({
-    layout:"custom"
-})
 
 import {useStore}  from "@/stores/index"
 
 import {validateEmail,baseURL} from "@/composables/mixins";
+definePageMeta({
+    layout:"custom"
+})
 
 const store = useStore()
 

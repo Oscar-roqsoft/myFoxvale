@@ -116,12 +116,12 @@
 
 <script setup>
 
+import {useStore}  from "@/stores/index"
+
 definePageMeta({
     layout:"custom",
 })
 
-import {useStore}  from "@/stores/index"
-import { useClipboard } from '@vueuse/core'
 
 
 const store = useStore()

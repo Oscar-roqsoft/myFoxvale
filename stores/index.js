@@ -1,6 +1,6 @@
 
 import { defineStore } from 'pinia'
-import { useLocalStorage }   from '@vueuse/core'
+// import { useLocalStorage }   from '@vueuse/core'
 // import {piniaPluginPersistedstate} from 'pinia-plugin-persistedstate'
 
 export const useStore = defineStore('user',()=> {
