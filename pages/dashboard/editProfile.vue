@@ -31,8 +31,8 @@
                                         <h5 class="text-md-start text-center mb-0">Personal Detail :</h5>
         
                                         <div class="mt-4 text-md-start text-center d-sm-flex">
-                                            <img :src="store.user.image" class="avatar float-md-left avatar-medium rounded-circle shadow me-md-4" alt="">
-                                            <input @click="handleImageChange()"  type="file" ref="profileImage" accept="image/png , image/jpeg" hidden/>
+                                            <img :src="store.user.image" ref="profileImg" class="avatar float-md-left avatar-medium rounded-circle shadow me-md-4" alt="">
+                                            <input @input="handleImgChange($event)"  type="file" ref="profileImage" accept="image/png , image/jpeg" hidden/>
                                         </div>
                                         <div class=" mt-2 mb-0">
                                             <button @click="handleImageClick()" class="btn btn-primary">Edit profile picture
@@ -105,7 +105,7 @@
                                             </div><!--end row-->
                                             <div class="row">
                                                 <div class="col-sm-12">
-                                                    <input type="submit" @click.prevent="submitForm()" id="submit" name="send" class="btn btn-primary" value="Save Changes">
+                                                    <input type="submit" @click.prevent="uploadFile()" id="submit" name="send" class="btn btn-primary" value="Save Changes">
                                                 </div><!--end col-->
                                             </div><!--end row-->
                                         </form><!--end form-->
@@ -141,7 +141,7 @@
 
 import {useStore}  from "@/stores/index"
 
-import {validateEmail,baseURL} from "@/composables/mixins";
+import {validateEmail,baseURL,handleFileChange,uploadFile} from "@/composables/mixins";
 definePageMeta({
     layout:"custom"
 })
@@ -160,43 +160,28 @@ const address = ref("")
 const phoneNo = ref("")
 const document = ref("")
 
+const fileInput = ref(null);
+const profileImg = ref(null);
 
 
-const submitForm = async()=>{ 
-    const form = new FormData()
-    // const fileStream = fs.createReadStream(address.value);
-    
-    // form.append('profileImage',selectedImage.value)
-    // form.append('name', firstname.value +" "+lastname.value)
-    // form.append('birthday',birthday.value)
-    form.append('location',address.value)
-    // form.append('phone_number',phoneNo.value)
-    // form.append("file",document.value)
-    const options = {
-    method: 'POST',
-    headers: {
-        // 'content-type': 'application/json',
-        Authorization: '0c7dbb8e-77dc-4ba2-b988-e190673339ca'
-    },
-    body: form,
-    };
 
-    fetch('https://api.nftport.xyz/v0/files', options)
-    .then(response => response.json())
-    // .then(response => console.log(response))
-    .catch(err => console.error(err));
-}
 
 // handling form image upload
 const handleImageClick = ()=>{
     profileImage.value.click()
 }
 
-const handleImageChange =(event)=>{
-//    const file = event.target.file
-//    selectedImage.value = file
-   console.log(event)
+const updateUserInfo = async()=>{
+    // upload new profile image
+    let file_url = "";
+    
+    if(selectedImage.value){
+        file_url = await uploadFile(selectedImage.value);
+    }
+
+    // update the user's profile with json
 }
 
+const handleImgChange = (event)=> handleFileChange(event,selectedImage,profileImg);
 
 </script>

@@ -21,7 +21,7 @@
 
                                         <div class="form-icon position-relative">
                                             <span class="text-dark">Amount:</span><br>
-                                            <span>$20,000</span>
+                                            <span>{{ pinia.withdrawalDetails.amountToWithdraw }}</span>
                                            
                                         </div>
                                     </div>
@@ -31,7 +31,7 @@
                                     <div class="mb-3">
                                         <div class="form-icon position-relative">
                                             <span class="text-dark">Wallet Address: </span>
-                                            <span>fcjkvhbndztxfycguvhib;onfghvj</span>
+                                            <span>{{ pinia.withdrawalDetails.walletAddress }}</span>
                                             
                                         </div>
 
@@ -53,9 +53,6 @@ import {useStore} from '@/stores/index'
 const pinia = useStore()
 
 
-const goBack =()=>{
-    pinia.navigateBackAndFrontVal.value = !nextD.pinia.navigateBackAndFrontVal.value
-    console.log(pinia.navigateBackAndFrontVal)
-}
+
 
 </script>

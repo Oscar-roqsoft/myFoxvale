@@ -59,19 +59,15 @@
                               
 
                                 <div class="col-lg-12 mt-2 mb-2 d-flex align-items-center" style="width: 100%;">
-                                    <button @click="navigateTo('/dashbord')" class="btn  btn-danger">Cancel</button>
-                                    <!-- <button class="btn btn-warning ms-2">
-                                        <modal-wallet-details/>
-                                    </button> -->
-                                    <div >
-                                       <button @click.prevent="toggleModal()" class="btn btn-warning ms-2">Proceed</button>
-                                    </div>
+                                    <button @click="navigateTo(-1)" class="btn  btn-danger">Cancel</button>
+                                    
+                                    <button  @click.prevent="toggleModal()" class="btn btn-warning ms-2">Proceed</button>
                                 </div><!--end col-->
                             </div><!--end row-->
                         </form>
                         
 
-                        <modal-wallet-details :depositAmount="inputDepositAmtVal"  :value="isVisible" changeD.prevent="toggleModal"/>
+                        <modal-wallet-details :depositAmount="amountToDeposit"  :value="modalVisibility" :changeD="toggleModal"/>
                     </div>
                 </div><!--end container-->
 
@@ -95,10 +91,27 @@ definePageMeta({
 
 const isVisible = ref(false)
 const inputDepositAmtVal = ref('')
+let amountToDeposit = ref('')
+
+
+
+
+
+const modalVisibility = ref(null)
+watch(()=>{
+    if(isVisible){
+        return amountToDeposit.value =''
+    }
+})
+
 
 const toggleModal =()=>{
-    isVisible.value = !isVisible.value
+amountToDeposit.value = inputDepositAmtVal.value
+modalVisibility.value = !modalVisibility.value
+inputDepositAmtVal.value =''
+
 }
+
 </script>
 
 

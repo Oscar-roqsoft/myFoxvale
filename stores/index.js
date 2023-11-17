@@ -7,11 +7,16 @@ export const useStore = defineStore('user',()=> {
     // other options...
     const user = ref({})
 
+
+    const userList = ref([])
+
    const packages = ref([])
 
    const navigateBackAndFrontVal = ref(true)
     
     const menuOverlay =ref(false)
+
+    const withdrawalDetails = ref({})
     // const isAdmin = computed(()=>{
     //     user.status = "admin"
     // })
@@ -22,6 +27,14 @@ export const useStore = defineStore('user',()=> {
         user.value = payload;
         console.log(user.value)
     }
+    const storeUserList = (payload)=>{
+        userList.value = payload;
+        console.log(userList.value)
+    }
+    const storewithdrawalDetails = (payload)=>{
+        withdrawalDetails.value = payload;
+        console.log(withdrawalDetails.value)
+    }
 
     const storePackage = (payload)=>{
         packages.value = payload;
@@ -30,8 +43,11 @@ export const useStore = defineStore('user',()=> {
 
     const signOut = ()=>{
         user.value = {};
+        userList.value = []
+        packages.value = []
         window.location = "/login";
     }
+    
     const goFront = ()=>{
         navigateBackAndFrontVal.value = false;
     }
@@ -51,7 +67,11 @@ export const useStore = defineStore('user',()=> {
         signOut,
         goFront ,
         navigateBackAndFrontVal ,
-        goBack
+        goBack,
+        withdrawalDetails,
+        storewithdrawalDetails,
+        userList,
+        storeUserList
     }
     // const  (true),
 },

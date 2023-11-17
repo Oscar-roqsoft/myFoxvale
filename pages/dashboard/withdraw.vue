@@ -39,7 +39,7 @@
                                     <div class="mb-3">
                                         <div class="form-icon position-relative">
                                             <span>Payment Method</span>
-                                            <input type="select" class="form-control ps-4">
+                                            <input type="select" placeholder="BTC Wallet Address" class="form-control ps-4" disabled>
                                         </div>
 
                                     </div>
@@ -50,7 +50,8 @@
 
                                         <div class="form-icon position-relative">
                                             <span>Amount</span>
-                                            <input type="number" class="form-control ps-4">
+                                            <input type="number" placeholder="Enter Amount Here" class="form-control ps-4"
+                                            v-model.trim="amountToWithdraw">
                                         </div>
                                     </div>
                                 </div><!--end col-->
@@ -59,14 +60,15 @@
                                     <div class="mb-3">
                                         <div class="form-icon position-relative">
                                             <span>Wallet Address</span>
-                                            <input type="select" class="form-control ps-4">
+                                            <input type="select" placeholder="Enter Your Wallet Address Here" class="form-control ps-4"
+                                            v-model.trim="walletAddress">
                                         </div>
 
                                     </div>
                                 </div><!--end col-->
 
                                 <div class="col-lg-12 mt-2 mb-2 d-flex" style="width: 100%;">
-                                    <button @click.prevent="navigateTo('/dashbord')" class="btn  btn-danger">Cancel</button>
+                                    <button @click.prevent="navigateTo('/dashboard/')" class="btn  btn-danger">Cancel</button>
                                     <button @click.prevent="pinia.goFront()" class="btn btn-warning ms-2">Proceed</button>
                                 </div><!--end col-->
                             </div><!--end row-->
@@ -99,13 +101,18 @@ definePageMeta({
 })
 
 const pinia = useStore()
+const amountToWithdraw = ref('')
+const walletAddress = ref('')
 
-
-const goBack =()=>{
-    pinia.navigateBackAndFrontVal.value = !nextD.pinia.navigateBackAndFrontVal.value
-    console.log(pinia.navigateBackAndFrontVal)
+const withdrawalDetails = {
+    amountToWithdraw,
+    walletAddress
 }
 
+
+
+console.log(withdrawalDetails)
+pinia.storewithdrawalDetails(withdrawalDetails)
 </script>
 
 

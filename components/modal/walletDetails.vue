@@ -4,7 +4,7 @@
 
          <div class="layer rounded shadow" :class="isVisible === props.value ?'clicked':''">
              <div>
-                 <p class="text-sm">Send <span class="text-warning">{{ numberWithCommas(props.depositAmount) }}</span> worth of BTC to the wallet address below</p>
+                 <p class="text-sm">Send <span class="text-warning">${{ numberWithCommas(props.depositAmount) }}</span> worth of BTC to the wallet address below</p>
                  <hr class="bg-dark w-100">
              </div>
              

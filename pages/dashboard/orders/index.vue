@@ -15,12 +15,12 @@
                     <div class="container-fluid">
                         <div class="layout-specing">
                             <div class="d-md-flex justify-content-between align-items-center">
-                                <h5 class="mb-0">All users</h5>
+                                <h5 class="mb-0">Orders</h5>
     
                                 <nav aria-label="breadcrumb" class="d-inline-block">
                                     <ul class="breadcrumb bg-transparent rounded mb-0 p-0">
                                         <li class="breadcrumb-item text-capitalize"><nuxt-link to="/dashboard">Foxvale</nuxt-link></li>
-                                        <li class="breadcrumb-item text-capitalize active" aria-current="page">Users</li>
+                                        <li class="breadcrumb-item text-capitalize active" aria-current="page">List Of Orders</li>
                                     </ul>
                                 </nav>
                             </div>
@@ -31,10 +31,11 @@
                                         <table class="table table-center bg-white mb-0">
                                             <thead>
                                                 <tr>
-                                                    <th class="border-bottom p-3" style="min-width: 220px;">Client Name</th>
-                                                    <th class="text-center border-bottom p-3" style="min-width: 200px;">Email</th>
-                                                    <th class="text-center border-bottom p-3" style="min-width: 150px;">Country</th>
+                                                    <th class="border-bottom p-3" style="min-width: 200px;">Name</th>
+                                                    <th class="text-center border-bottom p-3" style="min-width: 200px;">Amount</th>
+                                                    <th class="text-center border-bottom p-3" style="min-width: 150px;">date</th>
                                                     <th class="text-center border-bottom p-3">Actions</th>
+                                                   
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -43,7 +44,6 @@
                                                    <td class="p-3">
                                                         <a href="#" class="text-primary">
                                                             <div class="d-flex align-items-center">
-                                                                <img src="/images/client/01.jpg" class="avatar avatar-ex-small rounded-circle shadow" alt="">
                                                                 <span class="ms-2">{{ userr }}</span>
                                                             </div>
                                                         </a>
@@ -112,7 +112,7 @@ const pinia = useStore()
 //        method: "GET",
 //        headers: {
 //             "Content-Type":"application/json",
-//             // "token": `Bearer ${pinia.user.accessToken}`
+//             "token": `Bearer ${pinia.user.accessToken}`
 //         },
 //     }).then(res=>res.json());
     
