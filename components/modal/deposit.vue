@@ -30,7 +30,7 @@
                                 <div class="col-lg-12">
                                     <div class="mb-3">
                                         <div class="form-icon position-relative">
-                                            <span class="text-dark">Wallet Address: </span>
+                                            <span class="text-dark">Wallet Address: </span><br>
                                             <span>{{ pinia.withdrawalDetails.walletAddress }}</span>
                                             
                                         </div>

@@ -5,7 +5,9 @@ import { defineStore } from 'pinia'
 
 export const useStore = defineStore('user',()=> {
     // other options...
-    const user = ref({})
+    const user = ref({
+        idFile: "https://thumbs.dreamstime.com/z/default-avatar-profile-icon-vector-social-media-user-image-182145777.jpg?w=768",
+    })
 
 
     const userList = ref([])
@@ -13,6 +15,8 @@ export const useStore = defineStore('user',()=> {
    const packages = ref([])
 
    const navigateBackAndFrontVal = ref(true)
+
+   const isverified = ref(true)
     
     const menuOverlay =ref(false)
 
@@ -47,7 +51,7 @@ export const useStore = defineStore('user',()=> {
         packages.value = []
         window.location = "/login";
     }
-    
+
     const goFront = ()=>{
         navigateBackAndFrontVal.value = false;
     }

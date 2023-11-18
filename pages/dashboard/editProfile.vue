@@ -31,7 +31,7 @@
                                         <h5 class="text-md-start text-center mb-0">Personal Detail :</h5>
         
                                         <div class="mt-4 text-md-start text-center d-sm-flex">
-                                            <img :src="store.user.image" ref="profileImg" class="avatar float-md-left avatar-medium rounded-circle shadow me-md-4" alt="">
+                                            <img :src="store.user.idFile" ref="profileImg" class="avatar float-md-left avatar-medium rounded-circle shadow me-md-4" alt="">
                                             <input @input="handleImgChange($event)"  type="file" ref="profileImage" accept="image/png , image/jpeg" hidden/>
                                         </div>
                                         <div class=" mt-2 mb-0">
@@ -44,20 +44,13 @@
                                             <div class="row mt-4">
                                                 <div class="col-md-6">
                                                     <div class="mb-3">
-                                                        <label class="form-label">First Name</label>
+                                                        <label class="form-label">Name</label>
                                                         <div class="form-icon position-relative">
-                                                            <input name="name" id="first" type="text" class="form-control ps-5" v-model.trim="firstname" placeholder="First Name :">
+                                                            <input name="name" id="first" type="text" class="form-control ps-5" v-model.trim="firstname" :placeholder="store.user.name">
                                                         </div>
                                                     </div>
                                                 </div><!--end col-->
-                                                <div class="col-md-6">
-                                                    <div class="mb-3">
-                                                        <label class="form-label">Last Name</label>
-                                                        <div class="form-icon position-relative">
-                                                            <input name="name" id="last" type="text" class="form-control ps-5" v-model.trim="lastname" placeholder="Last Name :">
-                                                        </div>
-                                                    </div>
-                                                </div><!--en'.d col-->
+                                               
                                                 <div class="col-md-6">
                                                     <div class="mb-3">
                                                         <label class="form-label">Your Email</label>
@@ -153,12 +146,11 @@ const selectedImage = ref("")
 const message = ref("")
 
 
-const firstname = ref("")
-const lastname = ref("")
+const name = ref("")
 const birthday = ref("") 
 const address = ref("")
 const phoneNo = ref("")
-const document = ref("")
+
 
 const fileInput = ref(null);
 const profileImg = ref(null);

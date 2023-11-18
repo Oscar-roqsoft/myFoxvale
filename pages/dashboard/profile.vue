@@ -42,51 +42,67 @@
                                         <div class="col-lg-7 col-md-6  order-md-2 order-lg-1 order-2">
                                             <div class="card border-0 rounded shadow p-4">
                                                 <div class=" text-center p-4 ">
-                                                    <img :src="store.user.image" class="rounded-circle shadow avatar avatar-md-md mx-auto" alt="">
-                                                    <h5 class="mt-3 mb-0">Cristina Julia</h5>
-                                                    <div class="mt-4">
+                                                    <img :src="store.user.idFile" class="rounded-circle shadow avatar avatar-md-md mx-auto" alt="">
+                                                    <h5 class="mt-3 mb-0">{{ store.user.name }}</h5>
+                                                    <div>
+                                                        <span v-if="store.user.Verified"  class="text-danger mb-0 fs-6">Not Yet Verified</span>
+                                                        <span v-else  class="text-primary mb-0 fs-6">Verified
+                                                            <i class="fa fas-good"></i>
+                                                        </span>
+                                                    </div>
+                                                    <div class="mt-2">
                                                         <button  @click="navigateTo('/dashboard/editProfile')" class="btn btn-primary">Update Account</button>
                                                     </div><!--end col-->
                                                 </div>
                                                 <h5 class="mb-0">Personal Details :</h5>
                                                 <div class="mt-4">
                                                     <div class="d-flex align-items-center">
-                                                        <i data-feather="mail" class="fea icon-ex-md text-muted me-3"></i>
+                                                        <div class="flex-1">
+                                                            <h6 class="text-primary mb-0">Name :</h6>
+                                                            <input name="name"  type="text" class="form-control ps-2"  
+                                                            :placeholder="name?`${name}`: 'No name Uploded Yet'" disabled>
+                                                        </div>
+                                                    </div>
+                                                    <div class="d-flex align-items-center mt-2">
                                                         <div class="flex-1">
                                                             <h6 class="text-primary mb-0">Email :</h6>
-                                                            <a href="javascript:void(0)" class="text-muted">cristinajulia@mail.com</a>
+                                                            <input name="email" type="text" class="form-control ps-2" 
+                                                             :placeholder="email ?`${email}`: 'No email Uploded Yet'" disabled>
                                                         </div>
                                                     </div>
                                                  
                                                   
-                                                    <div class="d-flex align-items-center mt-3">
-                                                        <i data-feather="gift" class="fea icon-ex-md text-muted me-3"></i>
+                                                    <div class="d-flex align-items-center mt-2">
                                                         <div class="flex-1">
                                                             <h6 class="text-primary mb-0">Birthday :</h6>
-                                                            <p class="text-muted mb-0">2nd March, 1996</p>
+                                                            <input name="birthday" type="text" class="form-control ps-2"  
+                                                            :placeholder="birthday?`${birthday}`: 'No Date Of Birth Uploded Yet'" disabled>
                                                         </div>
                                                     </div>
-                                                    <div class="d-flex align-items-center mt-3">
-                                                        <i data-feather="map-pin" class="fea icon-ex-md text-muted me-3"></i>
+                                                    <div class="d-flex align-items-center mt-2">
                                                         <div class="flex-1">
-                                                            <h6 class="text-primary mb-0">Location :</h6>
-                                                            <a href="javascript:void(0)" class="text-muted">Beijing, China</a>
+                                                            <h6 class="text-primary mb-0">Address :</h6>
+                                                            <input name="address" type="text" class="form-control ps-2"  
+                                                            :placeholder="address?`${address}`: 'No Address Uploded Yet'" disabled>
+
                                                         </div>
                                                     </div>
-                                                    <div class="d-flex align-items-center mt-3">
-                                                        <i data-feather="phone" class="fea icon-ex-md text-muted me-3"></i>
+                                                    <div class="d-flex align-items-center mt-2">
                                                         <div class="flex-1">
-                                                            <h6 class="text-primary mb-0">Cell No :</h6>
-                                                            <a href="javascript:void(0)" class="text-muted">(+12) 1254-56-4896</a>
+                                                            <h6 class="text-primary mb-0">Phone No :</h6>
+                                                            <input name="number"  type="text" class="form-control ps-2"  
+                                                            :placeholder=" number? `${number}`: 'No PhoneNumber Uploded Yet'" disabled>
+                                                        </div>
+                                                    </div>
+                                                    <div class="d-flex align-items-center mt-2">
+                                                        <div class="flex-1">
+                                                            <h6 class="text-primary mb-0">Document No:</h6>
+                                                            <input name="file" id="file" type="text" class="form-control ps-2"  
+                                                            :placeholder="document?`${document}`: 'No Document Uploded Yet'" disabled>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-            
-            
-                                                    
-                                                    
-                                                    
                                         </div><!--end col-->
                                     </div>
                                 </div>
@@ -119,4 +135,21 @@ definePageMeta({
 
 
 const store = useStore()
+
+const name = ref('')
+const email = ref('')
+const birthday = ref('')
+const address = ref('')
+const number = ref('')
+const document = ref('')
+
+onMounted(()=>{
+    name.value = store.user.name
+    email.value = store.user.email
+    birthday.value = store.user.birthday
+    address.value = store.user.address
+    number.value = store.user.phoneNumber
+    document.value = store.user.document
+
+})
 </script>
