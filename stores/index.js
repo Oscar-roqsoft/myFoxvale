@@ -5,12 +5,12 @@ import { defineStore } from 'pinia'
 
 export const useStore = defineStore('user',()=> {
     // other options...
-    const user = ref({
-        idFile: "https://thumbs.dreamstime.com/z/default-avatar-profile-icon-vector-social-media-user-image-182145777.jpg?w=768",
-    })
+    const user = ref({})
 
 
     const userList = ref([])
+
+    const orderList = ref([])
 
    const packages = ref([])
 
@@ -21,8 +21,9 @@ export const useStore = defineStore('user',()=> {
     const menuOverlay =ref(false)
 
     const withdrawalDetails = ref({})
+
     // const isAdmin = computed(()=>{
-    //     user.status = "admin"
+    //     user.isAdmin = "true"
     // })
 
     // pinia.use(piniaPluginPersistedstate)
@@ -32,9 +33,14 @@ export const useStore = defineStore('user',()=> {
         console.log(user.value)
     }
     const storeUserList = (payload)=>{
-        userList.value = payload;
+        userList.value = [...payload];
+        userList.value.reverse(...userList.value)
         console.log(userList.value)
     }
+    
+
+
+
     const storewithdrawalDetails = (payload)=>{
         withdrawalDetails.value = payload;
         console.log(withdrawalDetails.value)
@@ -49,7 +55,8 @@ export const useStore = defineStore('user',()=> {
         user.value = {};
         userList.value = []
         packages.value = []
-        window.location = "/login";
+        withdrawalDetails.value = null
+        navigateTo('/login')
     }
 
     const goFront = ()=>{
@@ -75,7 +82,8 @@ export const useStore = defineStore('user',()=> {
         withdrawalDetails,
         storewithdrawalDetails,
         userList,
-        storeUserList
+        storeUserList,
+        orderList
     }
     // const  (true),
 },

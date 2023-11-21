@@ -126,7 +126,7 @@ const data = await fetch(`${baseURL}/package/update-package/652e541872556c4e30a2
 method: "POST",
 headers: {
     "Content-Type":"application/json",
-    "token": `Bearer ${pinia.user.accessToken}`,
+    "token": `Bearer ${adtoken}`,
 },
 body: JSON.stringify()
 }).then(res=>res.json());

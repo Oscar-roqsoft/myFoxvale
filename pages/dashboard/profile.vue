@@ -42,7 +42,8 @@
                                         <div class="col-lg-7 col-md-6  order-md-2 order-lg-1 order-2">
                                             <div class="card border-0 rounded shadow p-4">
                                                 <div class=" text-center p-4 ">
-                                                    <img :src="store.user.idFile" class="rounded-circle shadow avatar avatar-md-md mx-auto" alt="">
+                                                    <img  :src="store.user.imageProfile? store.user.imageProfile : 'https://thumbs.dreamstime.com/z/default-avatar-profile-icon-vector-social-media-user-image-182145777.jpg?w=768'"
+                                                     class="rounded-circle shadow avatar avatar-md-md mx-auto" alt="">
                                                     <h5 class="mt-3 mb-0">{{ store.user.name }}</h5>
                                                     <div>
                                                         <span v-if="store.user.Verified"  class="text-danger mb-0 fs-6">Not Yet Verified</span>
@@ -152,4 +153,5 @@ onMounted(()=>{
     document.value = store.user.document
 
 })
+
 </script>

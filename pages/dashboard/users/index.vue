@@ -44,16 +44,16 @@
                                                         <a href="#" class="text-primary">
                                                             <div class="d-flex align-items-center">
                                                                 <img src="/images/client/01.jpg" class="avatar avatar-ex-small rounded-circle shadow" alt="">
-                                                                <span class="ms-2">{{ userr }}</span>
+                                                                <span class="ms-2">{{ userr.name }}</span>
                                                             </div>
                                                         </a>
                                                     </td>
-                                                    <td class="text-center p-3">(+12)85-4521-7568</td>
-                                                    <td class="text-center p-3">23th Sept 2021</td>
+                                                    <td class="text-center p-3">{{ userr.email }}</td>
+                                                    <td class="text-center p-3">{{ userr.Country?userr.Country:'No Country Uploaded Yet' }}</td>
                                                     <td class="text-center p-3">
-                                                        <div class="badge btn btn-sm bg-primary rounded ">
+                                                        <a @click="navigateTo(`/dashboard/users/${userr._id}`)" class="badge btn btn-sm bg-primary rounded ">
                                                          approve
-                                                        </div>
+                                                        </a>
                                                     </td>
                                                    
                                                 </tr>
@@ -105,30 +105,31 @@ import {baseURL} from "@/composables/mixins";
 definePageMeta({
     layout:"custom"  
 })
+
 const pinia = useStore()
 
-// try{
-//     const data = await fetch(`${baseURL}/user/users-list`,{
-//        method: "GET",
-//        headers: {
-//             "Content-Type":"application/json",
-//             // "token": `Bearer ${pinia.user.accessToken}`
-//         },
-//     }).then(res=>res.json());
+try{
+    const data = await fetch(`${baseURL}/user/users-list`,{
+       method: "GET",
+       headers: {
+            "Content-Type":"application/json",
+            "token": `Bearer ${adtoken}`
+        },
+    }).then(res=>res.json());
     
-//     console.log(data)
-// }catch(err){
-//     console.log(err)
-// }
+    const userslist = data.data.users
+    console.log(userslist)
+    pinia.storeUserList(userslist)
+}catch(err){
+    console.log(err)
+}
 
-// const userslist = data.data.users
-// console.log(userslist)
-// pinia.storeUserList(userslist)
+
 
 
 
 //pagination setup
-const userr = [1,2,3,4,6,5,6,7,8,9,1,2,3,4,5,6,7,8,100,89]
+const userr = pinia.userList
 // Define per-page display
 const perPage = 10;
 

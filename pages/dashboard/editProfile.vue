@@ -31,7 +31,8 @@
                                         <h5 class="text-md-start text-center mb-0">Personal Detail :</h5>
         
                                         <div class="mt-4 text-md-start text-center d-sm-flex">
-                                            <img :src="store.user.idFile" ref="profileImg" class="avatar float-md-left avatar-medium rounded-circle shadow me-md-4" alt="">
+                                            <img  :src="store.user.imageProfile? store.user.imageProfile : 'https://thumbs.dreamstime.com/z/default-avatar-profile-icon-vector-social-media-user-image-182145777.jpg?w=768'"
+                                             ref="profileImg" class="avatar float-md-left avatar-medium rounded-circle shadow me-md-4" alt="">
                                             <input @input="handleImgChange($event)"  type="file" ref="profileImage" accept="image/png , image/jpeg" hidden/>
                                         </div>
                                         <div class=" mt-2 mb-0">

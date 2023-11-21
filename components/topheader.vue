@@ -25,7 +25,8 @@
                     <li class="list-inline-item mb-0 ms-1">
                         <div class="dropdown dropdown-primary">
                             <button type="button" class="btn btn-soft-light dropdown-toggle p-0" data-bs-toggle="dropdown" 
-                            aria-haspopup="true" aria-expanded="false"><img :src="store.user.idFile" class="avatar avatar-ex-small
+                            aria-haspopup="true" aria-expanded="false"><img 
+                            :src="store.user.imageProfile? store.user.imageProfile : 'https://thumbs.dreamstime.com/z/default-avatar-profile-icon-vector-social-media-user-image-182145777.jpg?w=768'" class="avatar avatar-ex-small
                              rounded" alt=""></button>
                             <div class="dropdown-menu dd-menu dropdown-menu-end shadow border-0 mt-3 py-3" style="min-width: 200px;">
                                 <nuxt-link to="/dashboard/profile" class="dropdown-item d-flex align-items-center text-dark pb-3">

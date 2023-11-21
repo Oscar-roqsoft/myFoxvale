@@ -20,15 +20,15 @@
                 </a>
             </div>
             
-            <ul class="sidebar-menu">
+            <ul class="sidebar-menu" v-if="store.user">
                 <li><nuxt-link to="/dashboard/" ><i class="ti ti-home me-2"></i>Dashboard</nuxt-link></li>
                 <li v-if="!store.user.isAdmin"><nuxt-link to="/dashboard/profile"><i class="ti ti-user me-2"></i>Account Settings</nuxt-link></li>
                 <li v-if="store.user.isAdmin"><nuxt-link to="/dashboard/orders"><i class="ti ti-user me-2"></i>Orders</nuxt-link></li>
                 <li v-if="!store.user.isAdmin"><nuxt-link to="/dashboard/subscription"><i class="ti ti-file-info me-2"></i>Subscriptions</nuxt-link></li>
                 <li v-if="!store.user.isAdmin"><nuxt-link to="/dashboard/privacy"><i class="ti ti-home me-2"></i>Privacy Policy</nuxt-link></li>
                 
-                <li class="sidebar-dropdown" v-if="store.user.isAdmin">
-                    <a href="javascript:void(0)"><i class="ti ti-brand-gravatar me-2"></i>User Management</a>
+                <li v-if="store.user.isAdmin"  class="sidebar-dropdown" >
+                    <a  href="javascript:void(0)"><i class="ti ti-brand-gravatar me-2"></i>User Management</a>
                     <div class="sidebar-submenu">
                         <ul>
                             <li><nuxt-link to="/dashboard/users" >All Users</nuxt-link></li>
@@ -36,8 +36,8 @@
                         </ul>
                     </div>
                 </li>
-                <li class="sidebar-dropdown" v-if="store.user.isAdmin">
-                    <a href="javascript:void(0)"><i class="ti ti-shopping-cart me-2"></i>Packages</a>
+                <li v-if="store.user.isAdmin"  class="sidebar-dropdown" >
+                    <a  href="javascript:void(0)"><i class="ti ti-shopping-cart me-2"></i>Packages</a>
                     <div class="sidebar-submenu">
                         <ul>
                             <li><nuxt-link to="/dashboard/packages">All Packages</nuxt-link></li>
@@ -60,6 +60,8 @@
   import {useStore}  from "@/stores/index"
 
   const store = useStore()
+ 
+
 
 //  const isAdmin = computed(() => {
 //     return  store.user.isAdmin = "true"

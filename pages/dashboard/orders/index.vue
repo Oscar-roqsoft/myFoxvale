@@ -112,7 +112,7 @@ const pinia = useStore()
 //        method: "GET",
 //        headers: {
 //             "Content-Type":"application/json",
-//             "token": `Bearer ${pinia.user.accessToken}`
+//             "token":`Bearer ${adtoken}`
 //         },
 //     }).then(res=>res.json());
     

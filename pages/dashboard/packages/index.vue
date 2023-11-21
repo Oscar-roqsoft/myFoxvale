@@ -106,6 +106,7 @@
 
 import {useStore}  from "@/stores/index";
 import {baseURL} from "@/composables/mixins";
+import { adtoken } from '@/composables/config'
 definePageMeta({
     layout:"custom"
 })
@@ -116,7 +117,7 @@ const data = await fetch(`${baseURL}/package/packages-list`,{
    method: "GET",
    headers: {
         "Content-Type":"application/json",
-        "token": `Bearer ${pinia.user.accessToken}`
+        "token": `Bearer ${adtoken}`
     },
 }).then(res=>res.json());
 
