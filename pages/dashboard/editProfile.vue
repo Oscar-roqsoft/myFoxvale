@@ -177,4 +177,5 @@ const updateUserInfo = async()=>{
 
 const handleImgChange = (event)=> handleFileChange(event,selectedImage,profileImg);
 
+
 </script>

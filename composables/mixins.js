@@ -29,7 +29,7 @@ export const uploadFile = async (file) => {
     return ipfs_url
 }
 
-export const handleFileChange = async (event,selectedFile,profileImg=null)=>{
+export const handleFileChange = async (event , selectedFile ,profileImg=null)=>{
     const file = event.target.files[0]
     selectedFile.value = file
     console.log(file)
