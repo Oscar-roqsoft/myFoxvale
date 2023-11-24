@@ -23,6 +23,9 @@
                                 </ul>
                             </nav>
                         </div>
+
+                        <Loaders v-if="isloading"/>
+                        
                     
                         <div class="row">
                             <div class="col-lg-5 mt-4">
@@ -33,7 +36,8 @@
                                         <div class="mt-4 text-md-start text-center d-sm-flex">
                                             <img  :src="store.user.imageProfile? store.user.imageProfile : 'https://thumbs.dreamstime.com/z/default-avatar-profile-icon-vector-social-media-user-image-182145777.jpg?w=768'"
                                              ref="profileImg" class="avatar float-md-left avatar-medium rounded-circle shadow me-md-4" alt="">
-                                            <input @input="handleImgChange($event)"  type="file" ref="profileImage" accept="image/png , image/jpeg" hidden/>
+                                            <input @input="handleImgChange($event)"  type="file" 
+                                            ref="profileImage" accept="image/png , image/jpeg" hidden/>
                                         </div>
                                         <div class=" mt-2 mb-0">
                                             <button @click="handleImageClick()" class="btn btn-primary">Edit profile picture
@@ -47,7 +51,8 @@
                                                     <div class="mb-3">
                                                         <label class="form-label">Name</label>
                                                         <div class="form-icon position-relative">
-                                                            <input name="name" id="first" type="text" class="form-control ps-5" v-model.trim="firstname" :placeholder="store.user.name">
+                                                            <input name="name" id="first" type="text"
+                                                             class="form-control ps-5"  :placeholder="store.user.name">
                                                         </div>
                                                     </div>
                                                 </div><!--end col-->
@@ -57,7 +62,8 @@
                                                         <label class="form-label">Your Email</label>
                                                         <div class="form-icon position-relative">
                                                             <i data-feather="mail" class="fea icon-sm icons"></i>
-                                                            <input name="email" id="email" type="email" class="form-control ps-5"  :placeholder="store.user.email">
+                                                            <input name="email" id="email" type="email" 
+                                                            class="form-control ps-5"  :placeholder="store.user.email">
                                                         </div>
                                                     </div> 
                                                 </div><!--end col-->
@@ -65,7 +71,8 @@
                                                     <div class="mb-3">
                                                         <label class="form-label">Birthday</label>
                                                         <div class="form-icon position-relative">
-                                                            <input name="name" id="occupation" type="text" class="form-control ps-5" v-model.trim="birthday" placeholder="Birthday :">
+                                                            <input  id="occupation" type="date" 
+                                                            class="form-control ps-5" v-model.trim="birthday" placeholder="DD/MM/YY">
                                                         </div>
                                                     </div> 
                                                 </div><!--end col-->
@@ -81,7 +88,8 @@
                                                     <div class="mb-3">
                                                         <label class="form-label">Phone No</label>
                                                         <div class="form-icon position-relative">
-                                                            <input name="number" id="number" type="number" class="form-control ps-5" v-model.trim="phoneNo" placeholder="Phone No :">
+                                                            <input  name="number" id="number" type="number" class="form-control ps-5" 
+                                                            v-model.trim="phoneNo" placeholder="Phone No :">
                                                         </div>
                                                     </div> 
                                                 </div><!--end col-->
@@ -90,8 +98,9 @@
                                                         <label class="form-label">Upload Document</label>
                                                         <div class="form-icon position-relative">
                                                             <!-- <i data-feather="" class="fea icon-sm icons"></i> -->
-                                                            <input name="document" id="document" type="file" class=" form-control"
-                                                            placeholder="upload document">
+                                                            <input @input="handleDocumentChange($event)" type="file" class=" form-control"
+                                                            placeholder="upload document" 
+                                                            accept="image/jpeg,.webp,.png,.jpg,.pdf">
                                                         </div>
                                                     </div> 
                                                 </div><!--end col-->
@@ -99,7 +108,7 @@
                                             </div><!--end row-->
                                             <div class="row">
                                                 <div class="col-sm-12">
-                                                    <input type="submit" @click.prevent="uploadFile()" id="submit" name="send" class="btn btn-primary" value="Save Changes">
+                                                    <input type="submit" @click.prevent="submitUserUpdate()" id="submit" name="send" class="btn btn-primary" value="Save Changes">
                                                 </div><!--end col-->
                                             </div><!--end row-->
                                         </form><!--end form-->
@@ -135,47 +144,90 @@
 
 import {useStore}  from "@/stores/index"
 
-import {validateEmail,baseURL,handleFileChange,uploadFile} from "@/composables/mixins";
+import {validateEmail,baseURL,handleFileChange,uploadFile,formatDateOfBirth} from "@/composables/mixins";
+
 definePageMeta({
     layout:"custom"
 })
 
 const store = useStore()
+const isloading = ref(false)
 
 const profileImage = ref()
 const selectedImage = ref("")
 const message = ref("")
 
-
-const name = ref("")
-const birthday = ref("") 
-const address = ref("")
-const phoneNo = ref("")
-
-
-const fileInput = ref(null);
+const selectedfile = ref("");
 const profileImg = ref(null);
 
 
+const birthday = ref("") 
 
 
-// handling form image upload
+const address = ref("")
+const phoneNo = ref("")
+
 const handleImageClick = ()=>{
     profileImage.value.click()
 }
 
-const updateUserInfo = async()=>{
-    // upload new profile image
-    let file_url = "";
+const handleImgChange = async(event)=> await handleFileChange(event,selectedImage,profileImg);
+const handleDocumentChange = async(event)=> await handleFileChange(event,selectedfile);
+
+const submitUserUpdate = async()=>{
+    isloading.value = true
+
+    // upload profile image
+    const image_url = await uploadFile(selectedImage.value);
+    if(!image_url){
+        // TODO: alert to the user that the profile image file upload failed
+
+        // TODO: stop loading indicator
+        return
+    }
     
-    if(selectedImage.value){
-        file_url = await uploadFile(selectedImage.value);
+    // upload document
+    const document_url = await uploadFile(selectedfile.value);
+    if(!document_url){
+        // TODO: alert to the user that the document file upload failed
+
+        // TODO: stop loading indicator
+        return
     }
 
-    // update the user's profile with json
+    const profileUserUpdateInfo = {
+        imageProfile: image_url,
+        birthday: birthday.value,
+        Country: address.value,
+        phoneNumber: phoneNo.value,
+        id_file : document_url,
+    }
+    console.log(profileUserUpdateInfo)
+    try{
+       const data = await fetch(`${baseURL}/auth/identity-verify`,{
+        method:'PATCH',
+        headers:{
+            "Content-Type":"application/json",
+            "token": `Bearer {{token}}`,
+        }
+       })
+
+       isloading.value = false
+    }catch(e){
+        console.log(e)
+    }
 }
 
-const handleImgChange = (event)=> handleFileChange(event,selectedImage,profileImg);
+
+
+
+
+
+
+
+
+
+
 
 
 </script>

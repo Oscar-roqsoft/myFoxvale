@@ -15,7 +15,8 @@
                                 account.
                             </p>
                             <div class="mt-4 pt-2">
-                                <nuxt-link to="/signup" class="btn btn-primary"><i class="uil uil-envelope"></i> Get Started</nuxt-link>
+                                <nuxt-link to="/signup" class="btn btn-primary">
+                                    <i class="uil uil-envelope"></i> Get Started</nuxt-link>
                             </div>
                         </div>
                     </div><!--end col-->
@@ -252,7 +253,7 @@
                                     </span>(weekly)</li>
                                 </ul>
                                 
-                                <a href="javascript:void(0)" class="btn btn-primary mt-4">Get Started</a>
+                                <a  class="btn btn-primary mt-4">Get Started</a>
                             </div>
                         </div>
                     </div><!--end col-->
@@ -287,7 +288,7 @@
     
     
                                
-                                <a href="javascript:void(0)" class="btn btn-primary mt-4">Get Started</a>
+                                <a  class="btn btn-primary mt-4">Get Started</a>
                             </div>
                         </div>
                     </div><!--end col-->
@@ -371,11 +372,7 @@
         </div>
         <!--Shape End-->
 
-        <!-- <cookiePopup/> -->
-
-        <!-- <offcanvas/> -->
-         
-        <!-- <switcherbar/> -->
+       
         
     </div>
 

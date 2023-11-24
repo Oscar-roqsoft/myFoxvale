@@ -73,9 +73,9 @@
                                         <ul class="pagination mb-0 justify-content-center mt-4 mt-sm-0">
                                             <li class="page-item"><a @click.prevent="handlePagePrevChange()" class="page-link"  aria-label="Previous">Prev</a></li>
                                             <li @click.prevent="currentPage=i" v-for="i in totalPages" :key="i" class="page-item" :class="i==currentPage?'active':''">
-                                                <a  class="page-link" href="#">{{ i }}</a></li>
+                                                <a  class="page-link">{{ i }}</a></li>
                                            
-                                            <li class="page-item"><a @click.prevent="handlePageNextChange()" class="page-link" href="#" aria-label="Next">Next</a></li>
+                                            <li class="page-item"><a @click.prevent="handlePageNextChange()" class="page-link"  aria-label="Next">Next</a></li>
                                          </ul>
                                     </div>
                                 </div>

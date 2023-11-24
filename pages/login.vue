@@ -58,7 +58,8 @@
                                                     </div>
                                                 </div>
                                                 <p class="forgot-pass mb-0">
-                                                    <nuxt-link to="/recoverPassword"  class="text-dark fw-bold">Forgot password ?</nuxt-link></p>
+                                                    <nuxt-link to="/recoverPassword"  
+                                                    class="text-dark fw-bold">Forgot password ?</nuxt-link></p>
                                              </div>
                                         </div><!--end col-->
 

@@ -1,6 +1,6 @@
 <template>
         
-     <div class="main-layer " v-if="isSupported"  :class="isVisible== props.value?'main-layer-visible':'main-layer-hidden'">
+     <div class="main-layer fade" v-if="isSupported"  :class="isVisible== props.value?'main-layer-visible':'main-layer-hidden'">
 
          <div class="layer rounded shadow" :class="isVisible === props.value ?'clicked':''">
              <div>
@@ -9,7 +9,7 @@
              </div>
              
              <div class="img">
-                 <img class="w-100" src="/QRCODE.png" alt="" srcset="">
+                <qrcode-vue :value="value" :size="size" level="H" />
              </div>
              <input class="form-control ps-4 w-100" type="type" v-model.trim="btcAddress" disabled/>
              <hr class="bg-dark w-100">
@@ -19,8 +19,9 @@
             </button>
              <div class="w-100">
                 <hr class="bg-dark w-100">
-                <div class=" d-flex justify-content-end">
+                <div class=" d-flex justify-content-center">
                     <button @click.prevent="closeModal" class="btn btn-danger text-sm">close</button>
+                    <button @click.prevent="" class="btn btn-success mx-2 text-sm">confirm</button>
                 </div>
              </div>
          </div>
@@ -32,6 +33,11 @@
 
 
 <script setup>
+import QrcodeVue from 'qrcode.vue'
+
+const value = 'https://example.com33'
+const size = 130
+
 const props = defineProps([
     "value",
     "depositAmount"

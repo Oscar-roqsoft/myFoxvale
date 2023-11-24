@@ -144,12 +144,13 @@ const updatePackage = async()=>{
 
     try{
     console.log(selectedPackage)
-    const data = await fetch(`${baseURL}/package/update-package/652e541872556c4e30a256b4`,{
+    const data = await fetch(`${baseURL}/package/update-package/${selectedPackage._id}`,{
     method: "PATCH",
     headers: {
         "Content-Type":"application/json",
         "token": `Bearer ${adtoken}`,
     },
+
     body: JSON.stringify(selectedPackage)
    }).then(res=>res.json());
 

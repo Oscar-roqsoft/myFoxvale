@@ -21,7 +21,7 @@
 
                             <nav aria-label="breadcrumb" class="d-inline-block mt-2 mt-sm-0">
                                 <ul class="breadcrumb bg-transparent rounded mb-0 p-0">
-                                    <li class="breadcrumb-item text-capitalize"><nuxt-link to="/dashboard" href="index.html">Foxvale</nuxt-link></li>
+                                    <li class="breadcrumb-item text-capitalize"><nuxt-link to="/dashboard">Foxvale</nuxt-link></li>
                                     <li class="breadcrumb-item text-capitalize active" aria-current="page">Pricing</li>
                                 </ul>
                             </nav>
@@ -37,13 +37,13 @@
                                 <div class="row ">
                    
                     
-                                    <div class="col-lg-3 col-md-6 col-12 mt-4 pt-2" v-for="item in assetPlan">
+                                    <div class="col-lg-3 col-md-6 col-12 mt-4 pt-2" v-for="item in pinia.userPackages">
                                         <div 
                                         class="card pricing pricing-primary business-rate shadow border-0 rounded">
-                                            <div  v-if="item.title==='premium'"
+                                            <div  v-if="item.name==='PREMIUM'"
                                             class="ribbon ribbon-right ribbon-warning overflow-hidden"><span class="text-center d-block shadow small h6">Best</span></div>
                                             <div class="card-body">
-                                                <h6 class="title name  text-uppercase mb-4">{{item.title}}</h6>
+                                                <h6 class="title name  text-uppercase mb-4">{{item.name}}</h6>
                                                 
                                                 <div  class="d-flex mb-4">
                                                         <span v-for="i in item.icon" class="h1 mb-0 text-warning">
@@ -53,16 +53,16 @@
                 
                                                 <ul class="list-unstyled d-flex mb-0 ps-0">
                                                     <li class="h6 text-muted mb-0"><span class="icon h5 me-2">
-                                                        </span>${{item.price1}}</li>
+                                                        </span>${{item.minPrice}}</li>
                                                     <li class="h6 text-muted mb-0"><span class="icon h5 me-2">
                                                         </span>-</li>
                                                     <li class="h6 text-muted mb-0"><span class="icon h5 me-2">
-                                                        </span>${{item.price2}}</li>
+                                                        </span>${{item.maxPrice}}</li>
                                                 </ul>
                 
                                                 <ul class="list-unstyled d-flex mb-0 ps-0">
                                                     <li class="h6 text-muted mb-0"><span class="icon h5 me-2">
-                                                        </span>{{item.interest}}%</li>
+                                                        </span>{{item.returnOfInvestment}}%</li>
                                                     <li class="h6 text-muted mb-0"><span class="icon h5 me-2">
                                                         </span>ROI</li>
                                                     <li class="h6 text-muted mb-0"><span class="icon h5 me-2">
@@ -71,7 +71,7 @@
                 
                 
                                                
-                                                <a href="javascript:void(0)" class="btn btn-primary mt-4">Try It Out</a>
+                                                <a class="btn btn-primary mt-4">Get Started</a>
                                             </div>
                                         </div>
                                     </div><!--end col-->
@@ -102,37 +102,28 @@
 </template>
 
 <script setup>
+import {baseURL} from '@/composables/mixins'
+import {useStore} from '@/stores/index'
+import { storeToRefs } from 'pinia';
 definePageMeta({
     layout:"custom"
 })
 
-const assetPlan = [
-    {
-        id:"premium",
-        title: "premium",
-        price1: 50000,
-        price2 : 100000,
-        interest: 10,
-        icon:['star','star','star','star','star']
+const pinia = useStore()
 
+const data = await fetch(`${baseURL}/package/packages-list`,{
+   method: "GET",
+   headers: {
+        "Content-Type":"application/json",
+        "token": `Bearer ${pinia.user.accessToken}`
     },
-    {
-        id: "deluxe",
-        title: "deluxe",
-        price1: 10000,
-        price2 : 49999,
-        interest: 7.5,
-        icon:['star','star','star']
+}).then(res=>res.json());
 
-    },
-    {
-        id:"standard",
-        title: "standard",
-        price1: 1000,
-        price2 : 9999,
-        interest: 5,
-        icon:['star','star']
+const packageInfo =  data.data.packages;
+pinia.storeUserPackages(packageInfo);
 
-    }   
-]
+
+
+
+
 </script>

@@ -39,11 +39,11 @@
                                 </div><!--end col-->
 
                                 <div class="col-lg-12 mt-2 mb-2 d-flex" style="width: 100%;">
-                                    <button @click.prevent="pinia.goBack()" class="btn  btn-danger">Cancel</button>
+                                    <button @click.prevent="pinia.goBack" class="btn  btn-danger">Cancel</button>
                                     <button class="btn btn-warning ms-2">Confirm</button>
                                 </div><!--end col-->
                             </div><!--end row-->
-                        </div>
+                     </div>
 </template>
 
 

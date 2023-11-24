@@ -7,12 +7,15 @@ export const useStore = defineStore('user',()=> {
     // other options...
     const user = ref({})
 
-
     const userList = ref([])
 
     const orderList = ref([])
 
    const packages = ref([])
+
+   const userPackages = ref([])
+
+   const walletDetails = ref([])
 
    const navigateBackAndFrontVal = ref(true)
 
@@ -50,6 +53,15 @@ export const useStore = defineStore('user',()=> {
         packages.value = payload;
         console.log(packages.value)
     }
+    const storeUserPackages = (payload)=>{
+        userPackages.value = payload;
+        console.log(userPackages.value)
+    }
+
+    const storeWalletDetails = (payload)=>{
+        walletDetails.value = payload;
+        console.log(walletDetails.value)
+    }
 
     const signOut = ()=>{
         user.value = {};
@@ -64,6 +76,7 @@ export const useStore = defineStore('user',()=> {
     }
     const goBack = ()=>{
         navigateBackAndFrontVal.value = true;
+        navigateTo('/dashboard')
     }
     
    
@@ -83,7 +96,11 @@ export const useStore = defineStore('user',()=> {
         storewithdrawalDetails,
         userList,
         storeUserList,
-        orderList
+        orderList,
+        walletDetails,
+        storeWalletDetails,
+        userPackages,
+        storeUserPackages
     }
     // const  (true),
 },

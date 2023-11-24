@@ -67,8 +67,11 @@
                            
                         </div><!--end row-->
 
+
+                        <!-- <Screener class="my-3" /> -->
+
  
-                        <UsersList v-if="store.user.isAdmin" />
+                        <!-- <UsersList v-if="store.user.isAdmin" /> -->
 
                         <div class="row  align-items-center mx-1" v-if="!store.user.isAdmin">
                            
@@ -115,12 +118,19 @@
 
 
 <script setup>
-
+// import { Chart,CryptoMarket, Snaps, Screener } from 'vue-tradingview-widgets'
 import {useStore}  from "@/stores/index"
 // import { useClipboard }   from '@vueuse/core'
 definePageMeta({
     layout:"custom",
 })
+
+// defineComponent({
+//     Chart,
+//     CryptoMarket,
+//     Screener,
+//     Snaps, 
+// })
 
 
 

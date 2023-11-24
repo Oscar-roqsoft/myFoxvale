@@ -20,7 +20,7 @@
                             <nav aria-label="breadcrumb" class="d-inline-block mt-2 mt-sm-0">
 
                                 <ul class="breadcrumb bg-transparent rounded mb-0 p-0">
-                                    <li class="breadcrumb-item text-capitalize"><nuxt-link to="/dashboard" href="index.html">Foxvale</nuxt-link></li>
+                                    <li class="breadcrumb-item text-capitalize"><nuxt-link to="/dashboard">Foxvale</nuxt-link></li>
                                     <li class="breadcrumb-item text-capitalize active" aria-current="page">My Packages</li>
                                 </ul>
                                 
@@ -40,13 +40,16 @@
                                     <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2" v-for="item in assetPlan">
                                         <div 
                                         class="card pricing pricing-primary business-rate shadow border-0 rounded">
-                                            <div  v-if="item.name==='premium'"
-                                            class="ribbon ribbon-right ribbon-warning overflow-hidden"><span class="text-center d-block shadow small h6">Best</span></div>
+                                            <div  v-if="item.name==='PREMIUM'"
+                                                class="ribbon ribbon-right ribbon-warning overflow-hidden">
+                                                <span class="text-center d-block shadow small h6">Best</span>
+                                             </div>
+                                             
                                             <div class="card-body">
                                                 <h6 class="title name  text-uppercase mb-4">{{item.name}}</h6>
                                                 
                                                 <div  class="d-flex mb-4">
-                                                        <span v-for="i in 4" class="h1 mb-0 text-warning">
+                                                        <span v-for="i in item.rating" class="h1 mb-0 text-warning">
                                                             <i  class="uil uil-star "></i>
                                                         </span>
                                                 </div>

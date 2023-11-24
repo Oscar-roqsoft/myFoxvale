@@ -26,11 +26,12 @@
                         <div class="dropdown dropdown-primary">
                             <button type="button" class="btn btn-soft-light dropdown-toggle p-0" data-bs-toggle="dropdown" 
                             aria-haspopup="true" aria-expanded="false"><img 
-                            :src="store.user.imageProfile? store.user.imageProfile : 'https://thumbs.dreamstime.com/z/default-avatar-profile-icon-vector-social-media-user-image-182145777.jpg?w=768'" class="avatar avatar-ex-small
+                        :src="store.user.imageProfile? store.user.imageProfile : 'https://thumbs.dreamstime.com/z/default-avatar-profile-icon-vector-social-media-user-image-182145777.jpg?w=768'" class="avatar avatar-ex-small
                              rounded" alt=""></button>
                             <div class="dropdown-menu dd-menu dropdown-menu-end shadow border-0 mt-3 py-3" style="min-width: 200px;">
-                                <nuxt-link to="/dashboard/profile" class="dropdown-item d-flex align-items-center text-dark pb-3">
-                                    <img :src="store.user.idFile" class="avatar avatar-md-sm rounded-circle border shadow" alt="">
+                                <nuxt-link to="/dashboard/profile" 
+                                     class="dropdown-item d-flex align-items-center text-dark pb-3">
+                                    <img  :src="store.user.imageProfile? store.user.imageProfile : 'https://thumbs.dreamstime.com/z/default-avatar-profile-icon-vector-social-media-user-image-182145777.jpg?w=768'" class="avatar avatar-md-sm rounded-circle border shadow" alt="">
                                     <div class="flex-1 ms-2">
                                         <span class="d-block">@{{store.user.name}}</span>
                                     </div>

@@ -20,7 +20,7 @@
                             <ul class="breadcrumb bg-transparent rounded mb-0 p-0">
                                 <li class="breadcrumb-item text-capitalize"><nuxt-link to="/dashboard" >Foxvale</nuxt-link></li>
                                 <li class="breadcrumb-item text-capitalize"><nuxt-link to="/dashboard/users" >Users</nuxt-link></li>
-                                <li class="breadcrumb-item text-capitalize"> >Verify User</li>
+                                <li class="breadcrumb-item text-capitalize active" aria-current="page"> Verify User</li>
                             </ul>
                             
                         </nav>
@@ -42,7 +42,7 @@
                                 <img :src="selectedPackage.file? selectedPackage.file:''"  width="100%"  height="100%">
                             </div>
 
-                            <button class="btn mt-3  btn-primary">Verify user</button>
+                            <button class="btn mt-3  btn-primary" @click.prevent="verifyUser">Verify user</button>
                         </div>
                     </div>
                     
@@ -63,6 +63,7 @@
 
 <script setup>
 import {useStore} from '@/stores/index'
+import {baseURL} from '@/composables/mixins'
 definePageMeta({
     layout:"custom"
 })
@@ -81,6 +82,23 @@ const usersName = router.currentRoute.value.params.id;
 
 const selectedPackage = users.find(pkg => pkg._id == usersName)
 console.log(selectedPackage);
+
+
+const verifyUser = async()=>{
+    // if(!selectedPackage.file) return;
+    // try{
+    //    const data = await fetch(`${baseURL}/auth/verify-user`,{
+    //    method: "PATCH",
+    //    headers: {
+    //         "Content-Type":"application/json",
+    //         "token": `Bearer ${adtoken}`
+    //     },
+    //    }).then(res=>res.json())
+    //    console.log(data)
+    //  }catch(e){
+    //    console.log(e)
+    //  }
+}
 
 
 
