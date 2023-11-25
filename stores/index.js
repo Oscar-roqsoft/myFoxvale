@@ -13,6 +13,10 @@ export const useStore = defineStore('user',()=> {
 
    const packages = ref([])
 
+   const subpackages = ref([])
+
+   const userSubscription = ref([])
+
    const userPackages = ref([])
 
    const walletDetails = ref([])
@@ -53,9 +57,17 @@ export const useStore = defineStore('user',()=> {
         packages.value = payload;
         console.log(packages.value)
     }
+    const storesubPackage = (payload)=>{
+        subpackages.value = payload;
+        console.log(subpackages.value)
+    }
     const storeUserPackages = (payload)=>{
         userPackages.value = payload;
         console.log(userPackages.value)
+    }
+    const storeuserSubscription = (payload)=>{
+        userSubscription.value = payload;
+        console.log(userSubscription.value)
     }
 
     const storeWalletDetails = (payload)=>{
@@ -100,7 +112,11 @@ export const useStore = defineStore('user',()=> {
         walletDetails,
         storeWalletDetails,
         userPackages,
-        storeUserPackages
+        storeUserPackages,
+        subpackages,
+        storesubPackage,
+        userSubscription,
+        storeuserSubscription
     }
     // const  (true),
 },

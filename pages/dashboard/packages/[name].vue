@@ -78,7 +78,7 @@
                                 <div class="mb-3">
                                     <label class="form-label">Rating</label>
                                     <div class="form-icon position-relative">
-                                        <input id="first" type="number" class="form-control ps-5" v-model="selectedPackage.ratingValue"  placeholder="Enter Number Of Rating Star">
+                                        <input id="first" type="number" class="form-control ps-5" v-model="selectedPackage.rating"  placeholder="Enter Number Of Rating Star">
                                     </div>
                                 </div>
                             </div><!--end col-->

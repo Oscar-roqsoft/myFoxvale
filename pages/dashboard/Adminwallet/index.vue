@@ -33,8 +33,8 @@
 
                     <div class="d-flex justify-content-between align-items-center my-4"> 
                         <h2 class="fs-6 ">My Wallet</h2>
-                        <a @click="navigateTo('/dashboard/Adminwallet/create_Wallet')" 
-                        class="badge btn btn-sm bg-primary rounded ">Create New Wallet</a>
+                        <!-- <a @click="navigateTo('/dashboard/Adminwallet/create_Wallet')" 
+                        class="badge btn btn-sm bg-primary rounded ">Create New Wallet</a> -->
                     </div>
                     <div class="table-responsive shadow rounded">
 

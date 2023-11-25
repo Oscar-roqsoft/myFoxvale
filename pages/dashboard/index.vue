@@ -34,19 +34,22 @@
 
                         
                         <div class="row  align-items-center mx-1 mt-4 ">
-                           
-                            <div class="d-flex justify-content-between align-items-start rounded  rounded shadow p-3" v-if="!store.user.isAdmin">
-                                <div class=" ">
-                                    <div class="icon-d bg-warning text-white" >
-                                        <i class="uil uil-exclamation fs-4"></i>  
+                            <div v-if="!store.user.isAdmin">
+                                <div v-if="kycVisible" class="d-flex justify-content-between align-items-start rounded  rounded shadow
+                                 p-3" >
+                                    <div>
+                                        <div class="icon-d bg-warning text-white" >
+                                            <i class="uil uil-exclamation fs-4"></i>  
+                                        </div>
+                                        
+        
+                                        <span class="text-dark h6 ms-2 ">KYC is required : 
+                                            <span @click.prevent="navigateTo('/dashboard/editProfile')" class="text-primary">VERIFY YOUR ACCOUNT</span></span>
                                     </div>
-                                    
     
-                                    <span class="text-dark h6 ms-2 ">KYC is required : <span class="text-primary">VERIFY YOUR ACCOUNT</span></span>
+                                    <i @click.prevent="closeKYC" class="uil uil-times  fs-4 text-primary"></i>
+        
                                 </div>
-
-                                <i class="uil uil-times  fs-4 text-primary"></i>
-    
                             </div>
                            
                             
@@ -133,12 +136,14 @@ definePageMeta({
 // })
 
 
-
+const kycVisible = ref(true)
 const store = useStore()
 const referralLinkVal = ref('swxdtufycivughb;jn;ojo')
 const { copy,copied, isSupported } = useClipboard({ referralLinkVal })
 
-
+const closeKYC = ()=>{
+    kycVisible.value = false
+}
 const btnLinkItems = [
     {id:1,title:"deposit",icon:"uil uil-usd-circle fs-4 mb-0",link:"deposit"},
     {id:2,title:"withdraw",icon:"uil uil-shopping-bag fs-4 mb-0",link:"withdraw"},
