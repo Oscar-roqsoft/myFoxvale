@@ -152,25 +152,25 @@ const subscribe = async()=>{
         amount:amountVal.value
     }
 
-    try{
-       const data = await fetch(`${baseURL}/subscription/subscribe-user`,{
-          method:"POST",
-          headers: {
-            "Content-Type":"application/json",
-            "token": `Bearer ${pinia.user.accessToken}`
-           },
-           body:JSON.stringify(subinfo)
-       }).then(res=>res.json());
+    // try{
+    //    const data = await fetch(`${baseURL}/subscription/subscribe-user`,{
+    //       method:"POST",
+    //       headers: {
+    //         "Content-Type":"application/json",
+    //         "token": `Bearer ${pinia.user.accessToken}`
+    //        },
+    //        body:JSON.stringify(subinfo)
+    //    }).then(res=>res.json());
       
-        isloading.value = false
-        console.log('successful')
+    //     isloading.value = false
+    //     console.log('successful')
 
-        const mysub = data.data.subscription
-        pinia.storeuserSubscription(mysub)
+    //     const mysub = data.data.subscription
+    //     pinia.storeuserSubscription(mysub)
 
-        navigateTo('/dashboard/subscription')
-    }catch(e){
-        console.log(e)
-    }
+    //     navigateTo('/dashboard/subscription')
+    // }catch(e){
+    //     console.log(e)
+    // }
 }
 </script>
