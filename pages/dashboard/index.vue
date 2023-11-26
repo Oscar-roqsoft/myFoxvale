@@ -59,7 +59,7 @@
                                       
                                         <nuxt-link :to="`/dashboard/${item.link}`" class=" d-flex flex-column  
                                         align-items-center justify-content-center">
-                                            <div class="icon text-center text-white bg-warning dim  rounded-pill">
+                                            <div @click="getAdminWalletDetails()" class="icon text-center text-white bg-warning dim  rounded-pill">
                                                 <i :class="item.icon"></i>
                                             </div>
                                             <h6 class=" text-dark  mb-0 ">{{ item.title }}</h6>
@@ -124,6 +124,7 @@
 <script setup>
 // import { Chart,CryptoMarket, Snaps, Screener } from 'vue-tradingview-widgets'
 import {useStore}  from "@/stores/index"
+import {baseURL} from '@/composables/mixins'
 // import { useClipboard }   from '@vueuse/core'
 definePageMeta({
     layout:"custom",
@@ -135,6 +136,8 @@ definePageMeta({
 //     Screener,
 //     Snaps, 
 // })
+
+
 
 
 const kycVisible = ref(true)
@@ -151,6 +154,22 @@ const btnLinkItems = [
     {id:3,title:"invest",icon:"uil uil-chart fs-4 mb-0",link:"subscription"},
    ]
 
+
+    try{
+    const data = await fetch(`${baseURL}/get-account-details`,{
+        method: "GET",
+        headers: {
+        "Content-Type":"application/json",
+        "token": `Bearer ${store.user.accessToken}`
+        },
+    }).then(res=>res.json())
+
+    console.log(data.data)
+
+    console.log('hhh')
+    }catch(e){
+        console.log('error:', e)
+    }
 
 
 
