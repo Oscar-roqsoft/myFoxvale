@@ -3,6 +3,7 @@ import { defineStore } from 'pinia'
 // import { useLocalStorage }   from '@vueuse/core'
 // import {piniaPluginPersistedstate} from 'pinia-plugin-persistedstate'
 
+
 export const useStore = defineStore('user',()=> {
     // other options...
     const user = ref({})
@@ -27,7 +28,9 @@ export const useStore = defineStore('user',()=> {
     
     const menuOverlay =ref(false)
 
-    const withdrawalDetails = ref({})
+    const withdrawalDetails = ref([])
+
+    const userRecoverycode = ref('')
 
     // const isAdmin = computed(()=>{
     //     user.isAdmin = "true"
@@ -75,6 +78,15 @@ export const useStore = defineStore('user',()=> {
         console.log(walletDetails.value)
     }
 
+    const storeUserRecoverycode = (payload)=>{
+        userRecoveryDetails.value = payload;
+        console.log(userRecoveryDetails.value)
+    }
+    const clearUserRecoverycode = ()=>{
+        userRecoveryDetails.value = '';
+        console.log(userRecoveryDetails.value)
+    }
+
     const signOut = ()=>{
         user.value = {};
         userList.value = []
@@ -116,7 +128,10 @@ export const useStore = defineStore('user',()=> {
         subpackages,
         storesubPackage,
         userSubscription,
-        storeuserSubscription
+        storeuserSubscription,
+        userRecoverycode,
+        storeUserRecoverycode,
+        clearUserRecoverycode
     }
     // const  (true),
 },

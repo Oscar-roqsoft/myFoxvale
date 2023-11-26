@@ -54,10 +54,11 @@
                            
                             
                             <div  class=" mt-4 align-items-center" v-if="!store.user.isAdmin">
-                                <a class=" row align-items-center  rounded shadow  p-3">
+                                <div class=" row align-items-center  rounded shadow  p-3">
                                     <div v-for="item in btnLinkItems" :key="item" class="d-flex align-items-center justify-content-center col">
                                       
-                                        <nuxt-link :to="`/dashboard/${item.link}`" class=" d-flex flex-column  align-items-center justify-content-center">
+                                        <nuxt-link :to="`/dashboard/${item.link}`" class=" d-flex flex-column  
+                                        align-items-center justify-content-center">
                                             <div class="icon text-center text-white bg-warning dim  rounded-pill">
                                                 <i :class="item.icon"></i>
                                             </div>
@@ -65,13 +66,13 @@
                                         </nuxt-link>
                                     </div>
                                    
-                                </a>
+                                </div>
                             </div><!--end col-->
                            
                         </div><!--end row-->
 
 
-                        <!-- <Screener class="my-3" /> -->
+                        <ChartsWidgets/>
 
  
                         <!-- <UsersList v-if="store.user.isAdmin" /> -->

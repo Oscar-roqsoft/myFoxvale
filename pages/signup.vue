@@ -90,7 +90,7 @@
                                         <div class="mx-auto">
                                             <p class="mb-0 mt-3"><small class="text-dark me-2">
                                                 Already have an account ?</small> 
-                                                <button class=" btn text-primary" type="button">Sign in</button></p>
+                                                <button @click="navigateTo('/login')" class=" btn text-primary" type="button">Sign in</button></p>
                                         </div>
                                     </div><!--end row-->
                                 </form>

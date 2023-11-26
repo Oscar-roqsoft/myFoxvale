@@ -2,10 +2,6 @@
     
 
     <div>
-        <div class="back-to-home">
-            <a href="" class="back-button btn btn-icon btn-primary"><i data-feather="arrow-left"
-                 class="icons"></i></a>
-        </div>
 
         <!-- Hero Start -->
         <section class="bg-home d-flex align-items-center">
@@ -28,9 +24,6 @@
                                                 <label class="form-label">Your Email <span 
                                                     class="text-danger">*</span></label>
                                                 <div class="form-icon position-relative">
-                                                    <i data-feather="user" class="fea icon-sm icons">
-
-                                                    </i>
                                                     <input type="email" class="form-control ps-5" v-model.trim="email"
                                                     placeholder="Email" name="email" required>
                                                 </div>
@@ -41,7 +34,6 @@
                                             <div class="mb-3">
                                                 <label class="form-label">Password <span class="text-danger">*</span></label>
                                                 <div class="form-icon position-relative">
-                                                    <i data-feather="key" class="fea icon-sm icons"></i>
                                                     <input type="password" class="form-control ps-5" v-model.trim="password"
                                                     placeholder="Password" required>
                                                 </div>
@@ -65,8 +57,10 @@
 
                                         <div class="col-lg-12 mb-0">
                                             <div class="d-grid">
-                                                <div class="text-danger text-center mb-4" v-if="message.length">{{ message }}</div>
-                                                <button @click.prevent="login()" :disabled="isLoading" class="btn btn-primary" type="button">
+                                                <div class="text-danger text-center mb-4" 
+                                                v-if="message.length">{{ message }}</div>
+                                                <button @click.prevent="login()" :disabled="isLoading" 
+                                                class="btn btn-primary" type="button">
                                                     <span v-if="!isLoading">Sign in</span>
                                                     <btnLoader v-else/>
                                                 </button>
@@ -104,14 +98,15 @@
     import {validateEmail,baseURL} from "@/composables/mixins";
 
     const pinia = useStore();
-
+    const message = ref("");
     // get user input to model
     const email = ref("");
     const password = ref("");
-    const message = ref("");
+   
     const isLoading = ref(false);
 
     const login = async()=>{
+        
         // validate if the email is valid
         if(!validateEmail(email.value)) return message.value = "Invalid email address";
 

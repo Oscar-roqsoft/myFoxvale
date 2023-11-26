@@ -24,9 +24,9 @@
                             <div class="col-lg-2 col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
                                 <h5 class="footer-head">Company</h5>
                                 <ul class="list-unstyled footer-list mt-4">
-                                    <li><nuxt-link to="/about" href="javascript:void(0)" class="text-foot"><i class="uil uil-angle-right-b me-1"></i> About us</nuxt-link></li>
-                                    <li><nuxt-link to="/login" href="javascript:void(0)" class="text-foot"><i class="uil uil-angle-right-b me-1"></i> Login</nuxt-link></li>
-                                    <li><nuxt-link to="/signup" href="javascript:void(0)" class="text-foot"><i class="uil uil-angle-right-b me-1"></i> Register</nuxt-link></li>
+                                    <li><nuxt-link to="/about"  class="text-foot"><i class="uil uil-angle-right-b me-1"></i> About us</nuxt-link></li>
+                                    <li><nuxt-link to="/login"  class="text-foot"><i class="uil uil-angle-right-b me-1"></i> Login</nuxt-link></li>
+                                    <li><nuxt-link to="/signup"  class="text-foot"><i class="uil uil-angle-right-b me-1"></i> Register</nuxt-link></li>
                                 </ul>
                             </div><!--end col-->
                             

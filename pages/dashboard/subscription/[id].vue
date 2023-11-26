@@ -63,7 +63,7 @@
                                         <div class="mb-3">
                                             <label class="form-label">Enter Amount</label>
                                             <div class="form-icon position-relative">
-                                                <input  id="occupation" type="text" v-model.trim="amountVal"
+                                                <input  id="occupation" type="number" v-model.trim="amountVal"
                                                 class="form-control"  placeholder="Enter Amount">
                                             </div>
                                         </div> 

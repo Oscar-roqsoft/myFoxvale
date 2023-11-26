@@ -45,7 +45,7 @@ export default defineNuxtConfig({
      
       script: [
         {src:"/landing/libs/feather-icons/feather.min.js",body:true},
-        // {src:"/landing/libs/bootstrap/js/bootstrap.bundle.min.js",body:true},
+        {src:"https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js",type:"text/css",body:true},
         // {src: 'landing/js/plugins.init.js',body:true },
 
         { src: '/dashboard/js/plugins.init.js', body:true },
