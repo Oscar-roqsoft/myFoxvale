@@ -152,7 +152,7 @@
     "symbolActiveColor": "rgba(242, 250, 254, 1)",
     "belowLineFillColorFalling": "rgba(255, 74, 104, 0.05)",
       "height": 660,
-      "width": 400
+      "width": 420
     })
     document.querySelector('.tradingview-widget-container__widget').appendChild(script)
   })
