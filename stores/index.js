@@ -6,7 +6,7 @@ import { defineStore } from 'pinia'
 
 export const useStore = defineStore('user',()=> {
     // other options...
-    const user = ref({})
+    const user = ref([])
 
     const userList = ref([])
 
@@ -21,6 +21,8 @@ export const useStore = defineStore('user',()=> {
    const userPackages = ref([])
 
    const walletDetails = ref([])
+
+   const selectedWalletName = ref(null)
 
    const navigateBackAndFrontVal = ref(true)
 
@@ -79,12 +81,13 @@ export const useStore = defineStore('user',()=> {
     }
 
     const storeUserRecoverycode = (payload)=>{
-        userRecoveryDetails.value = payload;
-        console.log(userRecoveryDetails.value)
+        userRecoverycode.value = payload;
     }
     const clearUserRecoverycode = ()=>{
-        userRecoveryDetails.value = '';
-        console.log(userRecoveryDetails.value)
+        userRecoverycode.value = '';
+    }
+    const storeselectedWalletName = (payload)=>{
+        selectedWalletName.value = payload;
     }
 
     const signOut = ()=>{
@@ -131,7 +134,9 @@ export const useStore = defineStore('user',()=> {
         storeuserSubscription,
         userRecoverycode,
         storeUserRecoverycode,
-        clearUserRecoverycode
+        clearUserRecoverycode,
+        selectedWalletName,
+        storeselectedWalletName
     }
     // const  (true),
 },

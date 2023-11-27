@@ -42,13 +42,12 @@
                                         <div class="col-lg-7 col-md-6  order-md-2 order-lg-1 order-2">
                                             <div class="card border-0 rounded shadow p-4">
                                                 <div class=" text-center p-4 ">
-                                                    <img  :src="store.user.imageProfile? store.user.imageProfile : 'https://thumbs.dreamstime.com/z/default-avatar-profile-icon-vector-social-media-user-image-182145777.jpg?w=768'"
-                                                     class="rounded-circle shadow avatar avatar-md-md mx-auto" alt="">
+                                                    <img  :src="image?`${image}`:'https://thumbs.dreamstime.com/z/default-avatar-profile-icon-vector-social-media-user-image-182145777.jpg?w=768'"
+                                                     class="rounded-circle shadow avatar avatar-md-md mx-auto">
                                                     <h5 class="mt-3 mb-0">{{ store.user.name }}</h5>
                                                     <div>
                                                         <span v-if="store.user.Verified"  class="text-danger mb-0 fs-6">Not Yet Verified</span>
                                                         <span v-else  class="text-primary mb-0 fs-6">Verified
-                                                            <i class="fa fas-good"></i>
                                                         </span>
                                                     </div>
                                                     <div class="mt-2">
@@ -92,7 +91,7 @@
                                                         <div class="flex-1">
                                                             <h6 class="text-primary mb-0">Phone No :</h6>
                                                             <input name="number"  type="text" class="form-control ps-2"  
-                                                            :placeholder=" number? `${number}`: 'No PhoneNumber Uploded Yet'" disabled>
+                                                            :placeholder="number?`${number}`: 'No PhoneNumber Uploded Yet'" disabled>
                                                         </div>
                                                     </div>
                                                     <div class="d-flex align-items-center mt-2">
@@ -137,21 +136,27 @@ definePageMeta({
 
 const store = useStore()
 
+const image = ref('')
 const name = ref('')
 const email = ref('')
 const birthday = ref('')
 const address = ref('')
 const number = ref('')
-const document = ref('')
+const document = ref('');
 
 onMounted(()=>{
+    image.value = store.user.profileImage
     name.value = store.user.name
     email.value = store.user.email
     birthday.value = store.user.birthday
-    address.value = store.user.address
+    address.value = store.user.country
     number.value = store.user.phoneNumber
-    document.value = store.user.document
-
+    document.value = store.user.idFile
 })
+
+
+
+
+ 
 
 </script>

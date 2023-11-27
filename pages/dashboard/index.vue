@@ -164,7 +164,10 @@ const btnLinkItems = [
         },
     }).then(res=>res.json())
 
-    console.log(data.data)
+    console.log(data.data.accountDetails)
+    const userAccountDetails = data.data.accountDetails
+    store.storeWalletDetails(userAccountDetails)
+
 
     console.log('hhh')
     }catch(e){

@@ -1,12 +1,6 @@
 <template>
       
     <div>
-
-        <!-- Loader -->
-        <div class="back-to-home">
-            <a href="" class="back-button btn btn-icon btn-primary"><i data-feather="arrow-left" class="icons"></i></a>
-        </div>
-
         <!-- Hero Start -->
         <section class="bg-auth-home d-table w-100">
             <div class="container">
@@ -26,7 +20,6 @@
                                             <div class="mb-3">
                                                 <label class="form-label">First name <span class="text-danger">*</span></label>
                                                 <div class="form-icon position-relative">
-                                                    <i data-feather="user" class="fea icon-sm icons"></i>
                                                     <input type="text" class="form-control ps-5" v-model.trim="firstName"
                                                     placeholder="First Name" name="s" required>
                                                 </div>
@@ -37,7 +30,6 @@
                                             <div class="mb-3"> 
                                                 <label class="form-label">Last name <span class="text-danger">*</span></label>
                                                 <div class="form-icon position-relative">
-                                                    <i data-feather="user-check" class="fea icon-sm icons"></i>
                                                     <input type="text" class="form-control ps-5" v-model.trim="lastName"
                                                     placeholder="Last Name" name="s" required>
                                                 </div>
@@ -48,7 +40,6 @@
                                             <div class="mb-3">
                                                 <label class="form-label">Your Email <span class="text-danger">*</span></label>
                                                 <div class="form-icon position-relative">
-                                                    <i data-feather="mail" class="fea icon-sm icons"></i>
                                                     <input type="email" class="form-control ps-5" v-model.trim="email"
                                                     placeholder="Email" name="email" required>
                                                 </div>
@@ -59,7 +50,6 @@
                                             <div class="mb-3">
                                                 <label class="form-label">Password <span class="text-danger">*</span></label>
                                                 <div class="form-icon position-relative">
-                                                    <i data-feather="key" class="fea icon-sm icons"></i>
                                                     <input type="password" class="form-control ps-5" v-model.trim="password"
                                                     placeholder="Password" required>
                                                 </div>

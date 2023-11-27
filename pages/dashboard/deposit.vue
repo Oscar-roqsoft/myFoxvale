@@ -40,17 +40,22 @@
                                     <div class="mb-3">
                                         <div class="form-icon position-relative">
                                                 <label for="selectOptions" class="form-label">Wallet Name</label>
-                                                <select class="form-select mb-3" id="selectOptions" aria-label="Default select example">
+                                                <!-- <select class="form-select mb-3" id="selectOptions" aria-label="Default select example">
                                                     <option selected>Select Wallet Type</option>
-                                                    <option value="1">USDT</option>
-                                                    <option value="2">BTC</option>
-                                                    <option value="3">ETH</option>
+                                                    <option value="USDT">USDT</option>
+                                                    <option value="BTC">BTC</option>
+                                                    <option value="ETH">ETH</option>
+                                                </select> -->
+                                                <select v-model="selected" class="form-select mb-3"  >
+                                                   <option  v-for="option in options" :key="option.value" :value="option.text">
+                                                    {{ option.text }}
+                                                    </option>
+                                                   
                                                 </select>
                                             
                                             <!-- <span>Payment Method</span>
                                             <input type="text" value="BTC WALLET ADDRESS" class="form-control ps-4" disabled> -->
                                         </div>
-
                                     </div>
                                 </div><!--end col-->
 
@@ -100,12 +105,13 @@ definePageMeta({
 })
 
 
-
+const selected = ref('USDT')
 const pinia = useStore()
+pinia.storeselectedWalletName(selected)
 const isVisible = ref(false)
 const inputDepositAmtVal = ref('')
 let amountToDeposit = ref('')
-
+console.log(selected.value)
 
 console.log(pinia.walletDetails.name)
 
@@ -113,6 +119,12 @@ console.log(pinia.walletDetails.name)
 const modalVisibility = ref(null)
 
 
+
+const options = [
+        { value: '1', text: 'USDT' },
+        { value: '2', text: 'BTC Address' },
+        { value: '3', text: 'ETH' }
+]
 
 const toggleModal =()=>{
     if(inputDepositAmtVal.value >= 100 ){
@@ -124,6 +136,8 @@ const toggleModal =()=>{
     }
 
 }
+
+
 
 </script>
 

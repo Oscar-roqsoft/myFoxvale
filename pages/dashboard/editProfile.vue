@@ -180,39 +180,48 @@ const submitUserUpdate = async()=>{
     // upload profile image
     const image_url = await uploadFile(selectedImage.value);
     if(!image_url){
-        // TODO: alert to the user that the profile image file upload failed
-
-        // TODO: stop loading indicator
+        alert('profile image failed to upload')
+        isloading.value = false
         return
     }
     
     // upload document
     const document_url = await uploadFile(selectedfile.value);
     if(!document_url){
-        // TODO: alert to the user that the document file upload failed
-
-        // TODO: stop loading indicator
+        alert('document failed to upload')
+        isloading.value = false
         return
     }
 
     const profileUserUpdateInfo = {
-        imageProfile: image_url,
+        profileImage: image_url,
         birthday: birthday.value,
-        Country: address.value,
+        country: address.value,
         phoneNumber: phoneNo.value,
-        id_file : document_url,
+        idFile : document_url,
     }
+
+
     console.log(profileUserUpdateInfo)
     try{
-       const data = await fetch(`${baseURL}/auth/identity-verify`,{
+       const data = await fetch(`${baseURL}/user/update-user/${store.user.id}`,{
         method:'PATCH',
         headers:{
             "Content-Type":"application/json",
-            "token": `Bearer {{token}}`,
-        }
-       })
+            "token": `Bearer ${store.user.accessToken}`
+        },
+        body:JSON.stringify(profileUserUpdateInfo)
+       }).then(res =>res.json())
 
+        console.log(data.message)
+        console.log(data.data)
+
+        let updatedUserInfo = {...data.data.updatedUser}
+        store.storeUser(updatedUserInfo);
+      
        isloading.value = false
+
+       navigateTo('/dashboard/profile')
     }catch(e){
         console.log(e)
     }

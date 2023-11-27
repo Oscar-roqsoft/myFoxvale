@@ -4,12 +4,13 @@
 
          <div class="layer rounded shadow" :class="isVisible === props.value ?'clicked':''">
              <div>
+                  <p>{{selectedWalletPackage.name}}</p>
                  <p class="text-sm">Send <span class="text-warning">${{ numberWithCommas(props.depositAmount) }}</span> worth of BTC to the wallet address below</p>
                  <hr class="bg-dark w-100">
              </div>
              
              <div class="img">
-                <qrcode-vue :value="value" :size="size" level="H" />
+                <qrcode-vue :value="selectedWalletPackage.value" :size="size" level="H" />
              </div>
              <input class="form-control ps-4 w-100" type="type" v-model.trim="btcAddress" disabled/>
              <hr class="bg-dark w-100">
@@ -34,14 +35,28 @@
 
 <script setup>
 import QrcodeVue from 'qrcode.vue'
+import {useStore} from '@/stores/index'
 
-const value = 'https://example.com33'
-const size = 130
+const store = useStore()
 
 const props = defineProps([
     "value",
-    "depositAmount"
+    "depositAmount",
+   "select"
 ])
+
+const size = 130
+
+const allWallets = store.walletDetails
+console.log(allWallets)
+
+
+console.log('show:',props.select)
+
+const selectedWalletPackage = allWallets.find(pkg => pkg.name === props.select)
+
+console.log(selectedWalletPackage)
+
 
 
 const btcAddress = ref("bdfgetGDRTHBB3#juhyugnigtgtg")
