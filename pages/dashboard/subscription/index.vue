@@ -37,7 +37,7 @@
                                 <div class="row ">
                    
                     
-                                    <div class="col-lg-3 col-md-6 col-12 mt-4 pt-2" v-for="item in pinia.userPackages">
+                                    <div class="col-lg-3 col-md-6 col-12 mt-4 pt-2" v-for="item in pinia.subpackages">
                                         <div 
                                         class="card pricing pricing-primary business-rate shadow border-0 rounded">
                                             <div  v-if="item.name==='Premium'"

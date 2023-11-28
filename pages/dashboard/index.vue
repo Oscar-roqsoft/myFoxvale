@@ -9,13 +9,12 @@
 
             <!-- Start Page Content -->
             <main class="page-content bg-light">
-                <!-- @@include("partials/top-header.html") -->
                 <Topheader/>
 
                 <div class="container-fluid">
                     <div class="layout-specing">
                         <div class="d-md-flex  align-items-center justify-content-between">
-                            <div>
+                            <div class="">
                                 <h6 class="mb-1">Hello {{ store.user.name }},</h6>
                                 <h6 class="text-muted mb-0">Welcome!!! Let's keep winning with Foxvale Broker Inc.</h6>
                             </div>
@@ -59,7 +58,7 @@
                                       
                                         <nuxt-link :to="`/dashboard/${item.link}`" class=" d-flex flex-column  
                                         align-items-center justify-content-center">
-                                            <div @click="getAdminWalletDetails()" class="icon text-center text-white bg-warning dim  rounded-pill">
+                                            <div  class="icon text-center text-white bg-warning dim  rounded-pill">
                                                 <i :class="item.icon"></i>
                                             </div>
                                             <h6 class=" text-dark  mb-0 ">{{ item.title }}</h6>
@@ -164,7 +163,6 @@ const btnLinkItems = [
         },
     }).then(res=>res.json())
 
-    console.log(data.data.accountDetails)
     const userAccountDetails = data.data.accountDetails
     store.storeWalletDetails(userAccountDetails)
 

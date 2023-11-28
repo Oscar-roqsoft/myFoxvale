@@ -49,9 +49,9 @@
                                                 <select v-model="selected" class="form-select mb-3"  >
                                                    <option  v-for="option in options" :key="option.value" :value="option.text">
                                                     {{ option.text }}
-                                                    </option>
-                                                   
+                                                   </option>
                                                 </select>
+                                                <!-- <p>{{ selected }}</p> -->
                                             
                                             <!-- <span>Payment Method</span>
                                             <input type="text" value="BTC WALLET ADDRESS" class="form-control ps-4" disabled> -->
@@ -104,27 +104,30 @@ definePageMeta({
     layout:"custom"  
 })
 
-
 const selected = ref('USDT')
+const selectedOptions = ref(null)
 const pinia = useStore()
 pinia.storeselectedWalletName(selected)
+
 const isVisible = ref(false)
 const inputDepositAmtVal = ref('')
 let amountToDeposit = ref('')
-console.log(selected.value)
-
-console.log(pinia.walletDetails.name)
-
 
 const modalVisibility = ref(null)
 
 
-
 const options = [
         { value: '1', text: 'USDT' },
-        { value: '2', text: 'BTC Address' },
+        { value: '2', text: 'BTC' },
         { value: '3', text: 'ETH' }
 ]
+
+
+watch(selected,(newval)=>{
+    selectedOptions.value = options.find(option => option.value === newval);
+    console.log(selectedOptions.value)
+})
+
 
 const toggleModal =()=>{
     if(inputDepositAmtVal.value >= 100 ){

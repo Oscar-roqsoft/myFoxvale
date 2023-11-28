@@ -3,28 +3,30 @@
      <div class="main-layer fade" v-if="isSupported"  :class="isVisible== props.value?'main-layer-visible':'main-layer-hidden'">
 
          <div class="layer rounded shadow" :class="isVisible === props.value ?'clicked':''">
-             <div>
-                  <p>{{selectedWalletPackage.name}}</p>
-                 <p class="text-sm">Send <span class="text-warning">${{ numberWithCommas(props.depositAmount) }}</span> worth of BTC to the wallet address below</p>
-                 <hr class="bg-dark w-100">
-             </div>
-             
-             <div class="img">
-                <qrcode-vue :value="selectedWalletPackage.value" :size="size" level="H" />
-             </div>
-             <input class="form-control ps-4 w-100" type="type" v-model.trim="btcAddress" disabled/>
-             <hr class="bg-dark w-100">
-             <button @click.prevent="copy(btcAddress)" class="btn btn-warning text-sm">
-                <span v-if='!copied'>Copy Wallet Address</span>
-                <span v-else>Copied!</span>
-            </button>
-             <div class="w-100">
-                <hr class="bg-dark w-100">
-                <div class=" d-flex justify-content-center">
-                    <button @click.prevent="closeModal" class="btn btn-danger text-sm">close</button>
-                    <button @click.prevent="" class="btn btn-success mx-2 text-sm">confirm</button>
+                <div>
+                    <p>{{selectedWalletPackage?.name}}</p>
+                    <p>{{props.selected}}</p>
+                    <p class="text-sm">Send <span class="text-warning">${{ numberWithCommas(props.depositAmount) }}</span> worth of 
+                        BTC to the wallet address below</p>
+                    <hr class="bg-dark w-100">
                 </div>
-             </div>
+             
+                <div class="img">
+                    <qrcode-vue :value="selectedWalletPackage?.value" :size="size" level="H" />
+                </div>
+                <input class="form-control ps-4 w-100" type="type" v-model.trim="btcAddress" disabled/>
+                <hr class="bg-dark w-100">
+                <button @click.prevent="copy(btcAddress)" class="btn btn-warning text-sm">
+                    <span v-if="!copied">Copy Wallet Address</span>
+                    <span v-else>Copied!</span>
+                </button>
+                <div class="w-100">
+                    <hr class="bg-dark w-100">
+                    <div class=" d-flex justify-content-center">
+                        <button @click.prevent="closeModal" class="btn btn-danger text-sm">close</button>
+                        <button @click.prevent="" class="btn btn-success mx-2 text-sm">confirm</button>
+                    </div>
+                </div>
          </div>
      </div>
            
@@ -42,22 +44,15 @@ const store = useStore()
 const props = defineProps([
     "value",
     "depositAmount",
-   "select"
+    "select"
 ])
 
 const size = 130
-
 const allWallets = store.walletDetails
-console.log(allWallets)
+const select = ref('')
+console.log(props.select)
 
-
-console.log('show:',props.select)
-
-const selectedWalletPackage = allWallets.find(pkg => pkg.name === props.select)
-
-console.log(selectedWalletPackage)
-
-
+const selectedWalletPackage = allWallets.find(pkg => pkg.name === select.value)
 
 const btcAddress = ref("bdfgetGDRTHBB3#juhyugnigtgtg")
 const isVisible = ref(true)
