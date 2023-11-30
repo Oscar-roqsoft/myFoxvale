@@ -4,19 +4,17 @@
 
          <div class="layer rounded shadow" :class="isVisible === props.value ?'clicked':''">
                 <div>
-                    <p>{{selectedWalletPackage?.name}}</p>
-                    <p>{{props.selected}}</p>
                     <p class="text-sm">Send <span class="text-warning">${{ numberWithCommas(props.depositAmount) }}</span> worth of 
                         BTC to the wallet address below</p>
                     <hr class="bg-dark w-100">
                 </div>
              
                 <div class="img">
-                    <qrcode-vue :value="selectedWalletPackage?.value" :size="size" level="H" />
+                    <qrcode-vue :value="props.select" :size="size" level="H" />
                 </div>
-                <input class="form-control ps-4 w-100" type="type" v-model.trim="btcAddress" disabled/>
+                <input class="form-control ps-4 w-100" type="type" v-model.trim="props.select" disabled/>
                 <hr class="bg-dark w-100">
-                <button @click.prevent="copy(btcAddress)" class="btn btn-warning text-sm">
+                <button @click.prevent="copy(props.select)" class="btn btn-warning text-sm">
                     <span v-if="!copied">Copy Wallet Address</span>
                     <span v-else>Copied!</span>
                 </button>
@@ -38,6 +36,7 @@
 <script setup>
 import QrcodeVue from 'qrcode.vue'
 import {useStore} from '@/stores/index'
+import {baseURL} from '@/composables/mixins'
 
 const store = useStore()
 
@@ -48,11 +47,6 @@ const props = defineProps([
 ])
 
 const size = 130
-const allWallets = store.walletDetails
-const select = ref('')
-console.log(props.select)
-
-const selectedWalletPackage = allWallets.find(pkg => pkg.name === select.value)
 
 const btcAddress = ref("bdfgetGDRTHBB3#juhyugnigtgtg")
 const isVisible = ref(true)
@@ -70,6 +64,17 @@ const closeModal = ()=>{
     emits('changeD', isVisible.value = !isVisible.value)
 }
 
+
+
+
+
+const confirmPayment = async()=>{
+    try{
+     const data = await fetch(`${baseURL}/`)
+    }catch(e){
+        console.log(e)
+    }
+}
 
 
 </script>

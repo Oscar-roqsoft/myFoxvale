@@ -20,12 +20,8 @@
                             </div>
 
                             <div class="d-flex align-items-start rounded mt-2 mt-md-0" v-if="!store.user.isAdmin">
-                                <div class="bg-warning text-white p-2 rounded shadow">
-
-                                    <span class="h6 ms-1 fs-5">Balance : </span>
-        
-                                    <span class=" ms-1 fs-5">$2435.00</span>
-        
+                                <div @click.prevent="navigateTo('/dashboard/wallet')" class="bg-warning text-white p-2 rounded shadow">
+                                    <span class="h6 ms-1 fs-5">Check Balance</span>
                                 </div>   
                             </div>
                         </div>
@@ -154,23 +150,6 @@ const btnLinkItems = [
    ]
 
 
-    try{
-    const data = await fetch(`${baseURL}/get-account-details`,{
-        method: "GET",
-        headers: {
-        "Content-Type":"application/json",
-        "token": `Bearer ${store.user.accessToken}`
-        },
-    }).then(res=>res.json())
-
-    const userAccountDetails = data.data.accountDetails
-    store.storeWalletDetails(userAccountDetails)
-
-
-    console.log('hhh')
-    }catch(e){
-        console.log('error:', e)
-    }
 
 
 
