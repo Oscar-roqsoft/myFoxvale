@@ -34,7 +34,7 @@
                                         <h5 class="text-md-start text-center mb-0">Personal Detail :</h5>
         
                                         <div class="mt-4 text-md-start text-center d-sm-flex">
-                                            <img  :src="store.user.imageProfile? store.user.imageProfile : 'https://thumbs.dreamstime.com/z/default-avatar-profile-icon-vector-social-media-user-image-182145777.jpg?w=768'"
+                                            <img  :src="store.user.profileImage ? store.user.profileImage : 'https://thumbs.dreamstime.com/z/default-avatar-profile-icon-vector-social-media-user-image-182145777.jpg?w=768'"
                                              ref="profileImg" class="avatar float-md-left avatar-medium rounded-circle shadow me-md-4" alt="">
                                             <input @input="handleImgChange($event)"  type="file" 
                                             ref="profileImage" accept="image/jpeg,.webp,.png,.jpg,.gif,.svg,.jfif,.pjpeg,.pjp" hidden/>
@@ -175,6 +175,7 @@ const handleImageClick = ()=>{
 
 const handleImgChange = async(event)=> await handleFileChange(event,selectedImage,profileImg);
 const handleDocumentChange = async(event)=> await handleFileChange(event,selectedfile);
+
 
 const submitUserUpdate = async()=>{
     isloading.value = true

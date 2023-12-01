@@ -29,8 +29,7 @@
 
                         
                         <div class="row  align-items-center mx-1 mt-4 ">
-                            <div v-if="!store.user.isAdmin">
-                                <div v-if="kycVisible" class="d-flex justify-content-between align-items-start rounded  rounded shadow
+                                <div v-if="kycVisible && !store.user.isAdmin && !store.user.isVerified" class="d-flex justify-content-between align-items-start rounded  rounded shadow
                                  p-3" >
                                     <div>
                                         <div class="icon-d bg-warning text-white" >
@@ -45,7 +44,6 @@
                                     <i @click.prevent="closeKYC" class="uil uil-times  fs-4 text-primary"></i>
         
                                 </div>
-                            </div>
                            
                             
                             <div  class=" mt-4 align-items-center" v-if="!store.user.isAdmin">
