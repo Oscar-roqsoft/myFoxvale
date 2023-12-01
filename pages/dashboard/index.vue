@@ -29,7 +29,7 @@
 
                         
                         <div class="row  align-items-center mx-1 mt-4 ">
-                                <div v-if="kycVisible && !store.user.isAdmin && !store.user.isVerified" class="d-flex justify-content-between align-items-start rounded  rounded shadow
+                                <div v-if=" !store.user.verificationMark && kycVisible && !store.user.isAdmin" class="d-flex justify-content-between align-items-start rounded  rounded shadow
                                  p-3" >
                                     <div>
                                         <div class="icon-d bg-warning text-white" >

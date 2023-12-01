@@ -43,17 +43,24 @@
                                                    <td class="p-3">
                                                         <a href="#" class="text-primary">
                                                             <div class="d-flex align-items-center">
-                                                                <img src="/images/client/01.jpg" class="avatar avatar-ex-small rounded-circle shadow" alt="">
+                                                                <img v-if="!userr.isAdmin" :src="userr.profileImage? userr.profileImage : 'https://thumbs.dreamstime.com/z/default-avatar-profile-icon-vector-social-media-user-image-182145777.jpg?w=768'" 
+                                                                class="avatar avatar-ex-small rounded-circle shadow" alt="">
+                                                                <img v-if="userr.isAdmin"  src="https://thumbs.dreamstime.com/z/default-avatar-profile-icon-vector-social-media-user-image-182145777.jpg?w=768" 
+                                                                class="avatar avatar-ex-small rounded-circle shadow" alt="">
                                                                 <span class="ms-2">{{ userr.name }}</span>
                                                             </div>
                                                         </a>
                                                     </td>
                                                     <td class="text-center p-3">{{ userr.email }}</td>
-                                                    <td class="text-center p-3">{{ userr.country ? userr.country:'No Country Uploaded Yet' }}</td>
+                                                    <td class="text-center p-3">{{ userr.verificationMark ? 'Verified':'Not Yet Verified' }}</td>
                                                     <td class="text-center p-3">
-                                                        <a @click="navigateTo(`/dashboard/users/${userr._id}`)" 
+                                                        <a v-if="!userr.verificationMark" @click="navigateTo(`/dashboard/users/${userr._id}`)" 
                                                         class="badge btn btn-sm bg-primary rounded ">
-                                                         approve
+                                                         Approve
+                                                        </a>
+                                                        <a v-else
+                                                        class="badge btn btn-sm bg-primary rounded ">
+                                                         Approved!!
                                                         </a>
                                                     </td>
                                                    

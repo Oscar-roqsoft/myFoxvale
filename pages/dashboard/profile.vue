@@ -46,7 +46,7 @@
                                                      class="rounded-circle shadow avatar avatar-md-md mx-auto">
                                                     <h5 class="mt-3 mb-0">{{ store.user.name }}</h5>
                                                     <div>
-                                                        <span v-if="!store.user.isVerified"  class="text-danger mb-0 fs-6">Not Yet Verified</span>
+                                                        <span v-if="!store.user.verificationMark"  class="text-danger mb-0 fs-6">Not Yet Verified</span>
                                                         <span v-else  class="text-primary mb-0 fs-6">Verified
                                                         </span>
                                                     </div>
