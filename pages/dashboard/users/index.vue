@@ -49,7 +49,7 @@
                                                         </a>
                                                     </td>
                                                     <td class="text-center p-3">{{ userr.email }}</td>
-                                                    <td class="text-center p-3">{{ userr.Country?userr.Country:'No Country Uploaded Yet' }}</td>
+                                                    <td class="text-center p-3">{{ userr.country ? userr.country:'No Country Uploaded Yet' }}</td>
                                                     <td class="text-center p-3">
                                                         <a @click="navigateTo(`/dashboard/users/${userr._id}`)" 
                                                         class="badge btn btn-sm bg-primary rounded ">

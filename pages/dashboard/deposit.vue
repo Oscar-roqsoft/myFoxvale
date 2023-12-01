@@ -99,7 +99,7 @@ definePageMeta({
 })
 const pinia = useStore()
 const options = [...pinia.walletDetails]
-let selected = ref('Select the wallet type')
+const selected = ref('USDT')
 // pinia.storeselectedWalletName(selected)
 console.log(selected)
 

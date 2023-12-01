@@ -36,7 +36,7 @@
                             <img :src="selectedPackage.imageProfile? selectedPackage.imageProfile : 'https://thumbs.dreamstime.com/z/default-avatar-profile-icon-vector-social-media-user-image-182145777.jpg?w=768'" alt="User Avatar" style="height: 100px; width: 100px;" class="rounded-circle img-thumbnail" />
                             <p class="mt-3"><strong>Email:</strong> <br> {{ selectedPackage.email }}</p>
                             <p><strong>Phone:</strong> <br> {{ selectedPackage.phone?selectedPackage.phone:'Not Yet Uploaded' }}</p>
-                            <p><strong>Address:</strong><br>  {{ selectedPackage.Country?selectedPackage.Country:'Not Yet Uploaded' }}</p>
+                            <p><strong>Address:</strong><br>  {{ selectedPackage.country?selectedPackage.country:'Not Yet Uploaded' }}</p>
                             <p><strong>Document:</strong> </p>
                             <div class="border rounded" style="height: 200px; width: 300px;" >
                                 <img :src="selectedPackage.file? selectedPackage.file:''"  width="100%"  height="100%">

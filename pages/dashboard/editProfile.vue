@@ -204,7 +204,7 @@ const submitUserUpdate = async()=>{
 
     console.log(profileUserUpdateInfo)
     try{
-       const data = await fetch(`${baseURL}/user/update-user/${store.user.id}`,{
+       const data = await fetch(`${baseURL}/user/update-user`,{
         method:'PATCH',
         headers:{
             "Content-Type":"application/json",
@@ -216,7 +216,7 @@ const submitUserUpdate = async()=>{
         console.log(data.message)
         console.log(data.data)
 
-        let updatedUserInfo = {...data.data.updatedUser}
+        let updatedUserInfo = data.data.updatedUser
         store.storeUser(updatedUserInfo);
       
        isloading.value = false
