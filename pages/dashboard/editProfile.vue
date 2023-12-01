@@ -37,7 +37,7 @@
                                             <img  :src="store.user.imageProfile? store.user.imageProfile : 'https://thumbs.dreamstime.com/z/default-avatar-profile-icon-vector-social-media-user-image-182145777.jpg?w=768'"
                                              ref="profileImg" class="avatar float-md-left avatar-medium rounded-circle shadow me-md-4" alt="">
                                             <input @input="handleImgChange($event)"  type="file" 
-                                            ref="profileImage" accept="image/png , image/jpeg" hidden/>
+                                            ref="profileImage" accept="image/jpeg,.webp,.png,.jpg,.gif,.svg,.jfif,.pjpeg,.pjp" hidden/>
                                         </div>
                                         <div class=" mt-2 mb-0">
                                             <button @click="handleImageClick()" class="btn btn-primary">Edit profile picture
