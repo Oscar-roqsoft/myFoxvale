@@ -167,6 +167,8 @@ const birthday = ref("")
 const address = ref("")
 const phoneNo = ref("")
 
+
+
 const handleImageClick = ()=>{
     profileImage.value.click()
 }
@@ -202,7 +204,6 @@ const submitUserUpdate = async()=>{
     }
 
 
-    console.log(profileUserUpdateInfo)
     try{
        const data = await fetch(`${baseURL}/user/update-user`,{
         method:'PATCH',
@@ -216,7 +217,10 @@ const submitUserUpdate = async()=>{
         console.log(data.message)
         console.log(data.data)
 
-        let updatedUserInfo = data.data.updatedUser
+        let updatedUserInfo = {
+            ...store.user,
+            ...data.data.updatedUser
+        };
         store.storeUser(updatedUserInfo);
       
        isloading.value = false
