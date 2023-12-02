@@ -41,13 +41,13 @@
                                                 <ul class="list-group fs-4 text-white">
                                                     
                                                     <li class="list-group-item bg-warning text-white">
-                                                       <span> <span>BTC :</span> {{numberWithCommas(btcBal)}}</span>
+                                                       <span> <span>BTC:</span> {{pinia.userBalance.btcWallet.balance}}</span>
                                                     </li>
                                                     <li class="list-group-item bg-primary text-white">
-                                                        <span><span>USDT :</span> {{numberWithCommas(usdtBal)}}</span>
+                                                        <span><span>USDT:</span> </span>
                                                     </li>
                                                     <li class="list-group-item bg-success text-white">
-                                                        <span><span>ETH :</span> {{numberWithCommas(ethBal)}}</span>
+                                                        <span><span>ETH:</span> {{pinia.userBalance.ethWallet.balance}}</span>
                                                     </li>
                                             
                                                 </ul>
@@ -117,15 +117,6 @@ try{
 }
 
 
-const btcBal = ref('')
-const usdtBal = ref('')
-const ethBal = ref('')
-
-onMounted(()=>{
-    btcBal.value = pinia.userBalance.btcWallet.balance
-    usdtBal.value = pinia.userBalance.usdtWallet.balance
-    ethBal.value = pinia.userBalance.ethWallet.balance
-})
 
 
 
