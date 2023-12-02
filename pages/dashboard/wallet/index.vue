@@ -41,13 +41,13 @@
                                                 <ul class="list-group fs-4 text-white">
                                                     
                                                     <li class="list-group-item bg-warning text-white">
-                                                       <span> <span>BTC:</span> {{numberWithCommas(pinia.userBalance.btcWallet.balance)}}</span>
+                                                       <span> <span>BTC :</span> {{numberWithCommas(btcBal)}}</span>
                                                     </li>
                                                     <li class="list-group-item bg-primary text-white">
-                                                        <span><span>USDT:</span> {{numberWithCommas(pinia.userBalance.usdtWallet.balance)}}</span>
+                                                        <span><span>USDT :</span> {{numberWithCommas(usdtBal)}}</span>
                                                     </li>
                                                     <li class="list-group-item bg-success text-white">
-                                                        <span><span>ETH:</span> {{numberWithCommas(pinia.userBalance.ethWallet.balance)}}</span>
+                                                        <span><span>ETH :</span> {{numberWithCommas(ethBal)}}</span>
                                                     </li>
                                             
                                                 </ul>
@@ -115,6 +115,17 @@ try{
 }catch(e){
     console.log(e)
 }
+
+
+const btcBal = ref('')
+const usdtBal = ref('')
+const ethBal = ref('')
+
+onMounted(()=>{
+    btcBal.value = pinia.userBalance.btcWallet.balance
+    usdtBal.value = pinia.userBalance.usdtWallet.balance
+    ethBal.value = pinia.userBalance.ethWallet.balance
+})
 
 
 
