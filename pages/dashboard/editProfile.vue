@@ -72,7 +72,7 @@
                                                         <label class="form-label">Birthday</label>
                                                         <div class="form-icon position-relative">
                                                             <input  id="occupation" type="date" 
-                                                            class="form-control ps-5" v-model.trim="birthday" placeholder="DD/MM/YY">
+                                                            class="form-control ps-5" v-model.trim="birthday" :placeholder="store.user.birthday?store.user.birthday :'DD/MM/YY'">
                                                         </div>
                                                     </div> 
                                                 </div><!--end col-->
@@ -80,7 +80,8 @@
                                                     <div class="mb-3">
                                                         <label class="form-label">Address</label>
                                                         <div class="form-icon position-relative">
-                                                            <input name="name" id="address" type="text" class="form-control ps-5" v-model.trim="address" placeholder="Address :">
+                                                            <input name="name" id="address" type="text" class="form-control ps-5" 
+                                                            v-model.trim="address" :placeholder="store.user.country ?store.user.country :'Address '">
                                                         </div>
                                                     </div> 
                                                 </div><!--en d col-->
@@ -89,7 +90,7 @@
                                                         <label class="form-label">Phone No</label>
                                                         <div class="form-icon position-relative">
                                                             <input  name="number" id="number" type="number" class="form-control ps-5" 
-                                                            v-model.trim="phoneNo" placeholder="Phone No :">
+                                                            v-model.trim="phoneNo" :placeholder="store.user.phoneNumber ?store.user.phoneNumber :'Phone No :'">
                                                         </div>
                                                     </div> 
                                                 </div><!--end col-->

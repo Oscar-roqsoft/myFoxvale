@@ -10,11 +10,11 @@
                 </div>
              
                 <div class="img">
-                    <qrcode-vue :value="props.select" :size="size" level="H" />
+                    <qrcode-vue :value="store.selectedWalletName.value" :size="size" level="H" />
                 </div>
-                <input class="form-control ps-4 w-100" type="type" v-model.trim="props.select" disabled/>
+                <input class="form-control ps-4 w-100" type="type" v-model.trim="store.selectedWalletName.value" disabled/>
                 <hr class="bg-dark w-100">
-                <button @click.prevent="copy(props.select)" class="btn btn-warning text-sm">
+                <button @click.prevent="copy(store.selectedWalletName.value)" class="btn btn-warning text-sm">
                     <span v-if="!copied">Copy Wallet Address</span>
                     <span v-else>Copied!</span>
                 </button>
@@ -22,7 +22,10 @@
                     <hr class="bg-dark w-100">
                     <div class=" d-flex justify-content-center">
                         <button @click.prevent="closeModal" class="btn btn-danger text-sm">close</button>
-                        <button @click.prevent="" class="btn btn-success mx-2 text-sm">confirm</button>
+                        <button @click.prevent="fund" class="btn btn-success mx-2 text-sm">
+                            <!-- <btn-loader v-if="!isloading"/> -->
+                            confirm
+                        </button>
                     </div>
                 </div>
          </div>
@@ -39,19 +42,25 @@ import {useStore} from '@/stores/index'
 import {baseURL} from '@/composables/mixins'
 
 const store = useStore()
+const emits = defineEmits()
 
 const props = defineProps([
     "value",
     "depositAmount",
-    "select"
+    "select",
 ])
 
-const size = 130
 
+
+const size = 130
+const isloading = ref(false)
 const btcAddress = ref("bdfgetGDRTHBB3#juhyugnigtgtg")
 const isVisible = ref(true)
 
-const emits = defineEmits()
+console.log('child',store.selectedWalletName.name.toLowerCase())
+
+
+
 
 const { copy,copied, isSupported } = useClipboard({ btcAddress })
 
@@ -68,9 +77,29 @@ const closeModal = ()=>{
 
 
 
-const confirmPayment = async()=>{
+const fund = async()=>{
+
+    isloading.value = true
+
+    const amount = {
+        amount: props.depositAmount
+    }
     try{
-     const data = await fetch(`${baseURL}/`)
+     const data = await fetch(`${baseURL}/user/fund-wallet/${store.selectedWalletName.name.toLowerCase()}`,{
+        method:'POST',
+        headers: {
+        "Content-Type":"application/json",
+        "token": `Bearer ${store.user.accessToken}`
+        },
+        body:JSON.stringify(amount)
+    }).then(res=>res.json());
+    isloading.value = false
+     console.log(data.data.message)
+     console.log(data.data.transaction)
+
+     const fundingInfo = data.data.transaction
+     store.storeUserFundings(fundingInfo)
+
     }catch(e){
         console.log(e)
     }
@@ -92,13 +121,13 @@ const confirmPayment = async()=>{
   transform: scale(1);
   opacity: 1;
 }
+
 .main-layer-hidden{
     opacity: 0;
     visibility: hidden;
     transition: all 0.5s ease;
   transform: scale(0);
 }
-
 
 .main-layer {
     position: absolute;
@@ -117,10 +146,6 @@ backdrop-filter: blur(5px);
 -webkit-backdrop-filter: blur(5px);
 border: 1px solid rgba(255, 255, 255, 0.3);
 }
-
-
-
-
 
 
 

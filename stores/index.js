@@ -22,7 +22,7 @@ export const useStore = defineStore('user',()=> {
 
    const walletDetails = ref([])
 
-   const selectedWalletName = ref(null)
+   const selectedWalletName = ref([])
 
    const navigateBackAndFrontVal = ref(true)
 
@@ -32,7 +32,11 @@ export const useStore = defineStore('user',()=> {
 
     const withdrawalDetails = ref([])
 
+    const userFundings = ref([])
+
     const userRecoverycode = ref('')
+
+    const userBalance = ref([])
 
     // const isAdmin = computed(()=>{
     //     user.isAdmin = "true"
@@ -79,6 +83,9 @@ export const useStore = defineStore('user',()=> {
         walletDetails.value = payload;
         console.log(walletDetails.value)
     }
+    const storeUserFundings = (payload)=>{
+        userFundings.value = payload;
+    }
 
     const storeUserRecoverycode = (payload)=>{
         userRecoverycode.value = payload;
@@ -88,6 +95,9 @@ export const useStore = defineStore('user',()=> {
     }
     const storeselectedWalletName = (payload)=>{
         selectedWalletName.value = payload;
+    }
+    const storeUserBalance = (payload)=>{
+        userBalance.value = payload;
     }
 
     const signOut = ()=>{
@@ -136,7 +146,11 @@ export const useStore = defineStore('user',()=> {
         storeUserRecoverycode,
         clearUserRecoverycode,
         selectedWalletName,
-        storeselectedWalletName
+        storeselectedWalletName,
+        userFundings,
+        storeUserFundings,
+        userBalance,
+        storeUserBalance
     }
     // const  (true),
 },

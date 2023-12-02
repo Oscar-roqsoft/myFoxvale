@@ -44,10 +44,13 @@
                                                
                                                 <select  v-model="selected" class="form-select mb-3">
                                                    <option  v-for="option in options" 
-                                                   :key="option._id" :value="option.value">
+                                                   :key="option.name" :value="option.name">
                                                     {{ option.name }}
                                                    </option>
+
                                                 </select>
+
+                                                
                                         </div>
                                     </div>
                                 </div><!--end col-->
@@ -67,13 +70,13 @@
                                 <div class="col-lg-12 mt-2 mb-2 d-flex align-items-center" style="width: 100%;">
                                     <button @click.prevent="navigateTo('/dashboard')" class="btn  btn-danger">Cancel</button>
                                     
-                                    <button  @click.prevent="toggleModal()" class="btn btn-warning ms-2">Proceed</button>
+                                    <button  @click.prevent="toggleModal" class="btn btn-warning ms-2">Proceed</button>
                                 </div><!--end col-->
                             </div><!--end row-->
                         </form>
                         
 
-                        <modal-wallet-details :depositAmount="amountToDeposit" :select="selected"
+                        <modal-wallet-details :depositAmount="amountToDeposit" 
                         :value="modalVisibility" :changeD="toggleModal"/>
                     </div>
                 </div><!--end container-->
@@ -100,8 +103,6 @@ definePageMeta({
 const pinia = useStore()
 const options = [...pinia.walletDetails]
 const selected = ref('USDT')
-// pinia.storeselectedWalletName(selected)
-console.log(selected)
 
 
 const inputDepositAmtVal = ref('')
@@ -110,12 +111,17 @@ let amountToDeposit = ref('')
 const modalVisibility = ref(null)
 
 
+const newSelectedVal = ref(null)
 
 
 
 
 const toggleModal =()=>{
     if(inputDepositAmtVal.value >= 100 ){
+        const selectedWalletName = options.find(pkg => pkg.name === selected.value)
+        newSelectedVal.value = selectedWalletName
+        pinia.storeselectedWalletName(newSelectedVal.value)
+        console.log('toggle')
         amountToDeposit.value = inputDepositAmtVal.value
         modalVisibility.value = !modalVisibility.value
         inputDepositAmtVal.value =''
