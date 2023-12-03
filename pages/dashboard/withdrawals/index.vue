@@ -1,3 +1,4 @@
+
 <template>
      
     <div>
@@ -20,7 +21,7 @@
                                 <nav aria-label="breadcrumb" class="d-inline-block">
                                     <ul class="breadcrumb bg-transparent rounded mb-0 p-0">
                                         <li class="breadcrumb-item text-capitalize"><nuxt-link to="/dashboard">Foxvale</nuxt-link></li>
-                                        <li class="breadcrumb-item text-capitalize active" aria-current="page">List Of Pending Orders</li>
+                                        <li class="breadcrumb-item text-capitalize active" aria-current="page">List Of Pending Withdrawals</li>
                                     </ul>
                                 </nav>
                             </div>
@@ -34,6 +35,7 @@
                                                 <tr>
                                                     <th class="border-bottom p-3" style="min-width: 80px;">Amount</th>
                                                     <th class="text-center border-bottom p-3" style="min-width: 150px;">date</th>
+                                                    <th class="text-center border-bottom p-3" style="min-width: 150px;">wallet type</th>
                                                     <th class="text-center border-bottom p-3" style="min-width: 150px;">Transaction ID</th>
                                                     <th class="text-center border-bottom p-3">Actions</th>
                                                    
@@ -50,12 +52,18 @@
                                                         </a>
                                                     </td>
                                                     <td class="text-center p-3">{{ formatDateOfBirth(userr.createdAt)}}</td>
+                                                    <td class="text-center p-3">{{ userr.walletType}}</td>
                                                     <td class="text-center p-3">{{ userr._id }}</td>
                                                     <td class="text-center p-3">
-                                                        <div @click.prevent="approveFunding(userr._id)" class="badge btn btn-sm bg-primary rounded " 
+                                                        <div @click.prevent="approvedwithdrawal(userr._id)" class="badge btn btn-sm bg-primary rounded " 
                                                         :class="!userr.isApproved? ' bg-primary':'bg-warning'">
                                                          <span  v-if="!userr.isApproved">approve</span>
                                                          <span v-else>approved !!</span>
+                                                        </div>
+                                                    </td>
+                                                    <td class="text-center p-3">
+                                                        <div @click.prevent="rejectwithdrawal(userr._id)" class="badge btn btn-sm bg-danger rounded ">
+                                                          reject
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -108,114 +116,95 @@ import {useStore}  from "@/stores/index";
 import {baseURL,formatDateOfBirth} from "@/composables/mixins";
 import {adtoken} from '@/composables/config'
 definePageMeta({
-    layout:"custom"  
+    layout:"custom"
 })
 
 const pinia = useStore()
-const isloading = ref(false)
 
 
-
-
-const btcdata = await fetch(`${baseURL}/user/get-pending-transactions/btc`,{
+try{
+    const btcdata = await fetch(`${baseURL}/user/get-pending-withdrawal-requests/btc`,{
     method: "GET",
     headers: {
         "Content-Type":"application/json",
         "token":`Bearer ${adtoken}`
     },
+   }).then(res=>res.json())
 
-}).then(res=>res.json());
-const usdtdata = await fetch(`${baseURL}/user/get-pending-transactions/usdt`,{
-    method: "GET",
-    headers: {
-        "Content-Type":"application/json",
-        "token":`Bearer ${adtoken}`
-    },
+//     const usdtdata = await fetch(`${baseURL}/user/get-pending-withdrawal-requests/usdt`,{
+//     method: "GET",
+//     headers: {
+//         "Content-Type":"application/json",
+//         "token":`Bearer ${adtoken}`
+//     },
+//    }).then(res=>res.json())
 
-}).then(res=>res.json());
-const ethdata = await fetch(`${baseURL}/user/get-pending-transactions/eth`,{
-    method: "GET",
-    headers: {
-        "Content-Type":"application/json",
-        "token":`Bearer ${adtoken}`
-    },
+//     const ethdata = await fetch(`${baseURL}/user/get-pending-withdrawal-requests/eth`,{
+//     method: "GET",
+//     headers: {
+//         "Content-Type":"application/json",
+//         "token":`Bearer ${adtoken}`
+//     },
+//    }).then(res=>res.json())
 
-}).then(res=>res.json());
-
-
-console.log(btcdata.data.transactions)
-const usersfunding = [...btcdata.data.transactions,...usdtdata.data.transactions,...ethdata.data.transactions]
-console.log(usersfunding)
-pinia.storeAdminGetUserFunding(usersfunding)
-
-
+   console.log(btcdata.data.withdrawals)
+   const requestwithdrawalinfo = [...btcdata.data.withdrawals]
+   pinia.storeuserWithdrawalRequest(requestwithdrawalinfo)
+}catch(e){
+    console.log(e)
+}
 
 
-
-
-const selectedname =  ref(null)
-
-// const userFunding = {
-//     transactionId:selectedWalletName._id
-// }
-const approveFunding = async(userr)=>{
-    const deposit_id = {
-        transactionId: userr
+const approvedwithdrawal = async(userr)=>{
+    const info1 = {
+        withdrawalId: userr
     }
-    console.log(deposit_id)
-
+    console.log(info1)
     try{
-      const btcdata = await fetch(`${baseURL}/user/approve-transaction/btc`,{
+      const btcdata = await fetch(`${baseURL}/user/approve-withdrawal-request/btc`,{
         method: 'PATCH',
         headers: {
             "Content-Type":"application/json",
             "token":`Bearer ${adtoken}`
         },
-        body:JSON.stringify(deposit_id)
+        body:JSON.stringify(info1)
       })
 
-      console.log(btcdata.data.transaction.isApproved)
+      console.log(btcdata.data.withdrawal.isApproved)
 
     }catch(e){
         console.log(e)
     }
 
+}
+
+
+const rejectwithdrawal = async(userr)=>{
+    const info2 = {
+        withdrawalId: userr
+    }
+    console.log(info2)
     try{
-      const usdtdata = await fetch(`${baseURL}/user/approve-transaction/usdt`,{
+      const btcdata = await fetch(`${baseURL}/user/reject-withdrawal-request/btc`,{
         method: 'PATCH',
         headers: {
             "Content-Type":"application/json",
             "token":`Bearer ${adtoken}`
         },
-        body:JSON.stringify(deposit_id)
+        body:JSON.stringify(info2)
       })
 
-      console.log(usdtdata.data.transaction.isApproved)
+      console.log(btcdata.data.withdrawal.isApproved)
 
     }catch(e){
         console.log(e)
     }
 
-    try{
-      const ethdata = await fetch(`${baseURL}/user/approve-transaction/eth`,{
-        method: 'PATCH',
-        headers: {
-            "Content-Type":"application/json",
-            "token":`Bearer ${adtoken}`
-        },
-        body:JSON.stringify(deposit_id)
-      })
-
-      console.log(ethdata.data.transaction.isApproved)
-
-    }catch(e){
-        console.log(e)
-    }
 }
 
 
 //pagination setup
-const userr = pinia.adminGetUserFunding
+const userr = pinia.userWithdrawalRequest
 
 // Define per-page display
 const perPage = 10;
@@ -240,7 +229,4 @@ const handlePagePrevChange = () => {
     currentPage.value--;
   }
 };
-
-
-
 </script>

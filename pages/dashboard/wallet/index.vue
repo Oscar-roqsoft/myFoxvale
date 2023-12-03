@@ -41,13 +41,13 @@
                                                 <ul class="list-group fs-4 text-white">
                                                     
                                                     <li class="list-group-item bg-warning text-white">
-                                                       <span> <span>BTC:</span> {{pinia.userBalance.btcWallet.balance}}</span>
+                                                       <span> <span>BTC:</span>{{  pinia.userBalance.btcWallet.balance }} </span>
                                                     </li>
                                                     <li class="list-group-item bg-primary text-white">
-                                                        <span><span>USDT:</span></span>
+                                                        <span><span>USDT:</span> </span>
                                                     </li>
                                                     <li class="list-group-item bg-success text-white">
-                                                        <span><span>ETH:</span> {{pinia.userBalance.ethWallet.balance}}</span>
+                                                        <span><span>ETH:</span>{{  pinia.userBalance.ethWallet.balance }}  </span>
                                                     </li>
                                             
                                                 </ul>

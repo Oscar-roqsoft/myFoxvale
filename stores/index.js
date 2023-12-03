@@ -4,6 +4,7 @@ import { defineStore } from 'pinia'
 // import {piniaPluginPersistedstate} from 'pinia-plugin-persistedstate'
 
 
+
 export const useStore = defineStore('user',()=> {
     // other options...
     const user = ref([])
@@ -32,11 +33,15 @@ export const useStore = defineStore('user',()=> {
 
     const withdrawalDetails = ref([])
 
+    const userWithdrawalRequest = ref([])
+
     const userFundings = ref([])
 
     const userRecoverycode = ref('')
 
     const userBalance = ref([])
+
+    const adminGetUserFunding = ref([])
 
     // const isAdmin = computed(()=>{
     //     user.isAdmin = "true"
@@ -53,9 +58,6 @@ export const useStore = defineStore('user',()=> {
         userList.value.reverse(...userList.value)
         console.log(userList.value)
     }
-    
-
-
 
     const storewithdrawalDetails = (payload)=>{
         withdrawalDetails.value = payload;
@@ -99,17 +101,39 @@ export const useStore = defineStore('user',()=> {
     const storeUserBalance = (payload)=>{
         userBalance.value = payload;
     }
+    const storeAdminGetUserFunding = (payload)=>{
+        adminGetUserFunding.value = payload;
+        adminGetUserFunding.value.reverse(...adminGetUserFunding.value)
+    }
+    const storeuserWithdrawalRequest = (payload)=>{
+        userWithdrawalRequest.value = payload;
+        userWithdrawalRequest.value.reverse(...userWithdrawalRequest.value)
+    }
 
     const signOut = ()=>{
         user.value = {};
         userList.value = []
         packages.value = []
         withdrawalDetails.value = null
+         userBalance.value = []
+         adminGetUserFunding.value = []
+         walletDetails.value = []
+         userFundings.value = []
+         subpackages.value = []
+         userPackages.value = []
         navigateTo('/login')
     }
 
     const goFront = ()=>{
+        if(withdrawalDetails.value.amountToWithdraw < 1){
+            return navigateBackAndFrontVal.value = true;  
+        }
+        if(withdrawalDetails.value.walletAddress ===""){
+           return navigateBackAndFrontVal.value = true; 
+        }
         navigateBackAndFrontVal.value = false;
+        
+        
     }
     const goBack = ()=>{
         navigateBackAndFrontVal.value = true;
@@ -150,7 +174,11 @@ export const useStore = defineStore('user',()=> {
         userFundings,
         storeUserFundings,
         userBalance,
-        storeUserBalance
+        storeUserBalance,
+        adminGetUserFunding,
+        storeAdminGetUserFunding,
+        userWithdrawalRequest,
+        storeuserWithdrawalRequest
     }
     // const  (true),
 },

@@ -40,7 +40,7 @@
 
                                 <div class="col-lg-12 mt-2 mb-2 d-flex" style="width: 100%;">
                                     <button @click.prevent="pinia.goBack" class="btn  btn-danger">Cancel</button>
-                                    <button class="btn btn-warning ms-2">Confirm</button>
+                                    <button @click.prevent="withdrawalRequest" class="btn btn-warning ms-2" :disabled="isloading">Confirm</button>
                                 </div><!--end col-->
                             </div><!--end row-->
                      </div>
@@ -49,10 +49,34 @@
 
 <script setup>
 import {useStore} from '@/stores/index'
+import {baseURL} from '@/composables/mixins'
 
 const pinia = useStore()
+const isloading = ref(false)
 
+const withdrawalRequest = async()=>{
+    isloading.value = true
+    const withdrawalDetail = {
+        amount: pinia.withdrawalDetails.amountToWithdraw,
+    }
 
+    console.log(withdrawalDetail)
+    try{
+     const data = await fetch(`${baseURL}/user/send-withdrawal-request/btc`,{
+        method:"POST",
+        headers: {
+        "Content-Type":"application/json",
+        "token": `Bearer ${pinia.user.accessToken}`
+        }, 
+        body:JSON.stringify(withdrawalDetail)
+     }).then(res=>res.json())
+     isloading.value = false
+     console.log(data.message)
+     navigateTo('/dashboard/withdraw')
+    }catch(e){
+      console.log(e)
+    }
+}
 
 
 </script>

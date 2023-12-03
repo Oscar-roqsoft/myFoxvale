@@ -1,10 +1,6 @@
 
 <template>
 
-   
-
-   
-
     <div>
       
 
@@ -129,48 +125,102 @@ console.log(selectedPackage);
 const subscribe = async()=>{
     isloading.value = true
     if(selectedPackage.name =='Premium' ){
-        if(amountVal.value > 50000){
-            return console.log('Premium successful')
+        if(!(amountVal.value >= 50000)){
+            isloading.value = false
+            return console.log('Premium failed')
         }
-        return
+        return  
     }
     if(selectedPackage.name =='Deluxe' ){
-        if(amountVal.value > 10000 && amountVal.value < 49999){
-            return console.log('Deluxe successful')
+        if(!(amountVal.value >= 10000 && amountVal.value <= 49999)){
+            isloading.value = false
+            return console.log('Deluxe failed')
         }
-        return
     }
     if(selectedPackage.name =='Standard' ){
-        if(amountVal.value > 100 && amountVal.value < 9999){
-            return console.log('Standard successful')
+        if(!(amountVal.value >= 100 && amountVal.value <= 9999)){
+            isloading.value = false
+            return console.log('Standard failed')
         }
-        return
     }
 
     const subinfo = {
-        packageId:selectedPackage._id,
         amount:amountVal.value
     }
 
-    // try{
-    //    const data = await fetch(`${baseURL}/subscription/subscribe-user`,{
-    //       method:"POST",
-    //       headers: {
-    //         "Content-Type":"application/json",
-    //         "token": `Bearer ${pinia.user.accessToken}`
-    //        },
-    //        body:JSON.stringify(subinfo)
-    //    }).then(res=>res.json());
-      
-    //     isloading.value = false
-    //     console.log('successful')
+    
+    if(pinia.userBalance.btcWallet.balance >= amountVal.value){
+        try{
+           const data = await fetch(`${baseURL}/subscription/subscribe-user/btc`,{
+              method:"POST",
+              headers: {
+                "Content-Type":"application/json",
+                "token": `Bearer ${pinia.user.accessToken}`
+               },
+               body:JSON.stringify(subinfo)
+           }).then(res=>res.json());
+          
+            isloading.value = false
+            console.log('btc successful')
+    
+            // const mysub = data.data.subscription
+            // pinia.storeuserSubscription(mysub)
+    
+            navigateTo('/dashboard/subscription')
+        }catch(e){
+            console.log(e)
+        }
+        return
+    }
+    if(pinia.userBalance.ethWallet.balance >= amountVal.value){
+        try{
+           const data = await fetch(`${baseURL}/subscription/subscribe-user/eth`,{
+              method:"POST",
+              headers: {
+                "Content-Type":"application/json",
+                "token": `Bearer ${pinia.user.accessToken}`
+               },
+               body:JSON.stringify(subinfo)
+           }).then(res=>res.json());
+          
+            isloading.value = false
+            console.log('successful')
+            // const mysub = data.data.subscription
+            // pinia.storeuserSubscription(mysub)
+    
+            navigateTo('/dashboard/subscription')
+        }catch(e){
+            console.log(e)
+        }
+      return
+    }
 
-    //     const mysub = data.data.subscription
-    //     pinia.storeuserSubscription(mysub)
-
-    //     navigateTo('/dashboard/subscription')
-    // }catch(e){
-    //     console.log(e)
+    // if(pinia.userBalance.usdtWallet.balance >= amountVal.value){
+    //     try{
+    //        const data = await fetch(`${baseURL}/subscription/subscribe-user/usdt`,{
+    //           method:"POST",
+    //           headers: {
+    //             "Content-Type":"application/json",
+    //             "token": `Bearer ${pinia.user.accessToken}`
+    //            },
+    //            body:JSON.stringify(subinfo)
+    //        }).then(res=>res.json());
+          
+    //         isloading.value = false
+    //         console.log('successful')
+    //         console.log(data.message)
+    //         // const mysub = data.data.subscription
+    //         // pinia.storeuserSubscription(mysub)
+    
+    //         navigateTo('/dashboard/subscription')
+    //     }catch(e){
+    //         console.log(e)
+    //     }
+    //  return
     // }
+     
+    console.log('done')
+    alert("You don't have Enough Balance")
+    navigateTo('/dashboard/subscription')
 }
 </script>

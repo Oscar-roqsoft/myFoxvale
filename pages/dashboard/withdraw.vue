@@ -96,6 +96,7 @@
 
 <script setup>
 import {useStore} from '@/stores/index'
+import {baseURL} from '@/composables/mixins'
 definePageMeta({
     layout:"custom"
 })
@@ -113,6 +114,8 @@ const withdrawalDetails = {
 
 console.log(withdrawalDetails)
 pinia.storewithdrawalDetails(withdrawalDetails)
+
+
 </script>
 
 
