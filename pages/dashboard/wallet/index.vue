@@ -44,7 +44,7 @@
                                                        <span> <span>BTC:</span> {{pinia.userBalance.btcWallet.balance}}</span>
                                                     </li>
                                                     <li class="list-group-item bg-primary text-white">
-                                                        <span><span>USDT:</span> </span>
+                                                        <span><span>USDT:</span></span>
                                                     </li>
                                                     <li class="list-group-item bg-success text-white">
                                                         <span><span>ETH:</span> {{pinia.userBalance.ethWallet.balance}}</span>

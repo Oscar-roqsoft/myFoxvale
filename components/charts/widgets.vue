@@ -152,7 +152,7 @@
     "symbolActiveColor": "rgba(242, 250, 254, 1)",
     "belowLineFillColorFalling": "rgba(255, 74, 104, 0.05)",
       "height": 660,
-      "width": 420
+      "width": 425
     })
     document.querySelector('.tradingview-widget-container__widget').appendChild(script)
   })
@@ -176,19 +176,39 @@
   @media(min-width: 768px){
         .style{
             display: flex;
-            justify-content: start;
+            justify-content: center;
             flex-direction: column;
-            align-items: start;
-            width: 450px;
+            min-width: 400px !important;
 
         }
-        .tradingview-widget-container_widget >>> iframe{
-            width: 140%!important;
-            margin-right: 80px !important;
+        .tradingview-widget-container>>>iframe{
+          display: flex;
+          justify-content: center;
+          min-width: 720px !important;
+          margin-right: 80px !important;
         }
-        /* .tradingview-widget-container__widget div {
-            width: 100vw!important;
-            margin: auto !important;
-        } */
+        .tradingview-widget-container{
+            width: 1100px !important;
+            /* margin: auto !important; */
+        }
+    } 
+  @media(min-width: 1100px){
+        .style{
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            min-width: 400px !important;
+
+        }
+        .tradingview-widget-container>>>iframe{
+          display: flex;
+          justify-content: center;
+          min-width: 1050px !important;
+          margin-right: 80px !important;
+        }
+        .tradingview-widget-container{
+            width: 1100px !important;
+            /* margin: auto !important; */
+        }
     } 
   </style>
