@@ -1,7 +1,6 @@
 <template>
 
-    <modal-successfully v-if="modalDisplay"/>
-    <div v-else>
+    <div>
         <div class="main-layer fade" v-if="isSupported"  :class="isVisible== props.value?'main-layer-visible':'main-layer-hidden'">
    
             <div class="layer rounded shadow" :class="isVisible === props.value ?'clicked':''">
@@ -22,6 +21,7 @@
                    </button>
                    <div class="w-100">
                        <hr class="bg-dark w-100">
+                       <p v-if="isloading" class="text-primary text-center">confirm successful</p>
                        <div class=" d-flex justify-content-center">
                            <button @click.prevent="closeModal" class="btn btn-danger text-sm">close</button>
                            <button @click.prevent="fund" class="btn btn-success mx-2 text-sm">
@@ -96,11 +96,12 @@ const fund = async()=>{
         body:JSON.stringify(amount)
     }).then(res=>res.json());
     isloading.value = false
-     console.log(data.data.message)
-     console.log(data.data.transaction)
+    navigateTo("/dashboard")
 
+     console.log(data.data.transaction)
      const fundingInfo = data.data.transaction
      store.storeUserFundings(fundingInfo)
+
 
     }catch(e){
         console.log(e)

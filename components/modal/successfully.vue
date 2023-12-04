@@ -1,11 +1,11 @@
 <template>
 
-        <div>
+        <div class="z-index">
             
-            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#success_tic">Open Modal</button>
+            <!-- <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#success_tic">Open Modal</button> -->
 
             <!-- Modal -->
-            <div id="success_tic" class="modal fade" role="dialog">
+            <div id=" " class="modal fade" role="dialog">
 
                 <div class="modal-dialog">
 
@@ -45,10 +45,14 @@ body{
   width: 100%;
   height: 100%;
 }
+.z-index{
+    z-index: 1;
+}
  #success_tic .page-body{
   max-width:300px;
   background-color:#FFFFFF;
   margin:10% auto;
+  z-index: 9999px;
 }
  #success_tic .page-body .head{
   text-align:center;
@@ -77,6 +81,7 @@ body{
   border-radius: 50%;
   background: #1ab394;
   position: absolute;
+  z-index: 9999;
 }
 #success_tic .checkmark-circle .checkmark {
   border-radius: 5px;
