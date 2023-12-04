@@ -1,35 +1,38 @@
 <template>
-        
-     <div class="main-layer fade" v-if="isSupported"  :class="isVisible== props.value?'main-layer-visible':'main-layer-hidden'">
 
-         <div class="layer rounded shadow" :class="isVisible === props.value ?'clicked':''">
-                <div>
-                    <p class="text-sm">Send <span class="text-warning">${{ numberWithCommas(props.depositAmount) }}</span> worth of 
-                        BTC to the wallet address below</p>
-                    <hr class="bg-dark w-100">
-                </div>
-             
-                <div class="img">
-                    <qrcode-vue :value="store.selectedWalletName.value" :size="size" level="H" />
-                </div>
-                <input class="form-control ps-4 w-100" type="type" v-model.trim="store.selectedWalletName.value" disabled/>
-                <hr class="bg-dark w-100">
-                <button @click.prevent="copy(store.selectedWalletName.value)" class="btn btn-warning text-sm">
-                    <span v-if="!copied">Copy Wallet Address</span>
-                    <span v-else>Copied!</span>
-                </button>
-                <div class="w-100">
-                    <hr class="bg-dark w-100">
-                    <div class=" d-flex justify-content-center">
-                        <button @click.prevent="closeModal" class="btn btn-danger text-sm">close</button>
-                        <button @click.prevent="fund" class="btn btn-success mx-2 text-sm">
-                            <!-- <btn-loader v-if="!isloading"/> -->
-                            confirm
-                        </button>
-                    </div>
-                </div>
-         </div>
-     </div>
+    <modal-successfully v-if="modalDisplay"/>
+    <div v-else>
+        <div class="main-layer fade" v-if="isSupported"  :class="isVisible== props.value?'main-layer-visible':'main-layer-hidden'">
+   
+            <div class="layer rounded shadow" :class="isVisible === props.value ?'clicked':''">
+                   <div>
+                       <p class="text-sm">Send <span class="text-warning">${{ numberWithCommas(props.depositAmount) }}</span> worth of 
+                           BTC to the wallet address below</p>
+                       <hr class="bg-dark w-100">
+                   </div>
+                
+                   <div class="img">
+                       <qrcode-vue :value="store.selectedWalletName.value" :size="size" level="H" />
+                   </div>
+                   <input class="form-control ps-4 w-100" type="type" v-model.trim="store.selectedWalletName.value" disabled/>
+                   <hr class="bg-dark w-100">
+                   <button @click.prevent="copy(store.selectedWalletName.value)" class="btn btn-warning text-sm">
+                       <span v-if="!copied">Copy Wallet Address</span>
+                       <span v-else>Copied!</span>
+                   </button>
+                   <div class="w-100">
+                       <hr class="bg-dark w-100">
+                       <div class=" d-flex justify-content-center">
+                           <button @click.prevent="closeModal" class="btn btn-danger text-sm">close</button>
+                           <button @click.prevent="fund" class="btn btn-success mx-2 text-sm">
+                               <!-- <btn-loader v-if="!isloading"/> -->
+                               confirm
+                           </button>
+                       </div>
+                   </div>
+            </div>
+        </div>
+    </div>
            
         
 </template>
@@ -51,13 +54,13 @@ const props = defineProps([
 ])
 
 
-
+const modalDisplay = ref(false)
 const size = 130
 const isloading = ref(false)
 const btcAddress = ref("bdfgetGDRTHBB3#juhyugnigtgtg")
 const isVisible = ref(true)
 
-console.log('child',store.selectedWalletName.name.toLowerCase())
+// console.log('child',store.selectedWalletName.name.toLowerCase())
 
 
 
@@ -74,8 +77,7 @@ const closeModal = ()=>{
 }
 
 
-
-
+    const nameV = store.selectedWalletName.name?.toLowerCase()
 
 const fund = async()=>{
 
@@ -85,7 +87,7 @@ const fund = async()=>{
         amount: props.depositAmount
     }
     try{
-     const data = await fetch(`${baseURL}/user/fund-wallet/${store.selectedWalletName.name.toLowerCase()}`,{
+     const data = await fetch(`${baseURL}/user/fund-wallet/${nameV}`,{
         method:'POST',
         headers: {
         "Content-Type":"application/json",
