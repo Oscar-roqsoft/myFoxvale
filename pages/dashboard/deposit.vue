@@ -101,13 +101,13 @@ definePageMeta({
     layout:"custom"  
 })
 const pinia = useStore()
-// const options = [...pinia.walletDetails]
+const options = [...pinia.walletDetails]
 const selected = ref('USDT')
-const options = [
-    {value: 1, name:'BTC'},
-    {value: 1, name:'USDT'},
-    {value: 1, name:'ETH'},
-]
+// const options = [
+//     {value: 1, name:'BTC'},
+//     {value: 1, name:'USDT'},
+//     {value: 1, name:'ETH'},
+// ]
 
 const inputDepositAmtVal = ref('')
 let amountToDeposit = ref('')
