@@ -55,14 +55,14 @@
                                                     <td class="text-center p-3">{{ userr.walletType}}</td>
                                                     <td class="text-center p-3">{{ userr._id }}</td>
                                                     <td class="text-center p-3">
-                                                        <div @click.prevent="approvedwithdrawal(userr._id)" class="badge btn btn-sm bg-primary rounded " 
+                                                        <div @click.prevent="approvedwithdrawal(userr._id,userr.walletType)" class="badge btn btn-sm bg-primary rounded " 
                                                         :class="!userr.isApproved? ' bg-primary':'bg-warning'">
                                                          <span  v-if="!userr.isApproved">approve</span>
                                                          <span v-else>approved !!</span>
                                                         </div>
                                                     </td>
                                                     <td class="text-center p-3">
-                                                        <div @click.prevent="rejectwithdrawal(userr._id)" class="badge btn btn-sm bg-danger rounded ">
+                                                        <div @click.prevent="rejectwithdrawal(userr._id,userr.walletType)" class="badge btn btn-sm bg-danger rounded ">
                                                           reject
                                                         </div>
                                                     </td>
@@ -131,37 +131,37 @@ try{
     },
    }).then(res=>res.json())
 
-//     const usdtdata = await fetch(`${baseURL}/user/get-pending-withdrawal-requests/usdt`,{
-//     method: "GET",
-//     headers: {
-//         "Content-Type":"application/json",
-//         "token":`Bearer ${adtoken}`
-//     },
-//    }).then(res=>res.json())
+    const usdtdata = await fetch(`${baseURL}/user/get-pending-withdrawal-requests/usdt`,{
+    method: "GET",
+    headers: {
+        "Content-Type":"application/json",
+        "token":`Bearer ${adtoken}`
+    },
+   }).then(res=>res.json())
 
-//     const ethdata = await fetch(`${baseURL}/user/get-pending-withdrawal-requests/eth`,{
-//     method: "GET",
-//     headers: {
-//         "Content-Type":"application/json",
-//         "token":`Bearer ${adtoken}`
-//     },
-//    }).then(res=>res.json())
+    const ethdata = await fetch(`${baseURL}/user/get-pending-withdrawal-requests/eth`,{
+    method: "GET",
+    headers: {
+        "Content-Type":"application/json",
+        "token":`Bearer ${adtoken}`
+    },
+   }).then(res=>res.json())
 
    console.log(btcdata.data.withdrawals)
-   const requestwithdrawalinfo = [...btcdata.data.withdrawals]
+   const requestwithdrawalinfo = [...btcdata.data.withdrawals,...usdtdata.data.withdrawals,...ethdata.data.withdrawals]
    pinia.storeuserWithdrawalRequest(requestwithdrawalinfo)
 }catch(e){
     console.log(e)
 }
 
 
-const approvedwithdrawal = async(userr)=>{
+const approvedwithdrawal = async(userr,walletType)=>{
     const info1 = {
         withdrawalId: userr
     }
-    console.log(info1)
+    console.log(walletType)
     try{
-      const btcdata = await fetch(`${baseURL}/user/approve-withdrawal-request/btc`,{
+      const btcdata = await fetch(`${baseURL}/user/approve-withdrawal-request/${walletType}`,{
         method: 'PATCH',
         headers: {
             "Content-Type":"application/json",
@@ -170,7 +170,7 @@ const approvedwithdrawal = async(userr)=>{
         body:JSON.stringify(info1)
       })
 
-      console.log(btcdata.data.withdrawal.isApproved)
+      console.log('approved')
 
     }catch(e){
         console.log(e)
@@ -179,13 +179,13 @@ const approvedwithdrawal = async(userr)=>{
 }
 
 
-const rejectwithdrawal = async(userr)=>{
+const rejectwithdrawal = async(userr,walletType)=>{
     const info2 = {
         withdrawalId: userr
     }
     console.log(info2)
     try{
-      const btcdata = await fetch(`${baseURL}/user/reject-withdrawal-request/btc`,{
+      const btcdata = await fetch(`${baseURL}/user/reject-withdrawal-request/${walletType}`,{
         method: 'PATCH',
         headers: {
             "Content-Type":"application/json",

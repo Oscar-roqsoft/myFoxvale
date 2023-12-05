@@ -152,6 +152,24 @@ const btnLinkItems = [
 
 
 
+   try{
+    const data = await fetch(`${baseURL}/user/get-user-balance/${store.user.id}`,{
+       method: "GET",
+       headers: {
+            "Content-Type":"application/json",
+            "token": `Bearer ${store.user.accessToken}`
+        },
+    }).then(res=>res.json());
+   
+    const balanceInfo =  ref(data.data);
+
+    console.log(data.data)
+
+    store.storeUserBalance(balanceInfo.value);
+}catch(e){
+    console.log(e)
+}
+
 </script>
 
 

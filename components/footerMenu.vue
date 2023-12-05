@@ -34,9 +34,8 @@
                                 <h5 class="footer-head">Usefull Links</h5>
                                 <ul class="list-unstyled footer-list mt-4">
                                     <li><nuxt-link to="/privacy" class="text-foot"><i class="uil uil-angle-right-b me-1"></i> Privacy Policy</nuxt-link></li>
-                                    <li><nuxt-link to="/noRefundPolicy" class="text-foot"><i class="uil uil-angle-right-b me-1"></i>No Refund Policy</nuxt-link></li>
                                     <li><nuxt-link to="/terms" class="text-foot"><i class="uil uil-angle-right-b me-1"></i>Terms of Service</nuxt-link></li>
-                                    <li><nuxt-link to="/agreement" class="text-foot"><i class="uil uil-angle-right-b me-1">Legal Documentation</i></nuxt-link></li>
+                                    <li><nuxt-link to="/legalDocuentation" class="text-foot"><i class="uil uil-angle-right-b me-1">Legal Documentation</i></nuxt-link></li>
                                 </ul>
                             </div><!--end col-->
 

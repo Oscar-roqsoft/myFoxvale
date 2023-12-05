@@ -8,7 +8,7 @@
                 <div class="row mt-5 justify-content-center">
                     <div class="col-lg-12 text-center">
                         <div class="pages-heading">
-                            <h4 class="title mb-0"> No Refund Policy </h4>
+                            <h4 class="title mb-0"> LEGAL DOCUMENTATION</h4>
                         </div>
                     </div>  <!--end col-->
                 </div><!--end row-->
@@ -17,7 +17,10 @@
                     <nav aria-label="breadcrumb" class="d-inline-block">
                         <ul class="breadcrumb rounded shadow mb-0 px-4 py-2">
                             <li class="breadcrumb-item"><a href="index.html">Foxvale</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">No Refund Policy</li>
+                            <li class="breadcrumb-item active " aria-current="page">
+                                Legal Documentation
+                               
+                            </li>
                         </ul>
                     </nav>
                 </div>
@@ -41,7 +44,16 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-9">
                         <div class="card shadow border-0 rounded">
-                            <div class="card-body">
+                            <div class="card-body d-flex flex-wrap justify-content-center align-items-center">
+                                <div class="text-primary border m-2 p-2">
+                                    <a href="/REFUND AND RETURN POLICY.pdf uppercase" > Download No-Refund-Policy PDF</a>
+                                </div>
+                                <div class="text-primary border m-2 p-2">
+                                    <a href="/CONTRACT AGREEMENT NEW WITH COVER.pdf" > Download Contract-Agreement PDF</a>
+                                </div>
+                            </div>
+                            <!-- <div class="card-body">
+                                
                                 <h5 class="card-title">REFUND & RETURN POLICY :</h5>
                                 <p class="text-muted">The Refund Policy has been developed for the purpose of reducing the Clients/Company’s financial and 
                                     legal risks, as well as observing principles of anti-money laundering and counter terrorist activity.</p>
@@ -84,7 +96,7 @@
                                     procedure outlined above
                                 </p>
                                 
-                            </div>
+                            </div> -->
                         </div>
                     </div><!--end col-->
                 </div><!--end row-->

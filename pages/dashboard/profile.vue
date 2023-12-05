@@ -95,11 +95,16 @@
                                                         </div>
                                                     </div>
                                                     <div class="d-flex align-items-center mt-2">
-                                                        <div class="flex-1">
+                                                        <div class="flex-1 ">
                                                             <h6 class="text-primary mb-0">Document No:</h6>
-                                                            <input name="file" id="file" type="text" class="form-control ps-2"  
-                                                            :placeholder="document?`${document}`: 'No Document Uploded Yet'" disabled>
+                                                            <!-- <input name="file" id="file" type="text" class="form-control ps-2"  
+                                                            :placeholder="document?`${document}`: 'No Document Uploded Yet'" disabled> -->
+                                                            <div class="border mt-1" >
+                                                                <img :src="document" style="height: 150px; width: 100%;" alt="">
+                                                             </div>
                                                         </div>
+
+                                                     
                                                     </div>
                                                 </div>
                                             </div>

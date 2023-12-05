@@ -43,6 +43,8 @@ export const useStore = defineStore('user',()=> {
 
     const adminGetUserFunding = ref([])
 
+    const getUserTransactions = ref([])
+
     // const isAdmin = computed(()=>{
     //     user.isAdmin = "true"
     // })
@@ -72,10 +74,12 @@ export const useStore = defineStore('user',()=> {
         subpackages.value = payload;
         console.log(subpackages.value)
     }
+
     const storeUserPackages = (payload)=>{
         userPackages.value = payload;
         console.log(userPackages.value)
     }
+
     const storeuserSubscription = (payload)=>{
         userSubscription.value = payload;
         console.log(userSubscription.value)
@@ -85,6 +89,7 @@ export const useStore = defineStore('user',()=> {
         walletDetails.value = payload;
         console.log(walletDetails.value)
     }
+
     const storeUserFundings = (payload)=>{
         userFundings.value = payload;
     }
@@ -109,9 +114,13 @@ export const useStore = defineStore('user',()=> {
         userWithdrawalRequest.value = payload;
         userWithdrawalRequest.value.reverse(...userWithdrawalRequest.value)
     }
+    const storeGetUserTransactions = (payload)=>{
+        getUserTransactions.value = payload;
+        getUserTransactions.value.reverse(...getUserTransactions.value)
+    }
 
     const signOut = ()=>{
-        user.value = {};
+        user.value = [];
         userList.value = []
         packages.value = []
         withdrawalDetails.value = null
@@ -121,6 +130,7 @@ export const useStore = defineStore('user',()=> {
          userFundings.value = []
          subpackages.value = []
          userPackages.value = []
+         getUserTransactions.value = []
         navigateTo('/login')
     }
 
@@ -178,7 +188,9 @@ export const useStore = defineStore('user',()=> {
         adminGetUserFunding,
         storeAdminGetUserFunding,
         userWithdrawalRequest,
-        storeuserWithdrawalRequest
+        storeuserWithdrawalRequest,
+        getUserTransactions,
+        storeGetUserTransactions
     }
     // const  (true),
 },

@@ -40,7 +40,7 @@
                             <p><strong>Address:</strong><br>  {{ selectedPackage.country?selectedPackage.country:'Not Yet Uploaded' }}</p>
                             <p><strong>Document:</strong> </p>
                             <div class="border rounded" style="height: 200px; width: 300px;" >
-                                <img :src="selectedPackage.idFile? selectedPackage.idFile:''"  width="100%"  height="100%">
+                                <img :src="selectedPackage.idFile"  style="height: 200px; width: 300px;">
                             </div>
 
                             <button class="btn mt-3  btn-primary" @click.prevent="verifyUser">Verify user</button>

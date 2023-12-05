@@ -39,7 +39,14 @@
                                     <div class="mb-3">
                                         <div class="form-icon position-relative">
                                             <span>Payment Method</span>
-                                            <input type="select" placeholder="BTC Wallet Address" class="form-control ps-4" disabled>
+                                            <select  v-model="selected" class="form-select mb-3">
+                                                   <option  v-for="option in options" 
+                                                   :key="option.name" :value="option.name">
+                                                    {{ option.name }}
+                                                   </option>
+
+                                            </select>
+                                            <!-- <input type="select" placeholder="BTC Wallet Address" class="form-control ps-4" disabled> -->
                                         </div>
 
                                     </div>
@@ -104,10 +111,17 @@ definePageMeta({
 const pinia = useStore()
 const amountToWithdraw = ref('')
 const walletAddress = ref('')
+const selected = ref("BTC")
+const options = [
+    {value: 1, name:'BTC'},
+    {value: 1, name:'USDT'},
+    {value: 1, name:'ETH'},
+]
 
 const withdrawalDetails = {
     amountToWithdraw,
-    walletAddress
+    walletAddress,
+    selected
 }
 
 

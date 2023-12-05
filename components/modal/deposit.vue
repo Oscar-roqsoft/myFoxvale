@@ -9,7 +9,7 @@
                                     <div class="mb-3">
                                         <div class="form-icon position-relative">
                                             <span class="text-dark">Payment Method:</span><br>
-                                            <span>BTC Wallet Address</span>
+                                            <span>{{ pinia.withdrawalDetails.selected  }}</span>
                                            
                                         </div>
 
@@ -54,15 +54,16 @@ import {baseURL} from '@/composables/mixins'
 const pinia = useStore()
 const isloading = ref(false)
 
+const walletname = pinia.withdrawalDetails.selected.toLowerCase()
+
 const withdrawalRequest = async()=>{
     isloading.value = true
     const withdrawalDetail = {
         amount: pinia.withdrawalDetails.amountToWithdraw,
     }
 
-    console.log(withdrawalDetail)
     try{
-     const data = await fetch(`${baseURL}/user/send-withdrawal-request/btc`,{
+     const data = await fetch(`${baseURL}/user/send-withdrawal-request/${walletname}`,{
         method:"POST",
         headers: {
         "Content-Type":"application/json",
@@ -72,7 +73,7 @@ const withdrawalRequest = async()=>{
      }).then(res=>res.json())
      isloading.value = false
      console.log(data.message)
-     navigateTo('/dashboard/withdraw')
+     pinia.goBack()
     }catch(e){
       console.log(e)
     }

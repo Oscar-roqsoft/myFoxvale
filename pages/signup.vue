@@ -142,14 +142,13 @@
 
             if(!data.status) return message.value = data.message;
 
-            const userInfo = ref(data);
+            const userInfo = data.data;
           
               console.log(userInfo)
               pinia.storeUser(userInfo);
 
 
-            const router = useRouter();
-            router.push("/dashboard");
+            navigateTo("/dashboard");
 
         }catch(e){
            message.value = e.message 

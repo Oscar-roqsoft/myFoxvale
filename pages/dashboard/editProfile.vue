@@ -39,9 +39,8 @@
                                             <input @input="handleImgChange($event)"  type="file" 
                                             ref="profileImage" accept="image/jpeg,.webp,.png,.jpg,.gif,.svg,.jfif,.pjpeg,.pjp" hidden/>
                                         </div>
-                                        <div class=" mt-2 mb-0">
+                                        <div class=" mt-2 mb-0 d-flex justify-content-center">
                                             <button @click="handleImageClick()" class="btn btn-primary">Edit profile picture
-                                                
                                             </button>
                                         </div><!--end col-->
         
@@ -108,8 +107,10 @@
                                                
                                             </div><!--end row-->
                                             <div class="row">
+                                                <p v-if="message" class="text-danger">{{ message }}</p>
                                                 <div class="col-sm-12">
-                                                    <input type="submit" @click.prevent="submitUserUpdate()" id="submit" name="send" class="btn btn-primary" value="Save Changes">
+                                                    <input type="submit" @click.prevent="submitUserUpdate()" 
+                                                    id="submit" name="send" class="btn btn-primary" value="Save Changes" :disabled="isloading">
                                                 </div><!--end col-->
                                             </div><!--end row-->
                                         </form><!--end form-->
@@ -179,23 +180,24 @@ const handleDocumentChange = async(event)=> await handleFileChange(event,selecte
 
 
 const submitUserUpdate = async()=>{
-    isloading.value = true
-
+   
     // upload profile image
     const image_url = await uploadFile(selectedImage.value);
     if(!image_url){
-        alert('profile image failed to upload')
-        isloading.value = false
+        message.value ='upload profile image'
         return
     }
     
     // upload document
     const document_url = await uploadFile(selectedfile.value);
     if(!document_url){
-        alert('document failed to upload')
-        isloading.value = false
+        message.value = 'upload document failed'
         return
     }
+
+    if(!birthday.value) return message.value = "Your date of birth is Required"
+    if(!address.value) return message.value = "address in Required"
+    if(!phoneNo.value) return message.value = "Your Mobile Number is Required"
 
     const profileUserUpdateInfo = {
         profileImage: image_url,
@@ -205,7 +207,7 @@ const submitUserUpdate = async()=>{
         idFile : document_url,
     }
 
-
+    isloading.value = true
     try{
        const data = await fetch(`${baseURL}/user/update-user`,{
         method:'PATCH',

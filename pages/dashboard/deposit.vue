@@ -34,7 +34,7 @@
                         <form class="rounded shadow p-3 mt-4 bg-color text-white">
                             <div class="d-flex justify-content-end">
                                 <span class="h6 fs-bold text-muted">Mini Deposit :</span>
-                                <span class="ms-1 h6 text-muted fs-bold">$100.00</span>
+                                <span class="ms-1 h6 text-muted fs-bold">$1000.00</span>
                             </div>
                             <div class="row mt-4 align-items-center">
                                 <div class="col-lg-12">
@@ -101,9 +101,13 @@ definePageMeta({
     layout:"custom"  
 })
 const pinia = useStore()
-const options = [...pinia.walletDetails]
+// const options = [...pinia.walletDetails]
 const selected = ref('USDT')
-
+const options = [
+    {value: 1, name:'BTC'},
+    {value: 1, name:'USDT'},
+    {value: 1, name:'ETH'},
+]
 
 const inputDepositAmtVal = ref('')
 let amountToDeposit = ref('')
@@ -117,7 +121,7 @@ const newSelectedVal = ref(null)
 
 
 const toggleModal =()=>{
-    if(inputDepositAmtVal.value >= 100 ){
+    if(inputDepositAmtVal.value >= 1000 ){
         const selectedWalletName = options.find(pkg => pkg.name === selected.value)
         newSelectedVal.value = selectedWalletName
         pinia.storeselectedWalletName(newSelectedVal.value)

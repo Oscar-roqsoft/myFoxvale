@@ -31,10 +31,12 @@
                                         <table class="table table-center bg-white mb-0">
                                             <thead>
                                                 <tr>
-                                                    <th class="border-bottom p-3" style="min-width: 150px;">Amount</th>
-                                                    <th class="text-center border-bottom p-3" style="min-width: 200px;">Transaction ID</th>
+                                                    <th class="border-bottom p-3" style="min-width: 150px;">Name</th>
+                                                    <th class="text-center border-bottom p-3" style="min-width: 100px;">Amount</th>
                                                     <th class="text-center border-bottom p-3" style="min-width: 150px;">date</th>
-                                                    <th class="text-center border-bottom p-3">Actions</th>
+                                                    <th class="text-center border-bottom p-3">Approved</th>
+                                                    <th class="text-center border-bottom p-3" >Rejected</th>
+                                                    <!-- <th class="text-center border-bottom p-3">Actions</th> -->
                                                    
                                                 </tr>
                                             </thead>
@@ -44,17 +46,19 @@
                                                    <td class="p-3">
                                                         <a href="#" class="text-primary">
                                                             <div class="d-flex align-items-center">
-                                                                <span class="ms-2">{{ userr}}</span>
+                                                                <span class="ms-2">{{ userr.package.name}}</span>
                                                             </div>
                                                         </a>
                                                     </td>
-                                                    <td class="text-center p-3">(+12)85-4521-7568</td>
-                                                    <td class="text-center p-3">23th Sept 2021</td>
-                                                    <td class="text-center p-3">
+                                                    <td class="text-center p-3">{{ userr.amount }}</td>
+                                                    <td class="text-center p-3"></td>
+                                                    <td class="text-center p-3">{{ userr.isApproved }}</td>
+                                                    <td class="text-center p-3">{{ userr.isRejected }}</td>
+                                                    <!-- <td class="text-center p-3">
                                                         <div class="badge btn btn-sm bg-primary rounded ">
                                                          approve
                                                         </div>
-                                                    </td>
+                                                    </td> -->
                                                    
                                                 </tr>
                                                 <!-- End -->
@@ -107,28 +111,65 @@ definePageMeta({
 })
 const pinia = useStore()
 
+try{
+    const btcdata = await fetch(`${baseURL}/subscription/get-user-subscriptions/btc`,{
+       method: "GET",
+       headers: {
+            "Content-Type":"application/json",
+             "token": `Bearer ${pinia.user.accessToken}`
+        },
+    }).then(res=>res.json());
+
+    console.log(data.message)
+
+    const usertransactions = btcdata.data.subscriptions
+    console.log(usertransactions)
+    pinia.storeGetUserTransactions(usertransactions)
+
+}catch(err){
+    console.log(err)
+}
+
 // try{
-//     const data = await fetch(`${baseURL}/user/users-list`,{
+
+//     const usdtdata = await fetch(`${baseURL}/subscription/get-user-subscriptions/usdt`,{
 //        method: "GET",
 //        headers: {
 //             "Content-Type":"application/json",
-//             "token":`Bearer ${adtoken}`
+//              "token": `Bearer ${pinia.user.accessToken}`
 //         },
 //     }).then(res=>res.json());
-    
-//     console.log(data)
 // }catch(err){
 //     console.log(err)
 // }
 
-// const userslist = data.data.users
-// console.log(userslist)
-// pinia.storeUserList(userslist)
+// try{
+
+//     const ethdata = await fetch(`${baseURL}/subscription/get-user-subscriptions/eth`,{
+//        method: "GET",
+//        headers: {
+//             "Content-Type":"application/json",
+//             "token": `Bearer ${pinia.user.accessToken}`
+//         },
+//     }).then(res=>res.json());
+// }catch(err){
+//     console.log(err)
+// }
+    
+    // console.log(data)
+
+    // const usertransactions = [...btcdata.data.subscriptions,...usdtdata.data.subscriptions,...ethdata.data.subscriptions]
+    // console.log(usertransactions)
+    // pinia.storeGetUserTransactions(usertransactions)
+
+
+
+
 
 
 
 //pagination setup
-const userr = [,,2,3,4,5,]
+const userr = pinia.getUserTransactions
 // Define per-page display
 const perPage = 10;
 
