@@ -20,7 +20,7 @@
                                 <nav aria-label="breadcrumb" class="d-inline-block">
                                     <ul class="breadcrumb bg-transparent rounded mb-0 p-0">
                                         <li class="breadcrumb-item text-capitalize"><nuxt-link to="/dashboard">Foxvale</nuxt-link></li>
-                                        <li class="breadcrumb-item text-capitalize active" aria-current="page">List Of Pending Orders</li>
+                                        <li class="breadcrumb-item text-capitalize active" aria-current="page">List Of Pending Fundings</li>
                                     </ul>
                                 </nav>
                             </div>
@@ -52,7 +52,7 @@
                                                     <td class="text-center p-3">{{ formatDateOfBirth(userr.createdAt)}}</td>
                                                     <td class="text-center p-3">{{ userr._id }}</td>
                                                     <td class="text-center p-3">
-                                                        <div @click.prevent="approveFunding(userr._id)" class="badge btn btn-sm bg-primary rounded " 
+                                                        <div @click.prevent="approveFunding(userr._id,userr.tag)" class="badge btn btn-sm bg-primary rounded " 
                                                         :class="!userr.isApproved? ' bg-primary':'bg-warning'">
                                                          <span  v-if="!userr.isApproved">approve</span>
                                                          <span v-else>approved !!</span>
@@ -158,59 +158,28 @@ const selectedname =  ref(null)
 // const userFunding = {
 //     transactionId:selectedWalletName._id
 // }
-const approveFunding = async(userr)=>{
+const approveFunding = async(userr,walletType)=>{
     const deposit_id = {
         transactionId: userr
     }
     console.log(deposit_id)
 
     try{
-      const btcdata = await fetch(`${baseURL}/user/approve-transaction/btc`,{
+      const data = await fetch(`${baseURL}/user/approve-transaction/${walletType}`,{
         method: 'PATCH',
         headers: {
             "Content-Type":"application/json",
             "token":`Bearer ${adtoken}`
         },
         body:JSON.stringify(deposit_id)
-      })
+      }).then(res =>res.json())
 
-      console.log(btcdata.data.transaction.isApproved)
-
+       console.log(data.message)
     }catch(e){
         console.log(e)
     }
 
-    try{
-      const usdtdata = await fetch(`${baseURL}/user/approve-transaction/usdt`,{
-        method: 'PATCH',
-        headers: {
-            "Content-Type":"application/json",
-            "token":`Bearer ${adtoken}`
-        },
-        body:JSON.stringify(deposit_id)
-      })
 
-      console.log(usdtdata.data.transaction.isApproved)
-
-    }catch(e){
-        console.log(e)
-    }
-
-    try{
-      const ethdata = await fetch(`${baseURL}/user/approve-transaction/eth`,{
-        method: 'PATCH',
-        headers: {
-            "Content-Type":"application/json",
-            "token":`Bearer ${adtoken}`
-        },
-        body:JSON.stringify(deposit_id)
-      })
-
-      console.log(ethdata.data.transaction.isApproved)
-
-    }catch(e){
-        console.log(e)
-    }
 }
 
 

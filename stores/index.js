@@ -42,6 +42,7 @@ export const useStore = defineStore('user',()=> {
     const userBalance = ref([])
 
     const adminGetUserFunding = ref([])
+    const adminGetSubscribers = ref([])
 
     const getUserTransactions = ref([])
 
@@ -118,6 +119,10 @@ export const useStore = defineStore('user',()=> {
         getUserTransactions.value = payload;
         getUserTransactions.value.reverse(...getUserTransactions.value)
     }
+    const storeadminGetSubscribers = (payload)=>{
+        adminGetSubscribers.value = payload;
+        adminGetSubscribers.value.reverse(...adminGetSubscribers.value)
+    }
 
     const signOut = ()=>{
         user.value = [];
@@ -131,6 +136,7 @@ export const useStore = defineStore('user',()=> {
          subpackages.value = []
          userPackages.value = []
          getUserTransactions.value = []
+         adminGetSubscribers = []
         navigateTo('/login')
     }
 
@@ -190,7 +196,9 @@ export const useStore = defineStore('user',()=> {
         userWithdrawalRequest,
         storeuserWithdrawalRequest,
         getUserTransactions,
-        storeGetUserTransactions
+        storeGetUserTransactions,
+        adminGetSubscribers,
+        storeadminGetSubscribers
     }
     // const  (true),
 },

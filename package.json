@@ -21,6 +21,7 @@
   "dependencies": {
     "@pinia/nuxt": "^0.4.11",
     "pinia": "^2.1.6",
-    "qrcode.vue": "^3.4.1"
+    "qrcode.vue": "^3.4.1",
+    "tradingview-widget": "^0.0.1"
   }
 }

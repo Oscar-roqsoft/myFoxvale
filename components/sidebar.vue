@@ -23,7 +23,8 @@
             <ul class="sidebar-menu" >
                 <li><nuxt-link to="/dashboard/" ><i class="ti ti-home me-2"></i>Dashboard</nuxt-link></li>
                 <li v-if="!store.user.isAdmin"><nuxt-link to="/dashboard/editProfile"><i class="ti ti-user me-2"></i>KYC</nuxt-link></li>
-                <li v-if="store.user.isAdmin"><nuxt-link to="/dashboard/orders"><i class="ti ti-user me-2"></i>Orders</nuxt-link></li>
+                <li v-if="store.user.isAdmin"><nuxt-link to="/dashboard/subscribers"><i class="ti ti-user me-2"></i>Subscribers</nuxt-link></li>
+                <li v-if="store.user.isAdmin"><nuxt-link to="/dashboard/fundings"><i class="ti ti-user me-2"></i>Fundings</nuxt-link></li>
                 <li v-if="!store.user.isAdmin"><nuxt-link to="/dashboard/transaction"><i class="ti ti-shopping-cart me-2"></i>Transactions</nuxt-link></li>
                 <li v-if="!store.user.isAdmin"><nuxt-link to="/dashboard/subscription"><i class="ti ti-file-info me-2"></i>Subscriptions</nuxt-link></li>
                 <li v-if="!store.user.isAdmin"><nuxt-link to="/dashboard/privacy"><i class="ti ti-brand-gravatar me-2"></i>Privacy Policy</nuxt-link></li>

@@ -62,4 +62,9 @@ export default defineNuxtConfig({
   },
 
 
+  env: {
+    CMC_API_KEY: process.env.CMC_API_KEY || "",
+  },
+
+
 })

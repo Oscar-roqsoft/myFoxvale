@@ -145,13 +145,14 @@ const subscribe = async()=>{
     }
 
     const subinfo = {
+        packageId: selectedPackage._id,
         amount:amountVal.value
     }
 
-    
-    if(pinia.userBalance.btcWallet.balance >= amountVal.value){
-        try{
-           const data = await fetch(`${baseURL}/subscription/subscribe-user/btc`,{
+    console.log(subinfo)
+    try{
+        if(pinia.userBalance.btcWallet.balance >= amountVal.value){
+           const btcdata = await fetch(`${baseURL}/subscription/subscribe-user/btc`,{
               method:"POST",
               headers: {
                 "Content-Type":"application/json",
@@ -159,22 +160,19 @@ const subscribe = async()=>{
                },
                body:JSON.stringify(subinfo)
            }).then(res=>res.json());
-          
-            isloading.value = false
+
+           isloading.value = false
             console.log('btc successful')
     
-            // const mysub = data.data.subscription
-            // pinia.storeuserSubscription(mysub)
+            const mysub = [...pinia.userSubscription,...btcdata.data.subscription]
+            pinia.storeuserSubscription(mysub)
     
             navigateTo('/dashboard/subscription')
-        }catch(e){
-            console.log(e)
+           return
         }
-        return
-    }
-    if(pinia.userBalance.ethWallet.balance >= amountVal.value){
-        try{
-           const data = await fetch(`${baseURL}/subscription/subscribe-user/eth`,{
+        
+        if(pinia.userBalance.ethWallet.balance >= amountVal.value){
+           const ethdata = await fetch(`${baseURL}/subscription/subscribe-user/eth`,{
               method:"POST",
               headers: {
                 "Content-Type":"application/json",
@@ -182,44 +180,44 @@ const subscribe = async()=>{
                },
                body:JSON.stringify(subinfo)
            }).then(res=>res.json());
-          
-            isloading.value = false
-            console.log('successful')
-            // const mysub = data.data.subscription
-            // pinia.storeuserSubscription(mysub)
+
+           isloading.value = false
+            console.log('eth successful')
+    
+            const mysub = [...pinia.userSubscription,...ethdata.data.subscription]
+            pinia.storeuserSubscription(mysub)
     
             navigateTo('/dashboard/subscription')
+           return
+        }
+
+        if(pinia.userBalance.usdtWallet.balance >= amountVal.value){
+           const usdtdata = await fetch(`${baseURL}/subscription/subscribe-user/usdt`,{
+              method:"POST",
+              headers: {
+                "Content-Type":"application/json",
+                "token": `Bearer ${pinia.user.accessToken}`
+               },
+               body:JSON.stringify(subinfo)
+           }).then(res=>res.json());
+
+           isloading.value = false
+            console.log('usdt successful')
+    
+            const mysub = [...pinia.userSubscription,...usdtdata.data.subscription]
+            pinia.storeuserSubscription(mysub)
+    
+            navigateTo('/dashboard/subscription')
+           return
+        }
+            
         }catch(e){
             console.log(e)
         }
-      return
-    }
 
-    // if(pinia.userBalance.usdtWallet.balance >= amountVal.value){
-    //     try{
-    //        const data = await fetch(`${baseURL}/subscription/subscribe-user/usdt`,{
-    //           method:"POST",
-    //           headers: {
-    //             "Content-Type":"application/json",
-    //             "token": `Bearer ${pinia.user.accessToken}`
-    //            },
-    //            body:JSON.stringify(subinfo)
-    //        }).then(res=>res.json());
-          
-    //         isloading.value = false
-    //         console.log('successful')
-    //         console.log(data.message)
-    //         // const mysub = data.data.subscription
-    //         // pinia.storeuserSubscription(mysub)
-    
-    //         navigateTo('/dashboard/subscription')
-    //     }catch(e){
-    //         console.log(e)
-    //     }
-    //  return
-    // }
+
+  
      
-    console.log('done')
     alert("You don't have Enough Balance")
     navigateTo('/dashboard/subscription')
 }

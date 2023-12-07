@@ -1,3 +1,5 @@
+
+
 <template>
      
     <div>
@@ -15,51 +17,54 @@
                     <div class="container-fluid">
                         <div class="layout-specing">
                             <div class="d-md-flex justify-content-between align-items-center">
-                                <h5 class="mb-0">Orders</h5>
+                                <h5 class="mb-0">Subscribers</h5>
     
                                 <nav aria-label="breadcrumb" class="d-inline-block">
                                     <ul class="breadcrumb bg-transparent rounded mb-0 p-0">
                                         <li class="breadcrumb-item text-capitalize"><nuxt-link to="/dashboard">Foxvale</nuxt-link></li>
-                                        <li class="breadcrumb-item text-capitalize active" aria-current="page">List Of Transactions</li>
+                                        <li class="breadcrumb-item text-capitalize active" aria-current="page">List Of subscribers</li>
                                     </ul>
                                 </nav>
                             </div>
     
                             <div class="row">
                                 <div class="col-12 mt-4">
+
                                     <div class="table-responsive shadow rounded">
                                         <table class="table table-center bg-white mb-0">
                                             <thead>
                                                 <tr>
                                                     <th class="border-bottom p-3" style="min-width: 150px;">Name</th>
-                                                    <th class="text-center border-bottom p-3" style="min-width: 100px;">Amount</th>
+                                                    <th class="border-bottom p-3" style="min-width: 150px;">Package Name</th>
+                                                    <th class="border-bottom p-3" style="min-width: 80px;">Amount</th>
                                                     <th class="text-center border-bottom p-3" style="min-width: 150px;">date</th>
-                                                    <th class="text-center border-bottom p-3">Approved</th>
-                                                    <th class="text-center border-bottom p-3" >Rejected</th>
-                                                    <!-- <th class="text-center border-bottom p-3">Actions</th> -->
+                                                    <th class="text-center border-bottom p-3" style="min-width: 150px;">Transaction ID</th>
+                                                    <th class="text-center border-bottom p-3">Actions</th>
                                                    
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <!-- Start -->
                                                 <tr v-for="(userr,id) in paginatedUsers " :key="id">
+                                                    <td v-if="userr.user" class="text-center p-3">{{ userr.user.name}}</td>
+                                                    <td v-else class="text-center p-3">{{ userr.user}}</td>
+                                                    <td class="text-center p-3">{{ userr.package.name}}</td>
                                                    <td class="p-3">
                                                         <a href="#" class="text-primary">
                                                             <div class="d-flex align-items-center">
-                                                                <span class="ms-2">{{ userr.package.name}}</span>
+                                                                <span class="ms-2">{{ userr.amount }}</span>
                                                             </div>
                                                         </a>
                                                     </td>
-                                                    <td class="text-center p-3">{{ userr.amount }}</td>
-                                                    <td class="text-center p-3">{{ formatDateOfBirth(userr.createdAt) }}</td>
-                                                    <td class="text-center p-3">{{ userr.isApproved }}</td>
-                                                    <td class="text-center p-3">{{ userr.isRejected }}</td>
-                                                    <!-- <td class="text-center p-3">
-                                                        <div class="badge btn btn-sm bg-primary rounded ">
-                                                         approve
+                                                    <td class="text-center p-3">{{ formatDateOfBirth(userr.createdAt)}}</td>
+                                                    <td class="text-center p-3">{{ userr._id }}</td>
+                                                    <td class="text-center p-3">
+                                                        <div @click.prevent="approveFunding(userr._id,userr.tag)" class="badge btn btn-sm bg-primary rounded " 
+                                                        :class="!userr.isApproved? ' bg-primary':'bg-warning'">
+                                                         <span  v-if="!userr.isApproved">approve</span>
+                                                         <span v-else>approved !!</span>
                                                         </div>
-                                                    </td> -->
-                                                   
+                                                    </td>
                                                 </tr>
                                                 <!-- End -->
     
@@ -68,6 +73,8 @@
                                     </div>
                                 </div><!--end col-->
                             </div><!--end row-->
+
+                          
     
                             <div class="row text-center">
                                 <!-- PAGINATION START -->
@@ -106,55 +113,86 @@
 <script setup>
 import {useStore}  from "@/stores/index";
 import {baseURL,formatDateOfBirth} from "@/composables/mixins";
+import {adtoken} from '@/composables/config'
 definePageMeta({
     layout:"custom"  
 })
+
 const pinia = useStore()
+const isloading = ref(false)
 
-try{
-    const btcdata = await fetch(`${baseURL}/subscription/get-user-subscriptions/btc`,{
-       method: "GET",
-       headers: {
+
+
+
+const btcdata = await fetch(`${baseURL}/subscription/get-subscriptions/btc`,{
+    method: "GET",
+    headers: {
+        "Content-Type":"application/json",
+        "token":`Bearer ${adtoken}`
+    },
+
+}).then(res=>res.json());
+
+const usdtdata = await fetch(`${baseURL}/subscription/get-subscriptions/usdt`,{
+    method: "GET",
+    headers: {
+        "Content-Type":"application/json",
+        "token":`Bearer ${adtoken}`
+    },
+
+}).then(res=>res.json());
+const ethdata = await fetch(`${baseURL}/subscription/get-subscriptions/eth`,{
+    method: "GET",
+    headers: {
+        "Content-Type":"application/json",
+        "token":`Bearer ${adtoken}`
+    },
+
+}).then(res=>res.json());
+
+
+console.log(btcdata.data.subscriptions)
+const subscribers = [...btcdata.data.subscriptions,...usdtdata.data.subscriptions,...ethdata.data.subscriptions]
+console.log(subscribers)
+pinia.storeadminGetSubscribers(subscribers)
+
+
+
+
+
+
+
+const selectedname =  ref(null)
+
+// const userFunding = {
+//     transactionId:selectedWalletName._id
+// }
+
+const approveFunding = async(userr,walletType)=>{
+
+    const subscriber_id = {
+        subscriptionId: userr
+    }
+    console.log(subscriber_id)
+
+    try{
+      const data = await fetch(`${baseURL}/subscription/approve-subscription/${walletType}`,{
+        method: 'PATCH',
+        headers: {
             "Content-Type":"application/json",
-             "token": `Bearer ${pinia.user.accessToken}`
+            "token":`Bearer ${adtoken}`
         },
-    }).then(res=>res.json());
+        body:JSON.stringify(subscriber_id)
+      }).then(res=>res.json())
 
-    const usdtdata = await fetch(`${baseURL}/subscription/get-user-subscriptions/usdt`,{
-       method: "GET",
-       headers: {
-            "Content-Type":"application/json",
-             "token": `Bearer ${pinia.user.accessToken}`
-        },
-    }).then(res=>res.json());
+      console.log(data.message)
 
-    const ethdata = await fetch(`${baseURL}/subscription/get-user-subscriptions/eth`,{
-       method: "GET",
-       headers: {
-            "Content-Type":"application/json",
-            "token": `Bearer ${pinia.user.accessToken}`
-        },
-    }).then(res=>res.json());
-    
-    console.log(btcdata.message)
+    }catch(e){
+        console.log(e)
+    }
 
-    // const usertransactions = btcdata.data.subscriptions
-    // console.log(usertransactions)
-    // pinia.storeGetUserTransactions(usertransactions)
-    
-    // const usertransactions = btcdata.data.subscriptions
-    const usertransactions = [...btcdata.data.subscriptions,...usdtdata.data.subscriptions,...ethdata.data.subscriptions]
-    console.log(usertransactions)
-    pinia.storeGetUserTransactions(usertransactions)
-
-}catch(err){
-    console.log(err)
+   
 }
-
-
-
-
-    
 
 
 
@@ -163,7 +201,8 @@ try{
 
 
 //pagination setup
-const userr = pinia.getUserTransactions
+const userr = pinia.adminGetSubscribers
+
 // Define per-page display
 const perPage = 10;
 

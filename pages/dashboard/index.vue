@@ -64,7 +64,7 @@
                            
                         </div><!--end row-->
 
-
+                        <!-- <chartsPriceTicker/> -->
                         <ChartsWidgets/>
 
  
@@ -143,8 +143,8 @@ const closeKYC = ()=>{
 }
 const btnLinkItems = [
     {id:1,title:"deposit",icon:"uil uil-usd-circle fs-4 mb-0",link:"deposit"},
-    {id:2,title:"withdraw",icon:"uil uil-shopping-bag fs-4 mb-0",link:"withdraw"},
     {id:3,title:"invest",icon:"uil uil-chart fs-4 mb-0",link:"subscription"},
+    {id:2,title:"withdraw",icon:"uil uil-shopping-bag fs-4 mb-0",link:"withdraw"},
    ]
 
 
