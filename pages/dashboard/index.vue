@@ -70,7 +70,7 @@
                         <!-- <ChartsWidgets/> -->
 
 
-                        <ChartsHeatMap/>
+                        <!-- <ChartsHeatMap/> -->
 
 
                           <ChartsPriceTicker/>

@@ -8,10 +8,9 @@
       <div class="tradingview-widget-copyright">
   
         <a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank">
-          <!-- <span class="blue-text">Track all markets on TradingView</span> -->
-        </a>
+        </a> 
   
-      </div>
+    </div>
   
   </div>
 

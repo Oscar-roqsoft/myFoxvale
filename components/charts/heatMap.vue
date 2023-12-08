@@ -36,7 +36,7 @@ onMounted(() => {
   "isZoomEnabled": true,
   "hasSymbolTooltip": true,
   "width": "100%",
-  "height": "400"
+  "height": "450"
   });
 
   document.querySelector('.tradingview-widget-container__widget').appendChild(script);
