@@ -18,7 +18,6 @@
   </template>
 
 <script setup>
-import { onMounted } from 'vue';
 
 onMounted(() => {
   const script = document.createElement('script');

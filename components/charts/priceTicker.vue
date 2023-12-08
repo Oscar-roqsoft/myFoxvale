@@ -1,5 +1,5 @@
+
 <template>
-  <div class="style my-4 ">
 
     <div class="tradingview-widget-container my-3">
   
@@ -13,13 +13,11 @@
   
       </div>
   
-    </div>
   </div>
 
 </template>
 
 <script setup>
-import { onMounted } from 'vue'
 
 onMounted(() => {
   const script = document.createElement('script')
@@ -58,64 +56,3 @@ onMounted(() => {
   document.querySelector('.tradingview-widget-container__widget').appendChild(script)
 })
 </script>
-
-<style scoped>
-  .style{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    margin: 0 auto;
-
-  }
-  @media(max-width: 767px){
-    .tradingview-widget-container >>> iframe{
-        width: 78%!important;
-    }
-  }
-
-  @media(min-width: 768px){
-        .style{
-            display: flex;
-            justify-content: center;
-            flex-direction: column;
-            min-width: 400px !important;
-
-        }
-        .tradingview-widget-container>>>iframe{
-          display: flex;
-          justify-content: center;
-          min-width: 720px !important;
-          margin-right: 80px !important;
-        }
-        .tradingview-widget-container{
-            width: 1100px !important;
-            /* margin: auto !important; */
-        }
-    } 
-  @media(min-width: 1100px){
-        .style{
-            display: flex;
-            justify-content: center;
-            flex-direction: column;
-            position: absolute !important;
-            /* min-width: 400px !important; */
-
-        }
-        .tradingview-widget-container__widget>>>div{
-          width:400px;
-          position: absolute !important;
-        }
-        .tradingview-widget-container__widget>>>iframe{
-          position: absolute !important;
-          display: flex;
-          justify-content: center;
-          min-width: 1050px !important;
-          margin-left: 80px !important;
-        }
-        .tradingview-widget-container{
-            width: 1100px !important;
-            /* margin: auto !important; */
-        }
-    } 
-  </style>

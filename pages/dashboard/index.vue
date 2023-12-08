@@ -63,11 +63,17 @@
                             </div><!--end col-->
                            
                         </div><!--end row-->
-                        <!-- <ChartsPriceTicker/> -->
+                      
 
 
                         <ChartsForAllMarkets/>
                         <!-- <ChartsWidgets/> -->
+
+
+                        <ChartsHeatMap/>
+
+
+                          <ChartsPriceTicker/>
                         
 
 

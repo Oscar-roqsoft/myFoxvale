@@ -10,7 +10,6 @@
   </template>
   
   <script setup>
-  import { onMounted } from 'vue'
   
   onMounted(() => {
     const script = document.createElement('script')
@@ -71,7 +70,7 @@
       ],
       "title": "Bitcoin"
     },
-    
+
     {
       "title_raw": "Ripple",
       "symbols": [
