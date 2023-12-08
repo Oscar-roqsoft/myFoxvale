@@ -52,13 +52,21 @@
                             </div>
                             <div class="section-title">
                                 <h4 class="title mb-4">Who we are ?</h4>
-                                <p class="text-muted"><span class="text-primary fw-bold">Foxvale Broker</span>
+                                <p class="text-muted">
+                                    <!-- <span class="text-primary fw-bold">Foxvale Broker</span>
                                     Inc is an audited ,vetted and independent brokerage firm that renders professional asset
                                 managenament of varoius securities ,including bonds ,shareholdings, real estate, crytocurrency and other 
-                            range for institutional investors, companies and private individuals.At Foxvale Broker,we offer a wide range of
-                              products and tools as well as an excellent customer services aiming to provide our client with a
-                               complete and innovative experience.
-                             <br>A team of expert with a clear and effective appproach makes Foxvale Broker a trusted partner for 
+                                range for institutional investors, companies and private individuals.At Foxvale Broker,we offer a wide range of
+                                products and tools as well as an excellent customer services aiming to provide our client with a
+                                complete and innovative experience. -->
+
+                            <span class="text-primary fw-bold text-center">Foxvale Broker Inc </span>is an audited, vetted and independent brokerage firm that renders professional asset
+                            management of various securities, including stocks, bonds, cryptocurrency  commodities, real estate, shareholdings and other
+                            assets; for institutional investors, companies and private individuals. At Foxvale Broker, we offer a wide
+                            range of products and tools as well as an excellent customer service aiming to provide our clients 
+                            with a complete and innovative experience.
+                            <br>
+                            A team of expert with a clear and effective appproach makes Foxvale Broker a trusted partner for 
                             investors ,both institutional and individual investors.</p>
                             </div>
 
