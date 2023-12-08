@@ -1,39 +1,121 @@
-<!-- <template>
-    <div class="tradingview-widget-container" style="height:100%;width:100%">
-      <trading-view
-        :symbol="symbol"
-        :interval="interval"
-        :timezone="timezone"
-        :theme="theme"
-        :style="style"
-        :locale="locale"
-        :enable-publishing="enablePublishing"
-        :allow-symbol-change="allowSymbolChange"
-        :container-id="`tradingview_` + Math.random().toString(36).substring(2, 15)"
-      />
-    </div>
-  </template>
-  
-  <script>
-import { defineComponent } from 'vue'
-import TradingView from 'tradingview-widget'
+<template>
+  <div class="style my-4 ">
 
-export default defineComponent({
-  components: {
-    TradingView,
-  },
-  data() {
-    return {
-      // Widget configuration options
-      symbol: 'NASDAQ:AAPL',
-      interval: 'D',
-      timezone: 'Etc/UTC',
-      theme: 'light',
-      style: '1',
-      locale: 'en',
-      enablePublishing: false,
-      allowSymbolChange: true,
+    <div class="tradingview-widget-container my-3">
+  
+      <div class="tradingview-widget-container__widget"></div>
+  
+      <div class="tradingview-widget-copyright">
+  
+        <a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank">
+          <!-- <span class="blue-text">Track all markets on TradingView</span> -->
+        </a>
+  
+      </div>
+  
+    </div>
+  </div>
+
+</template>
+
+<script setup>
+import { onMounted } from 'vue'
+
+onMounted(() => {
+  const script = document.createElement('script')
+  script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js'
+  script.async = true
+  script.innerHTML = JSON.stringify({
+    // Customize configuration options here
+  "symbols": [
+    {
+      "proName": "FOREXCOM:SPXUSD",
+      "title": "S&P 500"
+    },
+    {
+      "proName": "FOREXCOM:NSXUSD",
+      "title": "US 100"
+    },
+    {
+      "proName": "FX_IDC:EURUSD",
+      "title": "EUR to USD"
+    },
+    {
+      "proName": "BITSTAMP:BTCUSD",
+      "title": "Bitcoin"
+    },
+    {
+      "proName": "BITSTAMP:ETHUSD",
+      "title": "Ethereum"
     }
-  },
+  ],
+  "showSymbolLogo": true,
+  "colorTheme": "light",
+  "isTransparent": false,
+  "displayMode": "adaptive",
+  "locale": "en"
+  })
+  document.querySelector('.tradingview-widget-container__widget').appendChild(script)
 })
-  </script> -->
+</script>
+
+<style scoped>
+  .style{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+
+  }
+  @media(max-width: 767px){
+    .tradingview-widget-container >>> iframe{
+        width: 78%!important;
+    }
+  }
+
+  @media(min-width: 768px){
+        .style{
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            min-width: 400px !important;
+
+        }
+        .tradingview-widget-container>>>iframe{
+          display: flex;
+          justify-content: center;
+          min-width: 720px !important;
+          margin-right: 80px !important;
+        }
+        .tradingview-widget-container{
+            width: 1100px !important;
+            /* margin: auto !important; */
+        }
+    } 
+  @media(min-width: 1100px){
+        .style{
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            position: absolute !important;
+            /* min-width: 400px !important; */
+
+        }
+        .tradingview-widget-container__widget>>>div{
+          width:400px;
+          position: absolute !important;
+        }
+        .tradingview-widget-container__widget>>>iframe{
+          position: absolute !important;
+          display: flex;
+          justify-content: center;
+          min-width: 1050px !important;
+          margin-left: 80px !important;
+        }
+        .tradingview-widget-container{
+            width: 1100px !important;
+            /* margin: auto !important; */
+        }
+    } 
+  </style>

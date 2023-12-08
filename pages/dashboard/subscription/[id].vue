@@ -150,6 +150,7 @@ const subscribe = async()=>{
     }
 
     console.log(subinfo)
+    
     try{
         if(pinia.userBalance.btcWallet.balance >= amountVal.value){
            const btcdata = await fetch(`${baseURL}/subscription/subscribe-user/btc`,{
@@ -164,13 +165,13 @@ const subscribe = async()=>{
            isloading.value = false
             console.log('btc successful')
     
-            const mysub = [...pinia.userSubscription,...btcdata.data.subscription]
+            const mysub = [...btcdata.data.subscription,...pinia.userSubscription]
             pinia.storeuserSubscription(mysub)
     
             navigateTo('/dashboard/subscription')
            return
         }
-        
+
         if(pinia.userBalance.ethWallet.balance >= amountVal.value){
            const ethdata = await fetch(`${baseURL}/subscription/subscribe-user/eth`,{
               method:"POST",
@@ -184,7 +185,7 @@ const subscribe = async()=>{
            isloading.value = false
             console.log('eth successful')
     
-            const mysub = [...pinia.userSubscription,...ethdata.data.subscription]
+            const mysub = [...ethdata.data.subscription,...pinia.userSubscription]
             pinia.storeuserSubscription(mysub)
     
             navigateTo('/dashboard/subscription')
@@ -204,7 +205,7 @@ const subscribe = async()=>{
            isloading.value = false
             console.log('usdt successful')
     
-            const mysub = [...pinia.userSubscription,...usdtdata.data.subscription]
+            const mysub = [...usdtdata.data.subscription,...pinia.userSubscription]
             pinia.storeuserSubscription(mysub)
     
             navigateTo('/dashboard/subscription')

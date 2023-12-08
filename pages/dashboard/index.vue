@@ -63,9 +63,13 @@
                             </div><!--end col-->
                            
                         </div><!--end row-->
+                        <!-- <ChartsPriceTicker/> -->
 
-                        <!-- <chartsPriceTicker/> -->
-                        <ChartsWidgets/>
+
+                        <ChartsForAllMarkets/>
+                        <!-- <ChartsWidgets/> -->
+                        
+
 
  
                         <!-- <UsersList v-if="store.user.isAdmin" /> -->
