@@ -162,6 +162,100 @@ onMounted(() => {
         }
       ],
       "originalTitle": "Forex"
+    },
+
+    {
+      "title_raw": "Bitcoin",
+      "symbols": [
+        {
+          "s": "BITFINEX:BTCUSD"
+        },
+        {
+          "s": "COINBASE:BTCEUR"
+        },
+        {
+          "s": "COINBASE:BTCGBP"
+        },
+        {
+          "s": "BITFLYER:BTCJPY"
+        },
+       
+        {
+          "s": "CME:BTC1!"
+        }
+      ],
+      "title": "Bitcoin"
+    },
+
+    {
+      "title_raw": "Ripple",
+      "symbols": [
+        {
+          "s": "BITFINEX:XRPUSD"
+        },
+        {
+          "s": "KRAKEN:XRPEUR"
+        },
+        {
+          "s": "KORBIT:XRPKRW"
+        },
+        {
+          "s": "BITSO:XRPMXN"
+        },
+        {
+          "s": "BINANCE:XRPBTC"
+        },
+        {
+          "s": "BITTREX:XRPETH"
+        }
+      ],
+      "title": "Ripple"
+    },
+
+    {
+      "title_raw": "Ethereum",
+      "symbols": [
+        {
+          "s": "COINBASE:ETHUSD"
+        },
+        {
+          "s": "KRAKEN:ETHEUR"
+        },
+        {
+          "s": "KRAKEN:ETHGBP"
+        },
+        {
+          "s": "KRAKEN:ETHJPY"
+        },
+        {
+          "s": "POLONIEX:ETHBTC"
+        },
+       
+      ],
+      "title": "Ethereum"
+    },
+
+    {
+      "title_raw": "Bitcoin Cash",
+      "symbols": [
+        {
+          "s": "COINBASE:BCHUSD"
+        },
+        {
+          "s": "BITSTAMP:BCHEUR"
+        },
+        
+        {
+          "s": "POLONIEX:BCHBTC"
+        },
+        {
+          "s": "HITBTC:BCHETH"
+        },
+        {
+          "s": "WEX:BCHLTC"
+        }
+      ],
+      "title": "Bitcoin Cash"
     }
   ]
   });

@@ -71,6 +71,7 @@
       ],
       "title": "Bitcoin"
     },
+    
     {
       "title_raw": "Ripple",
       "symbols": [
