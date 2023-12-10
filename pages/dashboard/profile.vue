@@ -74,7 +74,7 @@
                                                   
                                                     <div class="d-flex align-items-center mt-2">
                                                         <div class="flex-1">
-                                                            <h6 class="text-primary mb-0">Birthday :</h6>
+                                                            <h6 class="text-primary mb-0">Date Of Birth :</h6>
                                                             <input name="birthday" type="text" class="form-control ps-2"  
                                                             :placeholder="birthday?`${birthday}`: 'No Date Of Birth Uploded Yet'" disabled>
                                                         </div>
@@ -83,8 +83,23 @@
                                                         <div class="flex-1">
                                                             <h6 class="text-primary mb-0">Address :</h6>
                                                             <input name="address" type="text" class="form-control ps-2"  
-                                                            :placeholder="address?`${address}`: 'No Address Uploded Yet'" disabled>
+                                                            :placeholder="address?`${address}`: 'No Resident Address Uploded Yet'" disabled>
 
+                                                        </div>
+                                                    </div>
+                                                    <div class="d-flex align-items-center mt-2">
+                                                        <div class="flex-1">
+                                                            <h6 class="text-primary mb-0">Country :</h6>
+                                                            <input name="address" type="text" class="form-control ps-2"  
+                                                            :placeholder="country?`${country}`: 'No Country Name Uploded Yet'" disabled>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="d-flex align-items-center mt-2">
+                                                        <div class="flex-1">
+                                                            <h6 class="text-primary mb-0">Zip Code :</h6>
+                                                            <input name="number"  type="text" class="form-control ps-2"  
+                                                            :placeholder="zipCode?`${zipCode}`: 'No Zip Code Uploded Yet'" disabled>
                                                         </div>
                                                     </div>
                                                     <div class="d-flex align-items-center mt-2">
@@ -146,6 +161,8 @@ const name = ref('')
 const email = ref('')
 const birthday = ref('')
 const address = ref('')
+const country = ref('')
+const zipCode = ref('')
 const number = ref('')
 const document = ref('');
 
@@ -154,7 +171,9 @@ onMounted(()=>{
     name.value = store.user.name
     email.value = store.user.email
     birthday.value = store.user.birthday
-    address.value = store.user.country
+    address.value = store.user.address
+    country.value = store.user.country
+    zipCode.value = store.user.zipCode
     number.value = store.user.phoneNumber
     document.value = store.user.idFile
 })

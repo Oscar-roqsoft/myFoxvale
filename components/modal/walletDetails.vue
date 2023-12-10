@@ -12,6 +12,7 @@
                 
                    <div class="img">
                        <qrcode-vue :value="store.selectedWalletName.value" :size="size" level="H" />
+                       <!-- <img :src="qrcode" alt="QR Code" /> -->
                    </div>
                    <input class="form-control ps-4 w-100" type="type" v-model.trim="store.selectedWalletName.value" disabled/>
                    <hr class="bg-dark w-100">
@@ -43,6 +44,8 @@
 import QrcodeVue from 'qrcode.vue'
 import {useStore} from '@/stores/index'
 import {baseURL} from '@/composables/mixins'
+// import { useQRCode } from '@vueuse/integrations/useQRCode'
+
 
 const store = useStore()
 const emits = defineEmits()
@@ -65,8 +68,9 @@ const isVisible = ref(true)
 
 // console.log('child',store.selectedWalletName.name.toLowerCase())
 
+// const text = ref(store.selectedWalletName.value)
 
-
+// const qrcode = useQRCode(text)
 
 const { copy,copied, isSupported } = useClipboard({ btcAddress })
 
@@ -184,6 +188,7 @@ i {
 
 .img{
     width: 160px;
+    margin-bottom:10px;
 }
 
 

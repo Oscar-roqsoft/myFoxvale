@@ -7,12 +7,9 @@
   
       <div class="tradingview-widget-copyright">
   
-        <a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank">
-        </a> 
+       </div>
   
     </div>
-  
-  </div>
 
 </template>
 

@@ -173,194 +173,64 @@
       
         <!-- Price start -->
         <section class="section">
-            <div class="container place-items-center">
-                <div class="row justify-content-center">
-                    <div class="col-12 text-center">
-                        <div class="section-title mb-4 pb-2">
-                            <h4 class="title mb-4">ASSET HOSTING BUNDLES</h4>
-                            <!-- <p class="text-muted para-desc mb-0 mx-auto">.</p> -->
-                        </div>
-                    </div><!--end col-->
-                </div><!--end row-->
+                            <div class="container place-items-center" >
+                               
 
-                <div class="row ">
+                                <div class="row ">
                    
                     
-                    <div class="col-lg-3 col-md-6 col-12 mt-4 pt-2">
-                        <div class="card pricing pricing-primary business-rate shadow border-0 rounded">
-                            <div class="ribbon ribbon-right ribbon-warning overflow-hidden"><span class="text-center d-block shadow small h6">Best</span></div>
-                            <div class="card-body">
-                                <h6 class="title name  text-uppercase mb-4">Premium</h6>
-                                <div class="d-flex mb-4">
-                                    <span class="h1 mb-0 text-warning"><i data-feather="star" class="icons"></i></span>
-                                    <span class=" h1 mb-0 text-warning"><i data-feather="star" class="icons"></i></span>
-                                    <span class="h1 mb-0 text-warning"><i data-feather="star" class="icons"></i></span>
-                                    <span class="h1 mb-0 text-warning"><i data-feather="star" class="icons"></i></span>
-                                    <span class=" h1 mb-0 text-warning"><i data-feather="star" class="icons"></i></span>
-                                </div>
+                                    <div class="col-lg-3 col-md-6 col-12 mt-4 pt-2" v-for="item in pinia.subpackages">
+                                        <div 
+                                        class="card pricing pricing-primary business-rate shadow border-0 rounded">
+                                            <div  v-if="item.name==='Premium'"
+                                            class="ribbon ribbon-right ribbon-warning overflow-hidden"><span class="text-center d-block shadow small h6">Best</span></div>
+                                            <div class="card-body d-flex flex-column justify-content-center align-items-center">
+                                                <h6 class="title name  text-uppercase mb-4">{{item.name}}</h6>
+                                                
+                                                <div  class="d-flex mb-4">
+                                                        <span v-for="i in item.rating" class="h1 mb-0 text-color">
+                                                            <!-- <i  class="uil uil-star"></i> -->
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 16 16"><path fill="currentColor" d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327l4.898.696c.441.062.612.636.282.95l-3.522 3.356l.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/></svg>
+                                                        </span>
+                                                </div>
+                
+                                                <ul class="list-unstyled d-flex mb-0 ps-0">
+                                                    <li class="h6 text-muted mb-0"><span class="icon h5 me-2">
+                                                        </span>${{item.minPrice}}</li>
+                                                    <li class="h6 text-muted mb-0"><span class="icon h5 me-2">
+                                                        </span>-</li>
+                                                    <li class="h6 text-muted mb-0"><span class="icon h5 me-2">
+                                                        </span>${{item.maxPrice}}</li>
+                                                </ul>
+                
+                                                <ul class="list-unstyled d-flex mb-0 ps-0">
+                                                    <li class="h6 text-muted mb-0"><span class="icon h5 me-2">
+                                                        </span>{{item.returnOfInvestment}}%</li>
+                                                    <li class="h6 text-muted mb-0"><span class="icon h5 me-2">
+                                                        </span>ROI</li>
+                                                    <li class="h6 text-muted mb-0"><span class="icon h5 me-2">
+                                                        </span>(weekly)</li>
+                                                </ul>
+                
+                                                 <div class="mt-4">
+                                                     <button @click.prevent="navigateTo(`/dashboard/subscription/${item_id}`)" 
+                                                     class="btn btn-primary mt-2" :disabled="pinia.user.isVerified">Get Started</button>
+                                                 </div>
+                                            </div>
+                                        </div>
+                                    </div><!--end col-->
+                                    
+                                    
+                                   
+                                </div><!--end row-->
 
-                                <ul class="list-unstyled d-flex mb-0 ps-0">
-                                    <li class="h6 text-muted mb-0"><span class="icon h5 me-2">
-                                        </span>$50,000</li>
-                                    <li class="h6 text-muted mb-0"><span class="icon h5 me-2">
-                                        </span>-</li>
-                                    <li class="h6 text-muted mb-0"><span class="icon h5 me-2">
-                                        </span>$100,000</li>
-                                </ul>
 
-                                <ul class="list-unstyled d-flex mb-0 ps-0">
-                                    <li class="h6 text-muted mb-0"><span class="icon h5 me-2">
-                                        </span>10%</li>
-                                    <li class="h6 text-muted mb-0"><span class="icon h5 me-2">
-                                        </span>ROI</li>
-                                    <li class="h6 text-muted mb-0"><span class="icon h5 me-2">
-                                        </span>(weekly)</li>
-                                </ul>
+                            </div><!--end container-->
+                            
+                          
 
-
-                               
-                                <a href="javascript:void(0)" class="btn btn-primary mt-4">Try It Now</a>
-                            </div>
-                        </div>
-                    </div><!--end col-->
-                    
-                    
-                    <div class="col-lg-3 col-md-6 col-12 mt-4 pt-2">
-                        <div class="card pricing pricing-primary business-rate shadow bg-light border-0 rounded">
-                            <div class="card-body">
-                                <h6 class="title name fw-bold text-uppercase mb-4">Deluxe</h6>
-                                <div class="d-flex mb-4">
-                                    <span class="h1 mb-0 text-warning"><i data-feather="star" class="icons"></i></span>
-                                    <span class=" h1 mb-0 text-warning"><i data-feather="star" class="icons"></i></span>
-                                    <span class="h1 mb-0 text-warning"><i data-feather="star" class="icons"></i></span>
-                                </div>
-                                
-                                <ul class="list-unstyled d-flex mb-0 ps-0">
-                                    <li class="h6 text-muted mb-0"><span class="icon h5 me-2">
-                                    </span>$10,000</li>
-                                    <li class="h6 text-muted mb-0"><span class="icon h5 me-2">
-                                    </span>-</li>
-                                    <li class="h6 text-muted mb-0"><span class="icon h5 me-2">
-                                    </span>$49,999</li>
-                                </ul>
-                                
-                                <ul class="list-unstyled d-flex mb-0 ps-0">
-                                    <li class="h6 text-muted mb-0"><span class="icon h5 me-2">
-                                    </span>7.5%</li>
-                                    <li class="h6 text-muted mb-0"><span class="icon h5 me-2">
-                                    </span>ROI</li>
-                                    <li class="h6 text-muted mb-0"><span class="icon h5 me-2">
-                                    </span>(weekly)</li>
-                                </ul>
-                                
-                                <a  class="btn btn-primary mt-4">Get Started</a>
-                            </div>
-                        </div>
-                    </div><!--end col-->
-
-                    <div class="col-lg-3 col-md-6 col-12 mt-4 pt-2">
-                        <div class="card pricing pricing-primary business-rate shadow border-0 rounded">
-                            <!-- <div class="ribbon ribbon-right ribbon-warning overflow-hidden"><span class="text-center d-block shadow small h6">Best</span></div> -->
-                            <div class="card-body">
-                                <h6 class="title name  text-uppercase mb-4">Standard</h6>
-                                <div class="d-flex mb-4">
-                                    <span class="h1 mb-0 text-warning"><i data-feather="star" class="icons"></i></span>
-                                    <span class=" h1 mb-0 text-warning"><i data-feather="star" class="icons"></i></span>
-                                </div>
-    
-                                <ul class="list-unstyled d-flex mb-0 ps-0">
-                                    <li class="h6 text-muted mb-0"><span class="icon h5 me-2">
-                                        </span>$1,000</li>
-                                    <li class="h6 text-muted mb-0"><span class="icon h5 me-2">
-                                        </span>-</li>
-                                    <li class="h6 text-muted mb-0"><span class="icon h5 me-2">
-                                        </span>$9,999</li>
-                                </ul>
-    
-                                <ul class="list-unstyled d-flex mb-0 ps-0">
-                                    <li class="h6 text-muted mb-0"><span class="icon h5 me-2">
-                                        </span>5%</li>
-                                    <li class="h6 text-muted mb-0"><span class="icon h5 me-2">
-                                        </span>ROI</li>
-                                    <li class="h6 text-muted mb-0"><span class="icon h5 me-2">
-                                        </span>(weekly)</li>
-                                </ul>
-    
-    
-                               
-                                <a  class="btn btn-primary mt-4">Get Started</a>
-                            </div>
-                        </div>
-                    </div><!--end col-->
-                </div><!--end row-->
-            </div><!--end container-->
-
-            <div class="container mt-100 mt-60">
-                <div class="row justify-content-center">
-                    <div class="col-12 text-center">
-                        <div class="section-title mb-4 pb-2">
-                            <h4 class="title mb-4">See everything about your 
-                                <span class="text-primary">Foxvale</span></h4>
-                            <p class="text-muted para-desc mx-auto mb-0">Start working with 
-                                <span class="text-primary fw-bold">Foxvale</span> 
-                                that can provide everything you need to generate 
-                                massive profitable investment</p>
-                        </div>
-                    </div><!--end col-->
-                </div><!--end row-->
-
-                <div class="row" id="counter">
-                    <div class="col-md-3 col-6 mt-4 pt-2">
-                        <div class="counter-box text-center">
-                            <img src="/images/illustrator/Asset190.svg" class="avatar avatar-small" alt="">
-                            <h2 class="mb-0 mt-4"><span class="counter-value" data-target="45000">11000</span>$</h2>
-                            <h6 class="counter-head text-muted">Investment</h6>
-                        </div><!--end counter box-->
-                    </div>
-
-                    <div class="col-md-3 col-6 mt-4 pt-2">
-                        <div class="counter-box text-center">
-                            <img src="/images/illustrator/Asset189.svg" class="avatar avatar-small" alt="">
-                            <h2 class="mb-0 mt-4"><span class="counter-value" data-target="9">1</span>+</h2>
-                            <h6 class="counter-head text-muted">Awards</h6>
-                        </div><!--end counter box-->
-                    </div>
-
-                    <div class="col-md-3 col-6 mt-4 pt-2">
-                        <div class="counter-box text-center">
-                            <img src="/images/illustrator/Asset186.svg" class="avatar avatar-small" alt="">
-                            <h2 class="mb-0 mt-4"><span class="counter-value" data-target="48002">12050</span>$</h2>
-                            <h6 class="counter-head text-muted">Profitability</h6>
-                        </div><!--end counter box-->
-                    </div>
-
-                    <div class="col-md-3 col-6 mt-4 pt-2">
-                        <div class="counter-box text-center">
-                            <img src="/images/illustrator/Asset187.svg" class="avatar avatar-small" alt="">
-                            <h2 class="mb-0 mt-4"><span class="counter-value" data-target="11">3</span>%</h2>
-                            <h6 class="counter-head text-muted">Growth</h6>
-                        </div><!--end counter box-->
-                    </div>
-                </div><!--end row-->
-            </div><!--end container-->
-
-            <div class=" my-md-5  my-4 pt-2  justify-content-center">
-                <div class="col-12 text-center">
-                    <div class="section-title">
-                        <h4 class="title mb-4">Have Question ? Get in touch!</h4>
-                        <p class="text-muted para-desc mx-auto mb-0">Start working with 
-                                <span class="text-primary fw-bold">Foxvale</span> 
-                                that can provide everything you need to generate 
-                                massive profitable investment
-                        </p>
-                        
-                            <a href="#" class="btn btn-primary mt-4">
-                            <i class="uil uil-phone"></i> Contact us</a>
-                    </div>
-                </div><!--end col-->
-            </div><!--end row-->
         </section><!--end section-->
-        <!-- Price End -->
+            <!-- Price End -->
 
         <!-- Shape Start -->
         <div class="position-relative">
@@ -379,8 +249,32 @@
 
 </template>
 
+<script setup>
+import {useStore} from "@/stores/index"
 
+const pinia = useStore()
 
+const data = await fetch(`${baseURL}/package/packages-list`,{
+   method: "GET",
+   headers: {
+        "Content-Type":"application/json",
+        "token": `Bearer ${pinia.user.accessToken}`
+    },
+}).then(res=>res.json());
+
+const packageInfo =  data.data.packages;
+pinia.storesubPackage(packageInfo);
+</script>
+
+<style scoped>
+.text-color{
+    color:darkorange
+}
+.text-size{
+    font-size: small;
+}
+
+</style>
 
 
 

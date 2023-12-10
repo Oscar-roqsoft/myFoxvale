@@ -124,23 +124,10 @@ console.log(selectedPackage);
 
 const subscribe = async()=>{
     isloading.value = true
-    if(selectedPackage.name =='Premium' ){
-        if(!(amountVal.value >= 50000)){
+    if(selectedPackage.name){
+        if(!(amountVal.value >= selectedPackage.minPrice &&  amountVal.value <= selectedPackage.maxPrice)){
             isloading.value = false
             return console.log('Premium failed')
-        }
-        return  
-    }
-    if(selectedPackage.name =='Deluxe' ){
-        if(!(amountVal.value >= 10000 && amountVal.value <= 49999)){
-            isloading.value = false
-            return console.log('Deluxe failed')
-        }
-    }
-    if(selectedPackage.name =='Standard' ){
-        if(!(amountVal.value >= 100 && amountVal.value <= 9999)){
-            isloading.value = false
-            return console.log('Standard failed')
         }
     }
 
@@ -170,9 +157,7 @@ const subscribe = async()=>{
     
             navigateTo('/dashboard/subscription')
            return
-        }
-
-        if(pinia.userBalance.ethWallet.balance >= amountVal.value){
+        }else if(pinia.userBalance.ethWallet.balance >= amountVal.value){
            const ethdata = await fetch(`${baseURL}/subscription/subscribe-user/eth`,{
               method:"POST",
               headers: {
@@ -190,9 +175,7 @@ const subscribe = async()=>{
     
             navigateTo('/dashboard/subscription')
            return
-        }
-
-        if(pinia.userBalance.usdtWallet.balance >= amountVal.value){
+        }else if(pinia.userBalance.usdtWallet.balance >= amountVal.value){
            const usdtdata = await fetch(`${baseURL}/subscription/subscribe-user/usdt`,{
               method:"POST",
               headers: {
@@ -210,16 +193,15 @@ const subscribe = async()=>{
     
             navigateTo('/dashboard/subscription')
            return
+        }else{
+            isloading.value = false
+            alert('Insufficient Balance')
+            navigateTo('/dashboard/deposit')
         }
             
         }catch(e){
             console.log(e)
         }
 
-
-  
-     
-    alert("You don't have Enough Balance")
-    navigateTo('/dashboard/subscription')
 }
 </script>

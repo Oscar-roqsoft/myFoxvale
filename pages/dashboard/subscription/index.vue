@@ -24,9 +24,10 @@
                                     <li class="breadcrumb-item text-capitalize"><nuxt-link to="/dashboard">Foxvale</nuxt-link></li>
                                     <li class="breadcrumb-item text-capitalize active" aria-current="page">Pricing</li>
                                 </ul>
+                                <span v-if="pinia.user.isVerified" class="text-sm text-size text-danger">Please Verify Your Account To Get Started</span>
                             </nav>
                         </div>
-                    
+                        
                         
                           
                         <!-- Price start -->
@@ -42,12 +43,13 @@
                                         class="card pricing pricing-primary business-rate shadow border-0 rounded">
                                             <div  v-if="item.name==='Premium'"
                                             class="ribbon ribbon-right ribbon-warning overflow-hidden"><span class="text-center d-block shadow small h6">Best</span></div>
-                                            <div class="card-body">
+                                            <div class="card-body d-flex flex-column justify-content-center align-items-center">
                                                 <h6 class="title name  text-uppercase mb-4">{{item.name}}</h6>
                                                 
                                                 <div  class="d-flex mb-4">
-                                                        <span v-for="i in item.rating" class="h1 mb-0 text-warning">
-                                                            <i  class="uil uil-star"></i>
+                                                        <span v-for="i in item.rating" class="h1 mb-0 text-color">
+                                                            <!-- <i  class="uil uil-star"></i> -->
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 16 16"><path fill="currentColor" d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327l4.898.696c.441.062.612.636.282.95l-3.522 3.356l.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/></svg>
                                                         </span>
                                                 </div>
                 
@@ -69,9 +71,10 @@
                                                         </span>(weekly)</li>
                                                 </ul>
                 
-                
-                                               
-                                                <a @click.prevent="navigateTo(`/dashboard/subscription/${item._id}`)" class="btn btn-primary mt-4">Get Started</a>
+                                                 <div class="mt-4">
+                                                     <button @click.prevent="navigateTo(`/dashboard/subscription/${item._id}`)" 
+                                                     class="btn btn-primary mt-2" :disabled="pinia.user.isVerified">Get Started</button>
+                                                 </div>
                                             </div>
                                         </div>
                                     </div><!--end col-->
@@ -110,7 +113,7 @@ import { storeToRefs } from 'pinia';
 definePageMeta({
     layout:"custom"
 })
-
+const message = ref("")
 const isVisible = ref(true)
 const pinia = useStore()
 
@@ -128,5 +131,15 @@ pinia.storesubPackage(packageInfo);
 
 
 
-
 </script>
+
+
+<style scoped>
+.text-color{
+    color:darkorange
+}
+.text-size{
+    font-size: small;
+}
+
+</style>

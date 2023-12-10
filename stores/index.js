@@ -136,7 +136,7 @@ export const useStore = defineStore('user',()=> {
          subpackages.value = []
          userPackages.value = []
          getUserTransactions.value = []
-         adminGetSubscribers = []
+         adminGetSubscribers.value = []
         navigateTo('/login')
     }
 

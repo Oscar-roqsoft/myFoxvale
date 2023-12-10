@@ -48,7 +48,7 @@
                                             <div class="row mt-4">
                                                 <div class="col-md-6">
                                                     <div class="mb-3">
-                                                        <label class="form-label">Name</label>
+                                                        <label class="form-label">Full Name</label>
                                                         <div class="form-icon position-relative">
                                                             <input name="name" id="first" type="text"
                                                              class="form-control ps-5"  :placeholder="store.user.name">
@@ -58,7 +58,7 @@
                                                
                                                 <div class="col-md-6">
                                                     <div class="mb-3">
-                                                        <label class="form-label">Your Email</label>
+                                                        <label class="form-label"> Email Address</label>
                                                         <div class="form-icon position-relative">
                                                             <i data-feather="mail" class="fea icon-sm icons"></i>
                                                             <input name="email" id="email" type="email" 
@@ -68,7 +68,7 @@
                                                 </div><!--end col-->
                                                 <div class="col-md-6">
                                                     <div class="mb-3">
-                                                        <label class="form-label">Birthday</label>
+                                                        <label class="form-label">Date Of Birth</label>
                                                         <div class="form-icon position-relative">
                                                             <input  id="occupation" type="date" 
                                                             class="form-control ps-5" v-model.trim="birthday" :placeholder="store.user.birthday?store.user.birthday :'DD/MM/YY'">
@@ -77,13 +77,31 @@
                                                 </div><!--end col-->
                                                 <div class="col-md-6">
                                                     <div class="mb-3">
-                                                        <label class="form-label">Address</label>
+                                                        <label class="form-label">Resident Address</label>
                                                         <div class="form-icon position-relative">
                                                             <input name="name" id="address" type="text" class="form-control ps-5" 
-                                                            v-model.trim="address" :placeholder="store.user.country ?store.user.country :'Address '">
+                                                            v-model.trim="address" :placeholder="store.user.address?store.user.address:'Address '">
                                                         </div>
                                                     </div> 
                                                 </div><!--en d col-->
+                                                <div class="col-md-6">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Country</label>
+                                                        <div class="form-icon position-relative">
+                                                            <input name="name" id="country" type="text" class="form-control ps-5" 
+                                                            v-model.trim="country" :placeholder="store.user.country ?store.user.country :'Country '">
+                                                        </div>
+                                                    </div> 
+                                                </div><!--en d col-->
+                                                <div class="col-md-6">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Zip Code</label>
+                                                        <div class="form-icon position-relative">
+                                                            <input  name="number" id="number" type="number" class="form-control ps-5" 
+                                                            v-model.trim="zipCode" :placeholder="store.user.zipCode ?store.user.zipCode :'Zip Code :'">
+                                                        </div>
+                                                    </div> 
+                                                </div><!--end col-->
                                                 <div class="col-md-6">
                                                     <div class="mb-3">
                                                         <label class="form-label">Phone No</label>
@@ -164,9 +182,9 @@ const profileImg = ref(null);
 
 
 const birthday = ref("") 
-
-
 const address = ref("")
+const country = ref("")
+const zipCode = ref("")
 const phoneNo = ref("")
 
 
@@ -197,12 +215,16 @@ const submitUserUpdate = async()=>{
 
     if(!birthday.value) return message.value = "Your date of birth is Required"
     if(!address.value) return message.value = "address in Required"
+    if(!country.value) return message.value = "country in Required"
+    if(!zipCode.value) return message.value = "zip code is Required"
     if(!phoneNo.value) return message.value = "Your Mobile Number is Required"
 
     const profileUserUpdateInfo = {
         profileImage: image_url,
         birthday: birthday.value,
-        country: address.value,
+        address: address.value,
+        country: country.value,
+        zipCode: zipCode.value,
         phoneNumber: phoneNo.value,
         idFile : document_url,
     }

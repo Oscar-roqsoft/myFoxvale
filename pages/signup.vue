@@ -35,7 +35,7 @@
                                                 </div>
                                             </div>
                                         </div><!--end col-->
-
+                                        
                                         <div class="col-md-12">
                                             <div class="mb-3">
                                                 <label class="form-label">Your Email <span class="text-danger">*</span></label>
@@ -45,13 +45,23 @@
                                                 </div>
                                             </div>
                                         </div><!--end col-->
-
+                                        
                                         <div class="col-md-12">
                                             <div class="mb-3">
                                                 <label class="form-label">Password <span class="text-danger">*</span></label>
                                                 <div class="form-icon position-relative">
                                                     <input type="password" class="form-control ps-5" v-model.trim="password"
                                                     placeholder="Password" required>
+                                                </div>
+                                            </div>
+                                        </div><!--end col-->
+
+                                        <div class="col-md-6">
+                                            <div class="mb-3"> 
+                                                <label class="form-label">Referral Link (Optional) <span class="text-danger">*</span></label>
+                                                <div class="form-icon position-relative">
+                                                    <input type="text" class="form-control ps-5" v-model.trim="referralLink"
+                                                    placeholder="Referral Link" name="s" >
                                                 </div>
                                             </div>
                                         </div><!--end col-->
@@ -107,6 +117,7 @@
     const lastName = ref("")
     const email = ref("")
     const password = ref("")
+    const referralLink = ref("")
 
     const isLoading =ref(false)
 
