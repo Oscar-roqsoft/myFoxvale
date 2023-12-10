@@ -227,6 +227,55 @@
 
                             </div><!--end container-->
                             
+                            <div class="container mt-100 mt-60">
+                    <div class=" justify-content-center">
+                        <div class="col-12 text-center">
+                            <div class="section-title mb-4 pb-2">
+                                <h4 class="title mb-4">See everything about your 
+                                    <span class="text-primary">Foxvale</span></h4>
+                                <p class="text-muted para-desc mx-auto mb-0">Start working with 
+                                    <span class="text-primary fw-bold">Foxvale</span> 
+                                    that can provide everything you need to generate 
+                                    massive profitable investment</p>
+                            </div>
+                        </div><!--end col-->
+                    </div><!--end row-->
+
+                    <div class="row" id="counter">
+                        <div class="col-md-3 col-6 mt-4 pt-2">
+                            <div class="counter-box text-center">
+                                <img src="/images/illustrator/Asset190.svg" class="avatar avatar-small" alt="">
+                                <h2 class="mb-0 mt-4"><span class="counter-value" data-target="45000">11000</span>$</h2>
+                                <h6 class="counter-head text-muted">Investment</h6>
+                            </div><!--end counter box-->
+                        </div>
+
+                        <div class="col-md-3 col-6 mt-4 pt-2">
+                            <div class="counter-box text-center">
+                                <img src="/images/illustrator/Asset189.svg" class="avatar avatar-small" alt="">
+                                <h2 class="mb-0 mt-4"><span class="counter-value" data-target="9">1</span>+</h2>
+                                <h6 class="counter-head text-muted">Awards</h6>
+                            </div><!--end counter box-->
+                        </div>
+
+                        <div class="col-md-3 col-6 mt-4 pt-2">
+                            <div class="counter-box text-center">
+                                <img src="/images/illustrator/Asset186.svg" class="avatar avatar-small" alt="">
+                                <h2 class="mb-0 mt-4"><span class="counter-value" data-target="48002">12050</span>$</h2>
+                                <h6 class="counter-head text-muted">Profitability</h6>
+                            </div><!--end counter box-->
+                        </div>
+
+                        <div class="col-md-3 col-6 mt-4 pt-2">
+                            <div class="counter-box text-center">
+                                <img src="/images/illustrator/Asset187.svg" class="avatar avatar-small" alt="">
+                                <h2 class="mb-0 mt-4"><span class="counter-value" data-target="11">3</span>%</h2>
+                                <h6 class="counter-head text-muted">Growth</h6>
+                            </div><!--end counter box-->
+                        </div>
+                    </div><!--end row-->
+                </div><!--end container-->
+
                           
 
         </section><!--end section-->
@@ -275,6 +324,7 @@ pinia.storesubPackage(packageInfo);
 }
 
 </style>
+
 
 
 
