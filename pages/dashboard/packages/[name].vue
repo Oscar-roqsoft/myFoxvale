@@ -83,6 +83,17 @@
                                 </div>
                             </div><!--end col-->
                         </div><!--end row-->
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <div class="form-icon d-flex text-center">
+                                        <input id="first" type="checkbox" class="" :value="selectedPackage.comingSoon" v-model="selectedPackage.comingSoon"  
+                                        placeholder="Enter Number Of Rating Star">
+                                        <span class="mx-2">Coming Soon</span>
+                                    </div>
+                                </div>
+                            </div><!--end col-->
+                        </div><!--end row-->
 
                         <div class="row">
                             <div class="col-sm-12">
