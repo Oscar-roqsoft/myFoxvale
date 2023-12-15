@@ -169,8 +169,9 @@ const approvedwithdrawal = async(userr,walletType)=>{
         },
         body:JSON.stringify(info1)
       })
-
+      
       console.log('approved')
+      reloadNuxtApp()
 
     }catch(e){
         console.log(e)
@@ -195,6 +196,7 @@ const rejectwithdrawal = async(userr,walletType)=>{
       })
 
       console.log(btcdata.data.withdrawal.isApproved)
+      reloadNuxtApp()
 
     }catch(e){
         console.log(e)

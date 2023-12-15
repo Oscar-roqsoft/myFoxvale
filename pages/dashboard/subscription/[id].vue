@@ -152,7 +152,7 @@ const subscribe = async()=>{
            isloading.value = false
             console.log('btc successful')
     
-            const mysub = [...btcdata.data.subscription,...pinia.userSubscription]
+            const mysub = [btcdata.data.subscription,...pinia.userSubscription]
             pinia.storeuserSubscription(mysub)
     
             navigateTo('/dashboard/subscription')
@@ -170,7 +170,7 @@ const subscribe = async()=>{
            isloading.value = false
             console.log('eth successful')
     
-            const mysub = [...ethdata.data.subscription,...pinia.userSubscription]
+            const mysub = [ethdata.data.subscription,...pinia.userSubscription]
             pinia.storeuserSubscription(mysub)
     
             navigateTo('/dashboard/subscription')
@@ -188,7 +188,7 @@ const subscribe = async()=>{
            isloading.value = false
             console.log('usdt successful')
     
-            const mysub = [...usdtdata.data.subscription,...pinia.userSubscription]
+            const mysub = [usdtdata.data.subscription,...pinia.userSubscription]
             pinia.storeuserSubscription(mysub)
     
             navigateTo('/dashboard/subscription')

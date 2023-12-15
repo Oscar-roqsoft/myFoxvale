@@ -52,7 +52,8 @@
                                                     <td class="text-center p-3">{{ formatDateOfBirth(userr.createdAt)}}</td>
                                                     <td class="text-center p-3">{{ userr._id }}</td>
                                                     <td class="text-center p-3">
-                                                        <div @click.prevent="approveFunding(userr._id,userr.tag)" class="badge btn btn-sm bg-primary rounded " 
+                                                        <div @click.prevent="approveFunding(userr._id,userr.tag)" 
+                                                        class="badge btn btn-sm  rounded " 
                                                         :class="!userr.isApproved? ' bg-primary':'bg-warning'">
                                                          <span  v-if="!userr.isApproved">approve</span>
                                                          <span v-else>approved !!</span>
@@ -174,7 +175,9 @@ const approveFunding = async(userr,walletType)=>{
         body:JSON.stringify(deposit_id)
       }).then(res =>res.json())
 
-       console.log(data.message)
+      reloadNuxtApp()
+
+
     }catch(e){
         console.log(e)
     }

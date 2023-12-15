@@ -59,11 +59,15 @@
                                                     <td class="text-center p-3">{{ formatDateOfBirth(userr.createdAt)}}</td>
                                                     <td class="text-center p-3">{{ userr._id }}</td>
                                                     <td class="text-center p-3">
-                                                        <div @click.prevent="approveFunding(userr._id,userr.tag)" class="badge btn btn-sm bg-primary rounded " 
+                                                        <a @click.prevent="approveFunding(userr._id,userr.tag,userr.isApproved)" 
+                                                        class="badge btn btn-sm  rounded " 
                                                         :class="!userr.isApproved? ' bg-primary':'bg-warning'">
-                                                         <span  v-if="!userr.isApproved">approve</span>
+                                                         
+                                                        <span   v-if="!userr.isApproved">
+                                                            approve
+                                                        </span>
                                                          <span v-else>approved !!</span>
-                                                        </div>
+                                                        </a>
                                                     </td>
                                                 </tr>
                                                 <!-- End -->
@@ -118,6 +122,7 @@ definePageMeta({
     layout:"custom"  
 })
 
+const isApproved = ref(false)
 const pinia = useStore()
 const isloading = ref(false)
 
@@ -168,14 +173,18 @@ const selectedname =  ref(null)
 //     transactionId:selectedWalletName._id
 // }
 
-const approveFunding = async(userr,walletType)=>{
+const approveFunding = async(userr,walletType,isUserApproved)=>{
+    // if(isUserApproved) return console.log('user already approved')
+    isloading.value = true
 
     const subscriber_id = {
         subscriptionId: userr
     }
     console.log(subscriber_id)
+    console.log(isUserApproved);
 
     try{
+        
       const data = await fetch(`${baseURL}/subscription/approve-subscription/${walletType}`,{
         method: 'PATCH',
         headers: {
@@ -184,25 +193,23 @@ const approveFunding = async(userr,walletType)=>{
         },
         body:JSON.stringify(subscriber_id)
       }).then(res=>res.json())
-
+      isloading.value = false
+      reloadNuxtApp()
       console.log(data.message)
-
+      console.log([data.data.subscription])
+      pinia.storeadminGetSubscribers([data.data.subscription,...pinia.adminGetSubscribers ]);
+      
+      
     }catch(e){
         console.log(e)
     }
-
-   
+// Insert your edited code here
+// Please fix
 }
 
-
-
-
-
-
-
 //pagination setup
-const userr = pinia.adminGetSubscribers
 
+const userr = ref(pinia.adminGetSubscribers)
 // Define per-page display
 const perPage = 10;
 
@@ -211,10 +218,10 @@ const currentPage = ref(1);
 
 
 const paginatedUsers = computed(() => {
-  return userr.slice(((currentPage.value - 1) * perPage), currentPage.value * perPage);
+  return userr.value.slice(((currentPage.value - 1) * perPage), currentPage.value * perPage);
 });
 
-const totalPages = ref(Math.ceil(userr.length / perPage));
+const totalPages = ref(Math.ceil(userr.value.length / perPage));
 const handlePageNextChange = () => {
   if (currentPage.value < totalPages.value) {
     currentPage.value++;
@@ -230,3 +237,12 @@ const handlePagePrevChange = () => {
 
 
 </script>
+
+
+<style scoped>
+.btn-size{
+    margin: 2px 0px !important;
+    height: 10px !important;
+    font-size: 11px !important;
+}
+</style>

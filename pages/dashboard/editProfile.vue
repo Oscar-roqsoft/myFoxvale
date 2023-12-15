@@ -113,7 +113,7 @@
                                                 </div><!--end col-->
                                                 <div class="col-md-12">
                                                     <div class="mb-3">
-                                                        <label class="form-label">Upload Document</label>
+                                                        <label class="form-label">Upload ID Document</label>
                                                         <div class="form-icon position-relative">
                                                             <!-- <i data-feather="" class="fea icon-sm icons"></i> -->
                                                             <input @input="handleDocumentChange($event)" type="file" class=" form-control"

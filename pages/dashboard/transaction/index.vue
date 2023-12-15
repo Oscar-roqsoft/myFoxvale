@@ -15,7 +15,7 @@
                     <div class="container-fluid">
                         <div class="layout-specing">
                             <div class="d-md-flex justify-content-between align-items-center">
-                                <h5 class="mb-0">Orders</h5>
+                                <h5 class="mb-0">My Subscriptions</h5>
     
                                 <nav aria-label="breadcrumb" class="d-inline-block">
                                     <ul class="breadcrumb bg-transparent rounded mb-0 p-0">
@@ -34,8 +34,8 @@
                                                     <th class="border-bottom p-3" style="min-width: 150px;">Name</th>
                                                     <th class="text-center border-bottom p-3" style="min-width: 100px;">Amount</th>
                                                     <th class="text-center border-bottom p-3" style="min-width: 150px;">date</th>
-                                                    <th class="text-center border-bottom p-3">Approved</th>
-                                                    <th class="text-center border-bottom p-3" >Rejected</th>
+                                                    <th class="text-center border-bottom p-3" style="min-width: 200px;">Investment Capital</th>
+                                                    <th class="text-center border-bottom p-3" style="min-width: 200px;" >Weekily ROI</th>
                                                     <!-- <th class="text-center border-bottom p-3">Actions</th> -->
                                                    
                                                 </tr>
@@ -52,8 +52,15 @@
                                                     </td>
                                                     <td class="text-center p-3">{{ userr.amount }}</td>
                                                     <td class="text-center p-3">{{ formatDateOfBirth(userr.createdAt) }}</td>
-                                                    <td class="text-center p-3">{{ userr.isApproved }}</td>
-                                                    <td class="text-center p-3">{{ userr.isRejected }}</td>
+                                                    <td class="text-center p-3"
+                                                    :class="!userr.isApproved?'text-danger':'text-primary'">
+                                                        <span v-if="!userr.isApproved">locked</span>
+                                                        <span v-else >unlocked</span>
+                                                    </td>
+                                                    <td class="text-center p-3" :class="userr.isPaid?'text-danger':'text-primary'">
+                                                        <span v-if="userr.isPaid">Unpaid</span>
+                                                        <span v-else >paid</span>
+                                                    </td>
                                                     <!-- <td class="text-center p-3">
                                                         <div class="badge btn btn-sm bg-primary rounded ">
                                                          approve

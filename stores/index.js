@@ -128,7 +128,7 @@ export const useStore = defineStore('user',()=> {
         user.value = [];
         userList.value = []
         packages.value = []
-        withdrawalDetails.value = null
+        withdrawalDetails.value = []
          userBalance.value = []
          adminGetUserFunding.value = []
          walletDetails.value = []
@@ -137,6 +137,7 @@ export const useStore = defineStore('user',()=> {
          userPackages.value = []
          getUserTransactions.value = []
          adminGetSubscribers.value = []
+         selectedWalletName.value = []
         navigateTo('/login')
     }
 
