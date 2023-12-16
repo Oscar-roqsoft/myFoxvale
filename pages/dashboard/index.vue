@@ -91,7 +91,8 @@
                                         <h6 class="text-white">Referral Link</h6>
 
                                           <div class="form-icon position-relative">
-                                            <input name="name" id="occupation" v-model.trim="referralLinkVal" type="text" class="form-control ps-5 "  disabled>
+                                            <input name="name" id="occupation" 
+                                            v-model.trim="referralLinkVal" type="text" class="form-control ps-2 "  disabled>
                                           </div>
                                           <button @click.prevent="copy(referralLinkVal)" class="btn btn-sm btn-warning mt-3">
                                             <span v-if='!copied'>Copy</span>
@@ -145,7 +146,8 @@ definePageMeta({
 
 const kycVisible = ref(true)
 const store = useStore()
-const referralLinkVal = ref('swxdtufycivughb;jn;ojo')
+const m = ref(store.user.referralId)
+const referralLinkVal = ref(`${baseURL}/register?ref=${m.value}`)
 const { copy,copied, isSupported } = useClipboard({ referralLinkVal })
 
 const closeKYC = ()=>{

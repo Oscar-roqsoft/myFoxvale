@@ -60,7 +60,7 @@
                                             <div class="mb-3"> 
                                                 <label class="form-label">Referral Link (Optional) <span class="text-danger">*</span></label>
                                                 <div class="form-icon position-relative">
-                                                    <input type="text" class="form-control ps-5" v-model.trim="referralLink"
+                                                    <input type="text" class="form-control ps-5" v-model.trim="refCode"
                                                     placeholder="Referral Link" name="s" >
                                                 </div>
                                             </div>
@@ -112,6 +112,7 @@
 
     const message =ref("")
        const pinia = useStore()
+
     // get user input values
     const firstName = ref("")
     const lastName = ref("")
@@ -120,6 +121,11 @@
     const referralLink = ref("")
 
     const isLoading =ref(false)
+
+    //get referral code from URL search
+    const searchParams = new URLSearchParams(window.location.search);
+    const refCode = searchParams.get('ref');
+    console.log(ref)
 
 
     const signup =async()=>{
