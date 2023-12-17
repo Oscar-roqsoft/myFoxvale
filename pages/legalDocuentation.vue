@@ -46,7 +46,7 @@
                         <div class="card shadow border-0 rounded">
                             <div class="card-body d-flex flex-wrap justify-content-center align-items-center">
                                 <div class="text-primary border m-2 p-2">
-                                    <a href="/REFUND AND RETURN POLICY.pdf uppercase" > Download No-Refund-Policy PDF</a>
+                                    <a href="/REFUND AND RETURN POLICY.pdf" > Download No-Refund-Policy PDF</a>
                                 </div>
                                 <div class="text-primary border m-2 p-2">
                                     <a href="/CONTRACT AGREEMENT NEW WITH COVER.pdf" > Download Contract-Agreement PDF</a>

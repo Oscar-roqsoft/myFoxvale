@@ -212,9 +212,12 @@
                                                         </span>(weekly)</li>
                                                 </ul>
                 
-                                                 <div class="mt-4">
-                                                     <button @click.prevent="navigateTo(`/dashboard/subscription/${item_id}`)" 
-                                                     class="btn btn-primary mt-2" :disabled="pinia.user.isVerified">Get Started</button>
+                                                <div class="mt-4">
+                                                     <button v-if="!item.comingSoon" @click.prevent="navigateTo(`/dashboard/subscription/${item._id}`)" 
+                                                     class="btn btn-primary mt-2" :disabled="pinia.user.isVerified">
+                                                     Get Started
+                                                    </button>
+                                                    <span v-else class="fs-5 rounded shadow text-warning border  p-2">Coming Soon</span>
                                                  </div>
                                             </div>
                                         </div>
