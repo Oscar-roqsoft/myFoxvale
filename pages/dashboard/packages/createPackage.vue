@@ -45,7 +45,8 @@
                                 <div class="mb-3">
                                     <label class="form-label">Minimum Package value</label>
                                     <div class="form-icon position-relative">
-                                        <input id="first" type="number" class="form-control ps-5" v-model.trim="minimumPackageValue"  placeholder="Enter Minimum Package value">
+                                        <input id="first" type="number" class="form-control ps-5" 
+                                        v-model.trim="minimumPackageValue"  placeholder="Enter Minimum Package value">
                                     </div>
                                 </div>
                             </div><!--end col-->
