@@ -57,15 +57,16 @@
                                                         <span v-if="!userr.isApproved">locked</span>
                                                         <span v-else >unlocked</span>
                                                     </td>
-                                                    <td class="text-center p-3" :class="userr.isPaid?'text-danger':'text-primary'">
-                                                        <span v-if="userr.isPaid">Unpaid</span>
+                                                    <td class="text-center p-3" :class="!userr.isFinalized?'text-danger':'text-primary'">
+                                                        <span v-if="!userr.isFinalized">Unpaid</span>
                                                         <span v-else >paid</span>
                                                     </td>
-                                                    <!-- <td class="text-center p-3">
-                                                        <div class="badge btn btn-sm bg-primary rounded ">
-                                                         approve
-                                                        </div>
-                                                    </td> -->
+                                                    <td class="text-center p-3">
+                                                        <button :disabled="userr.isFinalized" @click.prevent="navigateTo(`/dashboard/transaction/${userr._id}`)" 
+                                                        class="badge btn btn-sm bg-primary rounded ">
+                                                         upgrade
+                                                        </button>
+                                                    </td>
                                                    
                                                 </tr>
                                                 <!-- End -->

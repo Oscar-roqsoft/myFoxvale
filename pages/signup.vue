@@ -7,7 +7,7 @@
                 <div class="row align-items-center">
                     <div class="col-lg-7 col-md-6">
                         <div class="me-lg-5">   
-                            <img src="/images/user/signup.svg" class="img-fluid d-block mx-auto" alt="">
+                            <img src="/p5.jpg" class="img-fluid d-block mx-auto" alt="">
                         </div>
                     </div>
                     <div class="col-lg-5 col-md-6">
@@ -123,9 +123,9 @@
     const isLoading =ref(false)
 
     //get referral code from URL search
-    const searchParams = new URLSearchParams(window.location.search);
-    const refCode = searchParams.get('ref');
-    console.log(ref)
+    // const searchParams = new URLSearchParams(window.location.search);
+    // const refCode = searchParams.get('ref');
+    // console.log(ref)
 
 
     const signup =async()=>{

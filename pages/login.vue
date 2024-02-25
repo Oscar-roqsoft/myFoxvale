@@ -9,7 +9,7 @@
                 <div class="row align-items-center">
                     <div class="col-lg-7 col-md-6">
                         <div class="me-lg-5">   
-                            <img src="/images/user/login.svg" class="img-fluid d-block mx-auto" alt="">
+                            <img src="/p6.jpg" class="img-fluid  d-block mx-auto" alt="">
                         </div>
                     </div>
 

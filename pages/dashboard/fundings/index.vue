@@ -45,17 +45,17 @@
                                                    <td class="p-3">
                                                         <a href="#" class="text-primary">
                                                             <div class="d-flex align-items-center">
-                                                                <span class="ms-2">{{ userr.amount }}</span>
+                                                                <span class="ms-2">{{ userr?.amount }}</span>
                                                             </div>
                                                         </a>
                                                     </td>
-                                                    <td class="text-center p-3">{{ formatDateOfBirth(userr.createdAt)}}</td>
-                                                    <td class="text-center p-3">{{ userr._id }}</td>
+                                                    <td class="text-center p-3">{{ formatDateOfBirth(userr?.createdAt)}}</td>
+                                                    <td class="text-center p-3">{{ userr?._id }}</td>
                                                     <td class="text-center p-3">
-                                                        <div @click.prevent="approveFunding(userr._id,userr.tag)" 
+                                                        <div @click.prevent="approveFunding(userr?._id,userr?.tag)" 
                                                         class="badge btn btn-sm  rounded " 
-                                                        :class="!userr.isApproved? ' bg-primary':'bg-warning'">
-                                                         <span  v-if="!userr.isApproved">approve</span>
+                                                        :class="!userr?.isApproved? ' bg-primary':'bg-warning'">
+                                                         <span  v-if="!userr?.isApproved">approve</span>
                                                          <span v-else>approved !!</span>
                                                         </div>
                                                     </td>
@@ -74,7 +74,7 @@
                                 <!-- PAGINATION START -->
                                 <div class="col-12 mt-4">
                                     <div class="d-md-flex align-items-center text-center justify-content-between">
-                                        <span class="text-muted me-3">Showing 1 - 10 out of {{ userr.length + 1  }}</span>
+                                        <span class="text-muted me-3">Showing 1 - 10 out of {{ userr?.length + 1  }}</span>
                                         <ul class="pagination mb-0 justify-content-center mt-4 mt-sm-0">
                                             <li class="page-item"><a @click.prevent="handlePagePrevChange()" class="page-link"  aria-label="Previous">Prev</a></li>
                                             <li @click.prevent="currentPage=i" v-for="i in totalPages" :key="i" class="page-item" :class="i==currentPage?'active':''">
@@ -145,7 +145,7 @@ const ethdata = await fetch(`${baseURL}/user/get-pending-transactions/eth`,{
 
 
 console.log(btcdata.data.transactions)
-const usersfunding = [...btcdata.data.transactions,...usdtdata.data.transactions,...ethdata.data.transactions]
+const usersfunding = {...btcdata.data?.transactions,...usdtdata.data?.transactions,...ethdata.data?.transactions}
 console.log(usersfunding)
 pinia.storeAdminGetUserFunding(usersfunding)
 

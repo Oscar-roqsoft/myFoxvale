@@ -240,13 +240,13 @@ const submitUserUpdate = async()=>{
         body:JSON.stringify(profileUserUpdateInfo)
        }).then(res =>res.json())
 
-        console.log(data.message)
         console.log(data.data)
 
         let updatedUserInfo = {
             ...store.user,
             ...data.data.updatedUser
         };
+       
         store.storeUser(updatedUserInfo);
       
        isloading.value = false
