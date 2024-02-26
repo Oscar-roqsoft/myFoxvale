@@ -56,6 +56,7 @@ export const useStore = defineStore('user',()=> {
         user.value = payload;
         console.log(user.value)
     }
+
     const storeUserList = (payload)=>{
         userList.value = [...payload];
         userList.value.reverse(...userList.value)
@@ -74,6 +75,7 @@ export const useStore = defineStore('user',()=> {
     const storesubPackage = (payload)=>{
         subpackages.value = payload;
         console.log(subpackages.value)
+        subpackages.value.reverse(subpackages.value)
     }
 
     const storeUserPackages = (payload)=>{
