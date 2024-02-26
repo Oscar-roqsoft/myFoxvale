@@ -122,10 +122,10 @@
 
     const isLoading =ref(false)
 
-    //get referral code from URL search
-    // const searchParams = new URLSearchParams(window.location.search);
-    // const refCode = searchParams.get('ref');
-    // console.log(ref)
+    // get referral code from URL search
+    const searchParams = new URLSearchParams(window.location.search);
+    const refCode = searchParams.get('ref');
+    console.log(ref)
 
 
     const signup =async()=>{

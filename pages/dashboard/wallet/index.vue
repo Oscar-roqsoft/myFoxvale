@@ -38,17 +38,39 @@
                                             
                                             <div class="col-md-6">
                                                 
-                                                <ul class="list-group fs-4 text-white">
+                                                <ul class=" fs-4 text-white">
                                                     
-                                                    <li class="list-group-item bg-warning text-white">
-                                                       <span> <span>BTC:</span>{{ pinia.userBalance.btcWallet.balance }}</span>
+                                                    <li class="card p-3 text-white rounded shadow-md mb-4">
+                                                        <span style="font-size: 13px;color:black;font-style:italic">BTC Balance</span>
+                                                        <div >
+                                                            <img style="width: 24px;" src="/btc2.png"/>
+                                                            <span class="ms-2" style="font-size: 20px;color:black;font-weight: bolder;
+                                                            font-style:italic"> 
+                                                             {{ pinia.userBalance?.btcWallet?.balance }}.00
+                                                            </span>
+                                                        </div>
                                                     </li>
-                                                    <li class="list-group-item bg-primary text-white">
-                                                        <span><span>USDT:</span>{{ pinia.userBalance.usdtWallet.balance }}</span>
+                                                    <li class="card p-3 text-white rounded shadow-md mb-4">
+                                                        <span style="font-size: 13px;color:black;font-style:italic">USDT Balance</span>
+                                                        <div >
+                                                            <img style="width: 24px;" src="/usdt.png"/>
+                                                            <span class="ms-2" style="font-size: 20px;color:black;font-weight: bolder;
+                                                            font-style:italic"> 
+                                                             {{ pinia.userBalance?.usdtWallet?.balance }}.00
+                                                            </span>
+                                                        </div>
                                                     </li>
-                                                    <li class="list-group-item bg-success text-white">
-                                                        <span><span>ETH:</span>{{ pinia.userBalance.ethWallet.balance }}</span>
+                                                    <li class="card p-3 text-white rounded shadow-md mb-4">
+                                                        <span style="font-size: 13px;color:black;font-style:italic">ETH Balance</span>
+                                                        <div >
+                                                            <img style="width: 24px;" src="/eth2.png"/>
+                                                            <span class="ms-2" style="font-size: 20px;color:black;font-weight: bolder;
+                                                            font-style:italic"> 
+                                                                 {{ pinia.userBalance?.ethWallet?.balance }}.00
+                                                            </span>
+                                                        </div>
                                                     </li>
+                                                  
                                             
                                                 </ul>
 
@@ -100,6 +122,23 @@ function numberWithCommas(x) {
 }
  
 
+try{
+    const data = await fetch(`${baseURL}/user/get-user-balance/${store.user.id}`,{
+       method: "GET",
+       headers: {
+            "Content-Type":"application/json",
+            "token": `Bearer ${store.user.accessToken}`
+        },
+    }).then(res=>res.json());
+   
+    const balanceInfo =  data.data;
+
+    console.log(data.data)
+
+    store.storeUserBalance(balanceInfo);
+}catch(e){
+    console.log(e)
+}
 
 
 

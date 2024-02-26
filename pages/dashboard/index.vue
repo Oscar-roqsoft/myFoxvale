@@ -173,11 +173,11 @@ const btnLinkItems = [
         },
     }).then(res=>res.json());
    
-    const balanceInfo =  ref(data.data);
+    const balanceInfo = data.data;
 
     console.log(data.data)
 
-    store.storeUserBalance(balanceInfo.value);
+    store.storeUserBalance(balanceInfo);
 }catch(e){
     console.log(e)
 }
