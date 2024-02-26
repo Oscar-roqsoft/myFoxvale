@@ -31,12 +31,11 @@
                                         </ul>
                                      </nav>     
 
-                                    <div  class="body mt-5">
+                                    <div  class=" mt-5">
                                     <div class="row">
                                             
                                             <h5 class="text-dark">My Assets</h5>
                                             
-                                            <div class="col-md-6">
                                                 
                                                 <ul class=" fs-4 text-white">
                                                     
@@ -74,7 +73,6 @@
                                             
                                                 </ul>
 
-                                            </div>
             
                                 </div>
           

@@ -165,7 +165,7 @@ const approvedwithdrawal = async(userr,walletType)=>{
         method: 'PATCH',
         headers: {
             "Content-Type":"application/json",
-            "token":`Bearer ${adtoken}`
+            "token":`Bearer ${pinia.user.accessToken}`
         },
         body:JSON.stringify(info1)
       })
@@ -190,7 +190,7 @@ const rejectwithdrawal = async(userr,walletType)=>{
         method: 'PATCH',
         headers: {
             "Content-Type":"application/json",
-            "token":`Bearer ${adtoken}`
+            "token":`Bearer ${pinia.user.accessTokenn}`
         },
         body:JSON.stringify(info2)
       })
