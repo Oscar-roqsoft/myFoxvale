@@ -39,7 +39,7 @@
                                                 
                                                 <ul class=" fs-4 text-white">
                                                     
-                                                    <li class="card p-3 text-white rounded shadow-md mb-4">
+                                                    <!-- <li class="card p-3 text-white rounded shadow-md mb-4">
                                                         <span style="font-size: 13px;color:black;font-style:italic">BTC Balance</span>
                                                         <div >
                                                             <img style="width: 24px;" src="/btc2.png"/>
@@ -48,18 +48,19 @@
                                                              {{ pinia.userBalance?.btcWallet?.balance }}.00
                                                             </span>
                                                         </div>
-                                                    </li>
+                                                    </li> -->
                                                     <li class="card p-3 text-white rounded shadow-md mb-4">
                                                         <span style="font-size: 13px;color:black;font-style:italic">USDT Balance</span>
                                                         <div >
                                                             <img style="width: 24px;" src="/usdt.png"/>
                                                             <span class="ms-2" style="font-size: 20px;color:black;font-weight: bolder;
                                                             font-style:italic"> 
-                                                             {{ pinia.userBalance?.usdtWallet?.balance }}.00
+                                                             {{ pinia.userBalance?.usdtWallet?.balance + pinia.userBalance?.btcWallet?.balance + pinia.userBalance?.ethWallet?.balance}}.00
+                                                            
                                                             </span>
                                                         </div>
                                                     </li>
-                                                    <li class="card p-3 text-white rounded shadow-md mb-4">
+                                                    <!-- <li class="card p-3 text-white rounded shadow-md mb-4">
                                                         <span style="font-size: 13px;color:black;font-style:italic">ETH Balance</span>
                                                         <div >
                                                             <img style="width: 24px;" src="/eth2.png"/>
@@ -68,7 +69,7 @@
                                                                  {{ pinia.userBalance?.ethWallet?.balance }}.00
                                                             </span>
                                                         </div>
-                                                    </li>
+                                                    </li> -->
                                                   
                                             
                                                 </ul>
