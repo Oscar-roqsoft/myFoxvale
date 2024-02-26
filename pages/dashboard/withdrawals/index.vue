@@ -127,7 +127,7 @@ try{
     method: "GET",
     headers: {
         "Content-Type":"application/json",
-        "token":`Bearer ${adtoken}`
+        "token":`Bearer ${pinia.user.accessToken}`
     },
    }).then(res=>res.json())
 
@@ -135,7 +135,7 @@ try{
     method: "GET",
     headers: {
         "Content-Type":"application/json",
-        "token":`Bearer ${adtoken}`
+        "token":`Bearer ${pinia.user.accessToken}`
     },
    }).then(res=>res.json())
 
@@ -143,7 +143,7 @@ try{
     method: "GET",
     headers: {
         "Content-Type":"application/json",
-        "token":`Bearer ${adtoken}`
+        "token":`Bearer ${pinia.user.accessToken}`
     },
    }).then(res=>res.json())
 

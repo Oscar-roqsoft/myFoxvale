@@ -116,7 +116,7 @@ const createWallet =async()=>{
                 method: "POST",
                 headers: {
                 "Content-Type":"application/json",
-                 "token": `Bearer ${adtoken}`
+                 "token": `Bearer ${pinia.user.accessToken}`
                 },
                 body: JSON.stringify(walletInfo)
         }).then(res=>res.json());

@@ -163,7 +163,7 @@ const updatePackage = async()=>{
     method: "PATCH",
     headers: {
         "Content-Type":"application/json",
-        "token": `Bearer ${adtoken}`,
+        "token": `Bearer ${pinia.user.accessToken}`,
     },
 
     body: JSON.stringify(selectedPackage)

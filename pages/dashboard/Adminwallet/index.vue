@@ -102,7 +102,7 @@ try{
     const data = await fetch(`${baseURL}/get-account-details`,{
        method: "GET",
        headers: {
-            "token": `Bearer ${adtoken}`
+            "token": `Bearer ${pinia.user.accessToken}`
         },
     }).then(res=>res.json());
     

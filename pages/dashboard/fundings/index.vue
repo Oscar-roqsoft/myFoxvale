@@ -107,7 +107,7 @@
 <script setup>
 import {useStore}  from "@/stores/index";
 import {baseURL,formatDateOfBirth} from "@/composables/mixins";
-import {adtoken} from '@/composables/config'
+// import {adtoken} from '@/composables/config'
 definePageMeta({
     layout:"custom"  
 })
@@ -117,37 +117,49 @@ const isloading = ref(false)
 
 
 
+try{
 
-const btcdata = await fetch(`${baseURL}/user/get-pending-transactions/btc`,{
-    method: "GET",
-    headers: {
-        "Content-Type":"application/json",
-        "token":`Bearer ${adtoken}`
-    },
+    const btcdata = await fetch(`${baseURL}/user/get-pending-transactions/btc`,{
+        method: "GET",
+        headers: {
+            "Content-Type":"application/json",
+            "token":`Bearer ${pinia.user.accessToken}`
+        },
+    
+    }).then(res=>res.json());
 
-}).then(res=>res.json());
-const usdtdata = await fetch(`${baseURL}/user/get-pending-transactions/usdt`,{
-    method: "GET",
-    headers: {
-        "Content-Type":"application/json",
-        "token":`Bearer ${adtoken}`
-    },
+    const usdtdata = await fetch(`${baseURL}/user/get-pending-transactions/usdt`,{
+        method: "GET",
+        headers: {
+            "Content-Type":"application/json",
+            "token":`Bearer ${pinia.user.accessToken}`
+        },
+    
+    }).then(res=>res.json());
+    
+    const ethdata = await fetch(`${baseURL}/user/get-pending-transactions/eth`,{
+        method: "GET",
+        headers: {
+            "Content-Type":"application/json",
+            "token":`Bearer ${pinia.user.accessToken}`
+        },
+    
+    }).then(res=>res.json());
 
-}).then(res=>res.json());
-const ethdata = await fetch(`${baseURL}/user/get-pending-transactions/eth`,{
-    method: "GET",
-    headers: {
-        "Content-Type":"application/json",
-        "token":`Bearer ${adtoken}`
-    },
-
-}).then(res=>res.json());
-
-
-console.log(btcdata.data.transactions)
-const usersfunding = {...btcdata.data?.transactions,...usdtdata.data?.transactions,...ethdata.data?.transactions}
+console.log(btcdata.data?.transactions)
+const usersfunding = [
+           ...btcdata.data?.transactions,
+          ...usdtdata.data?.transactions,
+          ...ethdata.data?.transactions
+        ]
 console.log(usersfunding)
 pinia.storeAdminGetUserFunding(usersfunding)
+
+}catch(e){
+    console.log(e)
+}
+
+
 
 
 
@@ -170,12 +182,13 @@ const approveFunding = async(userr,walletType)=>{
         method: 'PATCH',
         headers: {
             "Content-Type":"application/json",
-            "token":`Bearer ${adtoken}`
+            "token":`Bearer ${pinia.user.accessToken}`
         },
         body:JSON.stringify(deposit_id)
       }).then(res =>res.json())
+      const filteredItems = pinia.adminGetUserFunding.filter(i => i.id !== userr)
 
-      reloadNuxtApp()
+      pinia.storeAdminGetUserFunding(filteredItems)
 
 
     }catch(e){
@@ -197,7 +210,7 @@ const currentPage = ref(1);
 
 
 const paginatedUsers = computed(() => {
-  return userr.slice(((currentPage.value - 1) * perPage), currentPage.value * perPage);
+  return userr?.slice(((currentPage.value - 1) * perPage), currentPage.value * perPage);
 });
 
 const totalPages = ref(Math.ceil(userr.length / perPage));

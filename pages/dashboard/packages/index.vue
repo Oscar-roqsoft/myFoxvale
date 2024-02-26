@@ -120,7 +120,7 @@ const data = await fetch(`${baseURL}/package/packages-list`,{
    method: "GET",
    headers: {
         "Content-Type":"application/json",
-        "token": `Bearer ${adtoken}`
+        "token": `Bearer ${pinia.user.accessToken}`
     },
 }).then(res=>res.json());
 

@@ -114,6 +114,7 @@ const minimumPackageValue = ref("")
 const maximumPackageValue = ref("")
 const interestPercentageValue = ref("")
 const ratingValue = ref("")
+const pinia = useStore()
 
 const packageDetails = {
 
@@ -127,7 +128,7 @@ const data = await fetch(`${baseURL}/package/update-package/652e541872556c4e30a2
 method: "POST",
 headers: {
     "Content-Type":"application/json",
-    "token": `Bearer ${adtoken}`,
+    "token": `Bearer ${pinia.user.accessToken}`,
 },
 body: JSON.stringify()
 }).then(res=>res.json());

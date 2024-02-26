@@ -128,38 +128,42 @@ const isloading = ref(false)
 
 
 
+try{
 
-const btcdata = await fetch(`${baseURL}/subscription/get-subscriptions/btc`,{
-    method: "GET",
-    headers: {
-        "Content-Type":"application/json",
-        "token":`Bearer ${adtoken}`
-    },
-
-}).then(res=>res.json());
-
-const usdtdata = await fetch(`${baseURL}/subscription/get-subscriptions/usdt`,{
-    method: "GET",
-    headers: {
-        "Content-Type":"application/json",
-        "token":`Bearer ${adtoken}`
-    },
-
-}).then(res=>res.json());
-const ethdata = await fetch(`${baseURL}/subscription/get-subscriptions/eth`,{
-    method: "GET",
-    headers: {
-        "Content-Type":"application/json",
-        "token":`Bearer ${adtoken}`
-    },
-
-}).then(res=>res.json());
-
-
-console.log(btcdata.data.subscriptions)
-const subscribers = [...btcdata.data.subscriptions,...usdtdata.data.subscriptions,...ethdata.data.subscriptions]
-console.log(subscribers)
-pinia.storeadminGetSubscribers(subscribers)
+    const btcdata = await fetch(`${baseURL}/subscription/get-subscriptions/btc`,{
+        method: "GET",
+        headers: {
+            "Content-Type":"application/json",
+            "token":`Bearer ${pinia.user.accessToken}`
+        },
+    
+    }).then(res=>res.json());
+    
+    const usdtdata = await fetch(`${baseURL}/subscription/get-subscriptions/usdt`,{
+        method: "GET",
+        headers: {
+            "Content-Type":"application/json",
+            "token":`Bearer ${pinia.user.accessToken}`
+        },
+    
+    }).then(res=>res.json());
+    const ethdata = await fetch(`${baseURL}/subscription/get-subscriptions/eth`,{
+        method: "GET",
+        headers: {
+            "Content-Type":"application/json",
+            "token":`Bearer ${pinia.user.accessToken}`
+        },
+    
+    }).then(res=>res.json());
+    
+    
+    // console.log(btcdata.data?.subscriptions)
+    const subscribers = [...btcdata.data.subscriptions,...usdtdata.data.subscriptions,...ethdata.data.subscriptions]
+    console.log(subscribers)
+    pinia.storeadminGetSubscribers(subscribers)
+}catch(e){
+console.log(e)
+}
 
 
 
@@ -189,15 +193,17 @@ const approveFunding = async(userr,walletType,isUserApproved)=>{
         method: 'PATCH',
         headers: {
             "Content-Type":"application/json",
-            "token":`Bearer ${adtoken}`
+            "token":`Bearer ${pinia.user.accessToken}`
         },
         body:JSON.stringify(subscriber_id)
       }).then(res=>res.json())
       isloading.value = false
       reloadNuxtApp()
-      console.log(data.message)
-      console.log([data.data.subscription])
-      pinia.storeadminGetSubscribers([data.data.subscription,...pinia.adminGetSubscribers ]);
+
+    //   const filteredItems = pinia.adminGetSubscribers.filter(i => i._id !== userr)
+    //   console.log(data.message)
+    //   console.log(filteredItems)
+    //   pinia.storeadminGetSubscribers([...pinia.adminGetSubscribers,...filteredItems]);
       
       
     }catch(e){
@@ -209,7 +215,7 @@ const approveFunding = async(userr,walletType,isUserApproved)=>{
 
 //pagination setup
 
-const userr = ref(pinia.adminGetSubscribers)
+const userr = pinia.adminGetSubscribers
 // Define per-page display
 const perPage = 10;
 
@@ -218,10 +224,10 @@ const currentPage = ref(1);
 
 
 const paginatedUsers = computed(() => {
-  return userr.value.slice(((currentPage.value - 1) * perPage), currentPage.value * perPage);
+  return userr.slice(((currentPage.value - 1) * perPage), currentPage.value * perPage);
 });
 
-const totalPages = ref(Math.ceil(userr.value.length / perPage));
+const totalPages = ref(Math.ceil(userr.length / perPage));
 const handlePageNextChange = () => {
   if (currentPage.value < totalPages.value) {
     currentPage.value++;
