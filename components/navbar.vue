@@ -32,8 +32,9 @@
                 <ul class="navigation-menu">
                     <li><nuxt-link to="/"  class="sub-menu-item">Home</nuxt-link></li>
                     <li><nuxt-link to="about"  class="sub-menu-item">About</nuxt-link></li>
-                    <li><nuxt-link to="/login" class="sub-menu-item">Login</nuxt-link></li>
-                    <li><nuxt-link to="/signup" class="sub-menu-item">Register</nuxt-link></li>
+                    <li v-if="!store?.user?.id"><nuxt-link to="/login" class="sub-menu-item">Login</nuxt-link></li>
+                    <li v-if="!store?.user?.id"><nuxt-link to="/signup" class="sub-menu-item">Register</nuxt-link></li>
+                    <li v-if="store?.user?.id"><nuxt-link to="/dashboard" class="sub-menu-item">Account</nuxt-link></li>
                
                 </ul><!--end navigation menu-->
             </div><!--end navigation-->
@@ -41,6 +42,27 @@
     </header><!--end header-->
     <!-- Navbar End -->
 </template>
+
+<script setup>
+
+import {baseURL} from '@/composables/mixins'
+import {useStore} from '@/stores/index'
+
+definePageMeta({
+    layout:'custom'
+})
+
+const store = useStore()
+
+
+ 
+
+
+
+
+
+
+</script>
 
 
 

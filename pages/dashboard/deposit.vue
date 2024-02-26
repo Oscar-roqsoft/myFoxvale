@@ -102,7 +102,7 @@ definePageMeta({
 })
 const pinia = useStore()
 
-const options = [...pinia.walletDetails]
+const options = pinia.walletDetails
 
 const selected = ref('USDT')
 
@@ -138,7 +138,6 @@ const toggleModal =()=>{
 
 }
 
-
 try{
     const data = await fetch(`${baseURL}/get-account-details`,{
         method: "GET",
@@ -152,10 +151,11 @@ try{
     pinia.storeWalletDetails(userAccountDetails)
 
 
-    console.log('hhh')
+    console.log(userAccountDetails)
     }catch(e){
         console.log('error:', e)
     }
+
 
 
 

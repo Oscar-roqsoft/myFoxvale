@@ -306,16 +306,22 @@ import {useStore} from "@/stores/index"
 
 const pinia = useStore()
 
-const data = await fetch(`${baseURL}/package/packages-list`,{
-   method: "GET",
-   headers: {
-        "Content-Type":"application/json",
-        "token": `Bearer ${pinia.user.accessToken}`
-    },
-}).then(res=>res.json());
 
-const packageInfo =  data.data.packages;
-pinia.storesubPackage(packageInfo);
+try{
+
+    const data = await fetch(`${baseURL}/package/packages-list`,{
+       method: "GET",
+       headers: {
+            "Content-Type":"application/json",
+            "token": `Bearer ${pinia.user.accessToken}`
+        },
+    }).then(res=>res.json());
+    
+    const packageInfo =  data.data.packages;
+    pinia.storesubPackage(packageInfo);
+}catch(e){
+    console.log(e)
+}
 </script>
 
 <style scoped>
