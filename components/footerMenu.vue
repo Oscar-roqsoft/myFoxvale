@@ -40,7 +40,10 @@
                             </div><!--end col-->
 
                         </div><!--end row-->
-                        <span style="margin-top: 20px !important;">support@foxvale.org</span>
+                        <div class="d-flex " style="display: flex; align-items: center; margin-top: 20px;">
+                            <img style="width: 30px; height: 30px;"  src="/email.png"/>
+                            <span style="margin-left: 8px !important;">support@foxvale.org</span>
+                        </div>
                     </div>
                 </div><!--end col-->
             </div><!--end row-->

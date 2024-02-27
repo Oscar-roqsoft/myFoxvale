@@ -14,7 +14,7 @@
                         <div class="card shadow rounded border-0">
                             <div class="card-body">
                                 <h4 class="card-title text-center">Signup</h4>  
-                                <form class="login-form mt-4" @submit.prevent="null">
+                                <form class="login-form mt-4" @submit.prevent="null" >
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="mb-3">
