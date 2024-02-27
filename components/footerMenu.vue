@@ -40,6 +40,7 @@
                             </div><!--end col-->
 
                         </div><!--end row-->
+                        <span style="margin-top: 20px !important;">support@foxvale.org</span>
                     </div>
                 </div><!--end col-->
             </div><!--end row-->
