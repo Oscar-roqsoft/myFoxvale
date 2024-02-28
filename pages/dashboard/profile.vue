@@ -97,9 +97,9 @@
                                                     </div>
                                                     <div class="d-flex align-items-center mt-2">
                                                         <div class="flex-1">
-                                                            <h6 class="text-primary mb-0">Zip Code :</h6>
+                                                            <h6 class="text-primary mb-0">Zip/Postal Code :</h6>
                                                             <input name="number"  type="text" class="form-control ps-2"  
-                                                            :placeholder="zipCode?`${zipCode}`: 'No Zip Code Uploded Yet'" disabled>
+                                                            :placeholder="zipCode?`${zipCode}`: 'No Zip/Postal Code Uploded Yet'" disabled>
                                                         </div>
                                                     </div>
                                                     <div class="d-flex align-items-center mt-2">

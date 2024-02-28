@@ -6,7 +6,9 @@
             <div class="layer rounded shadow" :class="isVisible === props.value ?'clicked':''">
                    <div>
                        <p class="text-sm">Send <span class="text-warning">${{ numberWithCommas(props.depositAmount) }}</span> worth of 
-                           {{store.selectedWalletName.name }} to the wallet address below</p>
+                           {{store.selectedWalletName.name }}<span v-show="store.selectedWalletName.name === 'ETH'">(ERC-20)</span>
+                            <span v-show="store.selectedWalletName.name === 'USDT'">(TRC-20)</span>
+                            <span v-show="store.selectedWalletName.name === 'BTC'">(BITCOIN)</span> to the wallet address below</p>
                        <hr class="bg-dark w-100">
                    </div>
                 

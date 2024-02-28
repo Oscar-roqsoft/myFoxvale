@@ -55,7 +55,11 @@
                                     
                                         
                                     <tr>
-                                        <td style="width: 50px;">{{ item.name }}</td>
+                                        <td style="width: 140px;">{{ item.name }}
+                                            <span v-show="item.name === 'ETH'">(ERC-20)</span>
+                                            <span v-show="item.name === 'USDT'">(TRC-20)</span>
+                                            <span v-show="item.name === 'BTC'">(BITCOIN)</span>
+                                        </td>
                                         <td>{{ item.value }}</td>
                                         <td> 
                                             <a @click.prevent="navigateTo(`/dashboard/Adminwallet/${item._id}`)" 
@@ -112,7 +116,10 @@ try{
     // console.log(userslist)
     // pinia.storeUserList(userslist)
 }catch(err){
+
     console.log(err)
+
+
 }
 
 

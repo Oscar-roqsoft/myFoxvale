@@ -95,10 +95,10 @@
                                                 </div><!--en d col-->
                                                 <div class="col-md-6">
                                                     <div class="mb-3">
-                                                        <label class="form-label">Zip Code</label>
+                                                        <label class="form-label">Zip/Postal Code</label>
                                                         <div class="form-icon position-relative">
                                                             <input  name="number" id="number" type="number" class="form-control ps-5" 
-                                                            v-model.trim="zipCode" :placeholder="store.user.zipCode ?store.user.zipCode :'Zip Code :'">
+                                                            v-model.trim="zipCode" :placeholder="store.user.zipCode ?store.user.zipCode :'Zip/Postal Code :'">
                                                         </div>
                                                     </div> 
                                                 </div><!--end col-->
