@@ -33,7 +33,7 @@
                                                 <tr>
                                                     <th class="border-bottom p-3" style="min-width: 220px;">Client Name</th>
                                                     <th class="text-center border-bottom p-3" style="min-width: 200px;">Email</th>
-                                                    <th class="text-center border-bottom p-3" style="min-width: 150px;">Country</th>
+                                                    <th class="text-center border-bottom p-3" style="min-width: 150px;">Status</th>
                                                     <th class="text-center border-bottom p-3">Actions</th>
                                                 </tr>
                                             </thead>

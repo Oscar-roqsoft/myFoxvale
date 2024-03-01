@@ -37,7 +37,10 @@
                             <img :src="selectedPackage.profileImage? selectedPackage.profileImage : 'https://thumbs.dreamstime.com/z/default-avatar-profile-icon-vector-social-media-user-image-182145777.jpg?w=768'" alt="User Avatar" style="height: 100px; width: 100px;" class="rounded-circle img-thumbnail" />
                             <p class="mt-3"><strong>Email:</strong> <br> {{ selectedPackage.email }}</p>
                             <p><strong>Phone:</strong> <br> {{ selectedPackage.phoneNumber?selectedPackage.phoneNumber:'Not Yet Uploaded' }}</p>
-                            <p><strong>Address:</strong><br>  {{ selectedPackage.country?selectedPackage.country:'Not Yet Uploaded' }}</p>
+                            <p><strong>Date Of Birth:</strong><br>  {{ selectedPackage.birthday? formatDateOfBirth(selectedPackage.birthday):'Not Yet Uploaded' }}</p>
+                            <p><strong>Residence Address:</strong><br>  {{ selectedPackage.address?selectedPackage.address:'Not Yet Uploaded' }}</p>
+                            <p><strong>Country:</strong><br>  {{ selectedPackage.country?selectedPackage.country:'Not Yet Uploaded' }}</p>
+                            <p><strong>Zip/Postal Code:</strong><br>  {{ selectedPackage.zipCode?selectedPackage.zipCode:'Not Yet Uploaded' }}</p>
                             <p><strong>Document:</strong> </p>
                             <div class="border rounded" style="height: 200px; width: 300px;" >
                                 <img :src="selectedPackage.idFile"  style="height: 200px; width: 300px;">

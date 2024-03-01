@@ -9,7 +9,7 @@
                                     <div class="mb-3">
                                         <div class="form-icon position-relative">
                                             <span class="text-dark">Payment Method:</span><br>
-                                            <span>{{ pinia.withdrawalDetails.selected  }}</span>
+                                            <span>{{ pinia.withdrawalDetails.selected  }} ({{ pinia.withdrawalDetails.selectednet }})</span>
                                            
                                         </div>
 

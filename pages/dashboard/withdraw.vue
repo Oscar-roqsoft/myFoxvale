@@ -46,7 +46,22 @@
                                                    </option>
 
                                             </select>
-                                            <!-- <input type="select" placeholder="BTC Wallet Address" class="form-control ps-4" disabled> -->
+                                        </div>
+
+                                    </div>
+                                </div><!--end col-->
+
+                                <div class="col-lg-12">
+                                    <div class="mb-3">
+                                        <div class="form-icon position-relative">
+                                            <span>Payment Networks</span>
+                                            <select  v-model="selectednet" class="form-select mb-3">
+                                                   <option  v-for="i in options" 
+                                                   :key="i.name" :value="i.network">
+                                                    {{ i.network }}
+                                                   </option>
+
+                                            </select>
                                         </div>
 
                                     </div>
@@ -112,16 +127,18 @@ const pinia = useStore()
 const amountToWithdraw = ref('')
 const walletAddress = ref('')
 const selected = ref("BTC")
+const selectednet = ref("BITCOIN")
 const options = [
-    {value: 1, name:'BTC'},
-    {value: 1, name:'USDT'},
-    {value: 1, name:'ETH'},
+    {value: 1, name:'BTC',network:'BITCOIN'},
+    {value: 1, name:'USDT',network:'TRC-20'},
+    {value: 1, name:'ETH',network:'ERC-20'},
 ]
 
 const withdrawalDetails = {
     amountToWithdraw,
     walletAddress,
-    selected
+    selected,
+    selectednet
 }
 
 
