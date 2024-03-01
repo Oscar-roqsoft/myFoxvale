@@ -60,6 +60,7 @@ const withdrawalRequest = async()=>{
     isloading.value = true
     const withdrawalDetail = {
         amount: pinia.withdrawalDetails.amountToWithdraw,
+        networkType: pinia.withdrawalDetails.selectednet 
     }
 
     try{

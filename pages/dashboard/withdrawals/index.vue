@@ -52,7 +52,7 @@
                                                         </a>
                                                     </td>
                                                     <td class="text-center p-3">{{ formatDateOfBirth(userr.createdAt)}}</td>
-                                                    <td class="text-center p-3">{{ userr.walletType}}</td>
+                                                    <td class="text-center p-3">{{ userr.walletType}} ({{ userr?.networkType }})</td>
                                                     <td class="text-center p-3">{{ userr._id }}</td>
                                                     <td class="text-center p-3">
                                                         <div @click.prevent="approvedwithdrawal(userr._id,userr.walletType)" class="badge btn btn-sm bg-primary rounded " 
