@@ -210,7 +210,7 @@ const currentPage = ref(1);
 
 
 const paginatedUsers = computed(() => {
-  return userr?.slice(((currentPage.value - 1) * perPage), currentPage.value * perPage);
+  return userr.slice(((currentPage.value - 1) * perPage), currentPage.value * perPage);
 });
 
 const totalPages = ref(Math.ceil(userr.length / perPage));
