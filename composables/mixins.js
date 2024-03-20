@@ -39,6 +39,8 @@ export const handleFileChange = async (event , selectedFile ,profileImg=null)=>{
             profileImg.value.src = event.target.result;
         };
         reader.readAsDataURL(file);
+
+       
     }
 }
 
