@@ -42,8 +42,11 @@
                             <p><strong>Country:</strong><br>  {{ selectedPackage.country?selectedPackage.country:'Not Yet Uploaded' }}</p>
                             <p><strong>Zip/Postal Code:</strong><br>  {{ selectedPackage.zipCode?selectedPackage.zipCode:'Not Yet Uploaded' }}</p>
                             <p><strong>Document:</strong> </p>
-                            <div class="border rounded" style="height: 200px; width: 300px;" >
-                                <img :src="selectedPackage.idFile"  style="height: 200px; width: 300px;">
+                            <div v-if="!selectedPackage.idFile" class="d-flex justify-content-center">
+                                <p>No Document Uploaded yet</p>
+                            </div>
+                            <div v-else class="border rounded" style="max-width: 500px; height: 300px;" >
+                                <img :src="selectedPackage.idFile"  style="max-width: 100%;">
                             </div>
 
                             <button class="btn mt-3  btn-primary" @click.prevent="verifyUser">Verify user</button>
