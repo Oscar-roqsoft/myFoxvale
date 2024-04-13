@@ -69,6 +69,25 @@
                                             
                                     <div class="col-md-6 mt-3">
                                         <h5 class="text-warning">Upgrade Plan</h5>
+
+                                        <div class="col-lg-12">
+                                                <div class="mb-3">
+                                                    <div class="form-icon position-relative">
+                                                            <label for="selectOptions" class="form-label">Select Package</label>
+                                                        
+                                                            <select  v-model="selectedplan" class="form-select mb-3">
+                                                            <option  v-for="option in pinia.packages" 
+                                                            :key="option.name" :value="option.name">
+                                                                {{ option.name }}
+                                                            </option>
+
+                                                            </select>
+                                                            
+                                                    </div>
+                                                </div>
+                                         </div><!--end col-->
+
+
                                         
                                         
                                         <div class="mb-3">
@@ -125,9 +144,9 @@ const pinia = useStore()
 
 const transaction = pinia.getUserTransactions
 const assetPlan = pinia.packages
-const selected = ref('Select plan')
+const selectedplan = ref('Select plan')
 
-console.log(selected.value)
+console.log(selectedplan.value)
 
 const router = useRouter();
 
@@ -151,11 +170,18 @@ pinia.storePackage(packageInfo);
 
 
 const upgradePlan = async()=>{
-    isloading.value = true
+    // isloading.value = true
+    // let userbal = pinia.userBalance?.usdtWallet?.balance + pinia.userBalance?.btcWallet?.balance + pinia.userBalance?.ethWallet?.balance
+
+    // if( userbal < amount.value){
+    //     return push.error('Insufficient balance, please fund your wallet')
+    // }
     const details = {
         subscriptionId:selectedPackage._id,
         packageId:selectedPackage.package._id,
-        amount: amount.value
+        amount: amount.value,
+        plan:selectedplan.value,
+
     }
     console.log(details)
     try{
@@ -172,13 +198,20 @@ const upgradePlan = async()=>{
        isloading.value = false
        console.log(data)
 
-       let subinfo = {...pinia.getUserTransactions,
-        ...data.data.subscription}
+          if(data.status){
 
-    //    console.log(subinfo)
-    //    pinia.storeGetUserTransactions([...subinfo])
+                 let subinfo = {...pinia.getUserTransactions,
+                  ...data.data.subscription}
+          
+              //    console.log(subinfo)
+              //    pinia.storeGetUserTransactions([...subinfo])
+          
+                 navigateTo('/dashboard/transaction')
+              push.success(`${data.message}`)
+          }else{
+            push.error(`${data.message}`)
+          }
 
-       navigateTo('/dashboard/transaction')
      }catch(e){
        console.log(e)
      }

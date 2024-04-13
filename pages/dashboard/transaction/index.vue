@@ -63,7 +63,7 @@
                                                     </td>
                                                     <td class="text-center p-3">
                                                         <button :disabled="userr.isFinalized" @click.prevent="navigateTo(`/dashboard/transaction/${userr._id}`)" 
-                                                        class="badge btn btn-sm bg-primary rounded ">
+                                                        class="badge btn btn-sm bg-primary rounded text-white">
                                                          upgrade
                                                         </button>
                                                     </td>
@@ -119,45 +119,55 @@ definePageMeta({
 })
 const pinia = useStore()
 
-try{
-    const btcdata = await fetch(`${baseURL}/subscription/get-user-subscriptions/btc`,{
-       method: "GET",
-       headers: {
-            "Content-Type":"application/json",
-             "token": `Bearer ${pinia.user.accessToken}`
-        },
-    }).then(res=>res.json());
+onMounted(async()=>{
 
-    const usdtdata = await fetch(`${baseURL}/subscription/get-user-subscriptions/usdt`,{
-       method: "GET",
-       headers: {
-            "Content-Type":"application/json",
-             "token": `Bearer ${pinia.user.accessToken}`
-        },
-    }).then(res=>res.json());
-
-    const ethdata = await fetch(`${baseURL}/subscription/get-user-subscriptions/eth`,{
-       method: "GET",
-       headers: {
-            "Content-Type":"application/json",
-            "token": `Bearer ${pinia.user.accessToken}`
-        },
-    }).then(res=>res.json());
+    if(pinia.getUserTransactions.length == 0){
     
-    console.log(btcdata.message)
-
-    // const usertransactions = btcdata.data.subscriptions
-    // console.log(usertransactions)
-    // pinia.storeGetUserTransactions(usertransactions)
+        return pinia.getUserTransactions
+        
+    }else{
     
-    // const usertransactions = btcdata.data.subscriptions
-    const usertransactions = [...btcdata.data.subscriptions,...usdtdata.data.subscriptions,...ethdata.data.subscriptions]
-    console.log(usertransactions)
-    pinia.storeGetUserTransactions(usertransactions)
-
-}catch(err){
-    console.log(err)
-}
+        try{
+            const btcdata = await fetch(`${baseURL}/subscription/get-user-subscriptions/btc`,{
+               method: "GET",
+               headers: {
+                    "Content-Type":"application/json",
+                     "token": `Bearer ${pinia.user.accessToken}`
+                },
+            }).then(res=>res.json());
+        
+            const usdtdata = await fetch(`${baseURL}/subscription/get-user-subscriptions/usdt`,{
+               method: "GET",
+               headers: {
+                    "Content-Type":"application/json",
+                     "token": `Bearer ${pinia.user.accessToken}`
+                },
+            }).then(res=>res.json());
+        
+            const ethdata = await fetch(`${baseURL}/subscription/get-user-subscriptions/eth`,{
+               method: "GET",
+               headers: {
+                    "Content-Type":"application/json",
+                    "token": `Bearer ${pinia.user.accessToken}`
+                },
+            }).then(res=>res.json());
+            
+            console.log(btcdata.message)
+        
+            // const usertransactions = btcdata.data.subscriptions
+            // console.log(usertransactions)
+            // pinia.storeGetUserTransactions(usertransactions)
+            
+            // const usertransactions = btcdata.data.subscriptions
+            const usertransactions = [...btcdata.data.subscriptions,...usdtdata.data.subscriptions,...ethdata.data.subscriptions]
+            console.log(usertransactions)
+            pinia.storeGetUserTransactions(usertransactions)
+        
+        }catch(err){
+            console.log(err)
+        }
+    }
+})
 
 
 

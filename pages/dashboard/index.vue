@@ -161,46 +161,56 @@ const btnLinkItems = [
 
 
 
-
-
-
-   try{
-    const data = await fetch(`${baseURL}/user/get-user-balance/${store.user.id}`,{
-       method: "GET",
-       headers: {
-            "Content-Type":"application/json",
-            "token": `Bearer ${store.user.accessToken}`
-        },
-    }).then(res=>res.json());
    
-    const balanceInfo = data.data;
+   
+    onMounted(async()=>{
+    
+        if(store.userBalance.length == 0){
+            return store.userBalance
+        }else{
+        
+            try{
+            const data = await fetch(`${baseURL}/user/get-user-balance/${store.user.id}`,{
+                method: "GET",
+                headers: {
+                    "Content-Type":"application/json",
+                    "token": `Bearer ${store.user?.accessToken}`
+                },
+            }).then(res=>res.json());
+            
+            const balanceInfo = data.data;
+            
+            console.log(data.data)
+            
+            store.storeUserBalance(balanceInfo);
+            }catch(e){
+            console.log(e)
+            }
+        }
 
-    console.log(data.data)
+        if(store.walletDetails.length == 0){
+            return store.walletDetails
+        }else{
 
-    store.storeUserBalance(balanceInfo);
-}catch(e){
-    console.log(e)
-}
-
-
-
-try{
-    const data = await fetch(`${baseURL}/get-account-details`,{
-        method: "GET",
-        headers: {
-        "Content-Type":"application/json",
-        "token": `Bearer ${store.user.accessToken}`
-        },
-    }).then(res=>res.json())
-
-    const userAccountDetails = data.data.accountDetails
-    store.storeWalletDetails(userAccountDetails)
-
-
-    console.log(userAccountDetails)
-    }catch(e){
-        console.log('error:', e)
-    }
+            try{
+                const data = await fetch(`${baseURL}/get-account-details`,{
+                    method: "GET",
+                    headers: {
+                    "Content-Type":"application/json",
+                    "token": `Bearer ${store.user.accessToken}`
+                    },
+                }).then(res=>res.json())
+            
+                const userAccountDetails = data.data.accountDetails
+                store.storeWalletDetails(userAccountDetails)
+            
+            
+                console.log(userAccountDetails)
+                }catch(e){
+                    console.log('error:', e)
+                }
+        }
+    })
 
 
 

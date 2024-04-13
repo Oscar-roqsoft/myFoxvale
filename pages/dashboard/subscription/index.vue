@@ -120,16 +120,25 @@ const message = ref("")
 const isVisible = ref(true)
 const pinia = useStore()
 
-const data = await fetch(`${baseURL}/package/packages-list`,{
-   method: "GET",
-   headers: {
-        "Content-Type":"application/json",
-        "token": `Bearer ${pinia.user.accessToken}`
-    },
-}).then(res=>res.json());
 
-const packageInfo =  data.data.packages;
-pinia.storesubPackage(packageInfo);
+onMounted(async()=>{
+
+    if(pinia.subpackages.length ==0 ){
+        return pinia.subpackages
+    }else{
+    
+        const data = await fetch(`${baseURL}/package/packages-list`,{
+           method: "GET",
+           headers: {
+                "Content-Type":"application/json",
+                "token": `Bearer ${pinia.user.accessToken}`
+            },
+        }).then(res=>res.json());
+        
+        const packageInfo =  data.data.packages;
+        pinia.storesubPackage(packageInfo);
+    }
+})
 
 
 

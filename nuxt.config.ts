@@ -10,15 +10,17 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@pinia-plugin-persistedstate/nuxt',
     '@vueuse/nuxt',
+    'notivue/nuxt',
   ],
- 
-
+  
   
   css: [
     // '@/assets/css/bootstrap-dark.min.css',
     // '@/assets/css/icons.css',
      // '@/assets/css/style-dark.css',
     // '@/assets/css/style-dark.css',
+    'notivue/notifications.css', // Only needed if using built-in notifications
+    'notivue/animations.css', // Only needed if using built-in animations
     
 
     '@/assets/hcss/bootstrap.min.css',
