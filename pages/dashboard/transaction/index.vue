@@ -123,49 +123,47 @@ onMounted(async()=>{
 
     if(pinia.getUserTransactions.length == 0){
     
-        return pinia.getUserTransactions
-        
-    }else{
-    
-        try{
-            const btcdata = await fetch(`${baseURL}/subscription/get-user-subscriptions/btc`,{
-               method: "GET",
-               headers: {
-                    "Content-Type":"application/json",
-                     "token": `Bearer ${pinia.user.accessToken}`
-                },
-            }).then(res=>res.json());
-        
-            const usdtdata = await fetch(`${baseURL}/subscription/get-user-subscriptions/usdt`,{
-               method: "GET",
-               headers: {
-                    "Content-Type":"application/json",
-                     "token": `Bearer ${pinia.user.accessToken}`
-                },
-            }).then(res=>res.json());
-        
-            const ethdata = await fetch(`${baseURL}/subscription/get-user-subscriptions/eth`,{
-               method: "GET",
-               headers: {
-                    "Content-Type":"application/json",
+         pinia.getUserTransactions
+    }   
+
+    try{
+        const btcdata = await fetch(`${baseURL}/subscription/get-user-subscriptions/btc`,{
+            method: "GET",
+            headers: {
+                "Content-Type":"application/json",
                     "token": `Bearer ${pinia.user.accessToken}`
-                },
-            }).then(res=>res.json());
-            
-            console.log(btcdata.message)
+            },
+        }).then(res=>res.json());
+    
+        const usdtdata = await fetch(`${baseURL}/subscription/get-user-subscriptions/usdt`,{
+            method: "GET",
+            headers: {
+                "Content-Type":"application/json",
+                    "token": `Bearer ${pinia.user.accessToken}`
+            },
+        }).then(res=>res.json());
+    
+        const ethdata = await fetch(`${baseURL}/subscription/get-user-subscriptions/eth`,{
+            method: "GET",
+            headers: {
+                "Content-Type":"application/json",
+                "token": `Bearer ${pinia.user.accessToken}`
+            },
+        }).then(res=>res.json());
         
-            // const usertransactions = btcdata.data.subscriptions
-            // console.log(usertransactions)
-            // pinia.storeGetUserTransactions(usertransactions)
-            
-            // const usertransactions = btcdata.data.subscriptions
-            const usertransactions = [...btcdata.data.subscriptions,...usdtdata.data.subscriptions,...ethdata.data.subscriptions]
-            console.log(usertransactions)
-            pinia.storeGetUserTransactions(usertransactions)
+        console.log(btcdata.message)
+    
+        // const usertransactions = btcdata.data.subscriptions
+        // console.log(usertransactions)
+        // pinia.storeGetUserTransactions(usertransactions)
         
-        }catch(err){
-            console.log(err)
-        }
+        // const usertransactions = btcdata.data.subscriptions
+        const usertransactions = [...btcdata.data.subscriptions,...usdtdata.data.subscriptions,...ethdata.data.subscriptions]
+        console.log(usertransactions)
+        pinia.storeGetUserTransactions(usertransactions)
+    
+    }catch(err){
+        console.log(err)
     }
 })
 

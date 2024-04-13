@@ -121,23 +121,23 @@ function numberWithCommas(x) {
 }
  
 
-try{
-    const data = await fetch(`${baseURL}/user/get-user-balance/${store.user.id}`,{
-       method: "GET",
-       headers: {
-            "Content-Type":"application/json",
-            "token": `Bearer ${store.user.accessToken}`
-        },
-    }).then(res=>res.json());
+// try{
+//     const data = await fetch(`${baseURL}/user/get-user-balance/${pinia.user.id}`,{
+//        method: "GET",
+//        headers: {
+//             "Content-Type":"application/json",
+//             "token": `Bearer ${pinia.user.accessToken}`
+//         },
+//     }).then(res=>res.json());
    
-    const balanceInfo =  data.data;
+//     const balanceInfo =  data.data;
 
-    console.log(data.data)
+//     console.log(data.data)
 
-    store.storeUserBalance(balanceInfo);
-}catch(e){
-    console.log(e)
-}
+//   pinia.storeUserBalance(balanceInfo);
+// }catch(e){
+//     console.log(e)
+// }
 
 
 

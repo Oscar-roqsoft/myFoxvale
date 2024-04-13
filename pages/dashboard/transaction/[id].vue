@@ -75,9 +75,9 @@
                                                     <div class="form-icon position-relative">
                                                             <label for="selectOptions" class="form-label">Select Package</label>
                                                         
-                                                            <select  v-model="selectedplan" class="form-select mb-3">
-                                                            <option  v-for="option in pinia.packages" 
-                                                            :key="option.name" :value="option.name">
+                                                            <select  v-model="selected" class="form-select mb-3">
+                                                            <option  v-for="option in options" 
+                                                            :key="option.name" :value="option._id">
                                                                 {{ option.name }}
                                                             </option>
 
@@ -144,43 +144,49 @@ const pinia = useStore()
 
 const transaction = pinia.getUserTransactions
 const assetPlan = pinia.packages
-const selectedplan = ref('Select plan')
 
-console.log(selectedplan.value)
-
+const options = pinia.packages
 const router = useRouter();
 
 const packageName = router.currentRoute.value.params.id;
 console.log(packageName);
 
 const selectedPackage = transaction.find(pkg => pkg._id == packageName )
-console.log(selectedPackage);
+console.log(selectedPackage.package.name);
+const selected = ref(`${selectedPackage.package.name}`)
 
 
-const data = await fetch(`${baseURL}/package/packages-list`,{
-   method: "GET",
-   headers: {
-        "Content-Type":"application/json",
-        "token": `Bearer ${adtoken}`
-    },
-}).then(res=>res.json());
-
-const packageInfo =  data.data.packages;
-pinia.storePackage(packageInfo);
+onMounted(async()=>{
+    if(pinia.packages.length ==0){
+        return pinia.packages
+    }else{
+    
+        const data = await fetch(`${baseURL}/package/packages-list`,{
+           method: "GET",
+           headers: {
+                "Content-Type":"application/json",
+                "token": `Bearer ${adtoken}`
+            },
+        }).then(res=>res.json());
+        
+        const packageInfo =  data.data.packages;
+        pinia.storePackage(packageInfo);
+    }
+})
 
 
 const upgradePlan = async()=>{
-    // isloading.value = true
+    isloading.value = true
     // let userbal = pinia.userBalance?.usdtWallet?.balance + pinia.userBalance?.btcWallet?.balance + pinia.userBalance?.ethWallet?.balance
 
-    // if( userbal < amount.value){
-    //     return push.error('Insufficient balance, please fund your wallet')
-    // }
+   
+    if(!amount.value){
+        return push.error('Enter amount to you want to subscribe to ')
+    }
     const details = {
         subscriptionId:selectedPackage._id,
-        packageId:selectedPackage.package._id,
+        packageId:selected.value,
         amount: amount.value,
-        plan:selectedplan.value,
 
     }
     console.log(details)
@@ -205,8 +211,38 @@ const upgradePlan = async()=>{
           
               //    console.log(subinfo)
               //    pinia.storeGetUserTransactions([...subinfo])
-          
-                 navigateTo('/dashboard/transaction')
+              const btcdata = await fetch(`${baseURL}/subscription/get-user-subscriptions/btc`,{
+                    method: "GET",
+                    headers: {
+                        "Content-Type":"application/json",
+                            "token": `Bearer ${pinia.user.accessToken}`
+                    },
+                }).then(res=>res.json());
+    
+                const usdtdata = await fetch(`${baseURL}/subscription/get-user-subscriptions/usdt`,{
+                    method: "GET",
+                    headers: {
+                        "Content-Type":"application/json",
+                            "token": `Bearer ${pinia.user.accessToken}`
+                    },
+                }).then(res=>res.json());
+            
+                const ethdata = await fetch(`${baseURL}/subscription/get-user-subscriptions/eth`,{
+                    method: "GET",
+                    headers: {
+                        "Content-Type":"application/json",
+                        "token": `Bearer ${pinia.user.accessToken}`
+                    },
+                }).then(res=>res.json());
+                
+                console.log(btcdata.message)
+            
+            
+                const usertransactions = [...btcdata.data.subscriptions,...usdtdata.data.subscriptions,...ethdata.data.subscriptions]
+                console.log(usertransactions)
+                pinia.storeGetUserTransactions(usertransactions)
+            
+              navigateTo('/dashboard/transaction')
               push.success(`${data.message}`)
           }else{
             push.error(`${data.message}`)
