@@ -117,47 +117,48 @@ const isloading = ref(false)
 
 
 
-try{
 
-    const btcdata = await fetch(`${baseURL}/user/get-pending-transactions/btc`,{
-        method: "GET",
-        headers: {
-            "Content-Type":"application/json",
-            "token":`Bearer ${pinia.user.accessToken}`
-        },
-    
-    }).then(res=>res.json());
+    try{
 
-    const usdtdata = await fetch(`${baseURL}/user/get-pending-transactions/usdt`,{
-        method: "GET",
-        headers: {
-            "Content-Type":"application/json",
-            "token":`Bearer ${pinia.user.accessToken}`
-        },
-    
-    }).then(res=>res.json());
-    
-    const ethdata = await fetch(`${baseURL}/user/get-pending-transactions/eth`,{
-        method: "GET",
-        headers: {
-            "Content-Type":"application/json",
-            "token":`Bearer ${pinia.user.accessToken}`
-        },
-    
-    }).then(res=>res.json());
+        const btcdata = await fetch(`${baseURL}/user/get-pending-transactions/btc`,{
+            method: "GET",
+            headers: {
+                "Content-Type":"application/json",
+                "token":`Bearer ${pinia.user.accessToken}`
+            },
+        
+        }).then(res=>res.json());
 
-console.log(btcdata.data?.transactions)
-const usersfunding = [
-           ...btcdata.data?.transactions,
-          ...usdtdata.data?.transactions,
-          ...ethdata.data?.transactions
-        ]
-console.log(usersfunding)
-pinia.storeAdminGetUserFunding(usersfunding)
+        const usdtdata = await fetch(`${baseURL}/user/get-pending-transactions/usdt`,{
+            method: "GET",
+            headers: {
+                "Content-Type":"application/json",
+                "token":`Bearer ${pinia.user.accessToken}`
+            },
+        
+        }).then(res=>res.json());
+        
+        const ethdata = await fetch(`${baseURL}/user/get-pending-transactions/eth`,{
+            method: "GET",
+            headers: {
+                "Content-Type":"application/json",
+                "token":`Bearer ${pinia.user.accessToken}`
+            },
+        
+        }).then(res=>res.json());
 
-}catch(e){
-    console.log(e)
-}
+    console.log(btcdata.data?.transactions)
+    const usersfunding = [
+            ...btcdata.data?.transactions,
+            ...usdtdata.data?.transactions,
+            ...ethdata.data?.transactions
+            ]
+    console.log(usersfunding)
+    pinia.storeAdminGetUserFunding(usersfunding)
+
+    }catch(e){
+        console.log(e)
+    }
 
 
 

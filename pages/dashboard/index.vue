@@ -193,22 +193,22 @@ const btnLinkItems = [
         }else{
 
             try{
-                const data = await fetch(`${baseURL}/get-account-details`,{
-                    method: "GET",
-                    headers: {
-                    "Content-Type":"application/json",
-                    "token": `Bearer ${store.user.accessToken}`
-                    },
-                }).then(res=>res.json())
-            
-                const userAccountDetails = data.data.accountDetails
-                store.storeWalletDetails(userAccountDetails)
-            
-            
-                console.log(userAccountDetails)
-                }catch(e){
-                    console.log('error:', e)
-                }
+            const data = await fetch(`${baseURL}/get-account-details`,{
+                method: "GET",
+                headers: {
+                "Content-Type":"application/json",
+                "token": `Bearer ${store.user.accessToken}`
+                },
+            }).then(res=>res.json())
+        
+            const userAccountDetails = data.data.accountDetails
+            store.storeWalletDetails(userAccountDetails)
+        
+        
+            console.log(userAccountDetails)
+            }catch(e){
+                console.log('error:', e)
+            }
         }
     })
 

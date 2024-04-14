@@ -138,23 +138,30 @@ const toggleModal =()=>{
 
 }
 
-try{
-    const data = await fetch(`${baseURL}/get-account-details`,{
-        method: "GET",
-        headers: {
-        "Content-Type":"application/json",
-        "token": `Bearer ${pinia.user.accessToken}`
-        },
-    }).then(res=>res.json())
 
-    const userAccountDetails = data.data.accountDetails
-    pinia.storeWalletDetails(userAccountDetails)
+onMounted(async()=>{
 
+   
 
-    console.log(userAccountDetails)
-    }catch(e){
-        console.log('error:', e)
-    }
+        try{
+            const data = await fetch(`${baseURL}/get-account-details`,{
+                method: "GET",
+                headers: {
+                "Content-Type":"application/json",
+                "token": `Bearer ${pinia.user.accessToken}`
+                },
+            }).then(res=>res.json())
+        
+            const userAccountDetails = data.data.accountDetails
+            pinia.storeWalletDetails(userAccountDetails)
+        
+        
+            console.log(userAccountDetails)
+            }catch(e){
+                console.log('error:', e)
+            }
+})
+
 
 
 

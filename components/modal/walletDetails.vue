@@ -88,10 +88,11 @@ const closeModal = ()=>{
 }
 
 
-const nameV = store.selectedWalletName.name?.toLowerCase()
 
 const fund = async()=>{
+    const nameV = store.selectedWalletName.name?.toLowerCase()
 
+    console.log('n',nameV)
     isloading.value = true
 
     const amount = {
